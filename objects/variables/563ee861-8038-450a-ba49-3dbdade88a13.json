@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "563ee861-8038-450a-ba49-3dbdade88a13",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "analyzer_capacity_Unavailable",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "0",
+  "tags": []
+}

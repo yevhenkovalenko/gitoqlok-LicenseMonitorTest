@@ -1,0 +1,14 @@
+{
+  "qInfo": {
+    "qId": "8cae2936-1d89-4529-8380-09bfe71173d1",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "baseFileSize",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "tags": []
+}

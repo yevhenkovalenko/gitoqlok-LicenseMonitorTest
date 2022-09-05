@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "vcPdd",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "=Timeframe"
+    ],
+    "qFieldLabels": [
+      "Timeframe"
+    ],
+    "title": "Timeframe"
+  },
+  "qMetaDef": {
+    "title": "Timeframe",
+    "description": "",
+    "tags": []
+  }
+}

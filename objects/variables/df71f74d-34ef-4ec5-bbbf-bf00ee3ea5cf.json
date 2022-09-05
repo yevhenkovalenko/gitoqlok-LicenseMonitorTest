@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "df71f74d-34ef-4ec5-bbbf-bf00ee3ea5cf",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "rows_Events_final",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "164",
+  "tags": []
+}

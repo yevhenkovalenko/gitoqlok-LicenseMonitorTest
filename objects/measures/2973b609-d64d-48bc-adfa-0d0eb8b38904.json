@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "2973b609-d64d-48bc-adfa-0d0eb8b38904",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Users Accessing Apps - 7 Days",
+    "qDef": "count({1<[Access Type] = {\"* Access\"},LogTimeStamp= {\">=$(=DayStart(today()-6))\"}>} DISTINCT UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Users Accessing Apps - 7 Days",
+    "description": "Count of Users who accessed an app during last 7 days.",
+    "tags": [
+      "last_7_days"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "JVvAUm",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "User Access Users",
+    "qDef": "count({<[Access Type]={'User'}>} distinct UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "User Access Users",
+    "description": "Count of unique users who accessed an app(s) using a user access pass.",
+    "tags": []
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "wXDMfBW",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Available Login Access/ Unallocated Analyzer Access",
+    "qDef": "Num(\r\nIF((license_type_enabled)='Token-based',\n\tIF(Sum({<[License Token Type]={\"Login*\"}>}[License Allocated Tokens]-[License Used Tokens]-[License Unavailable Tokens])/Sum({<[License Token Type]={\"Login*\"}>}[License Allocated Tokens])>0,\n    \tSum({<[License Token Type]={\"Login*\"}>}[License Allocated Tokens]-[License Used Tokens]-[License Unavailable Tokens])/Sum({<[License Token Type]={\"Login*\"}>}[License Allocated Tokens]),0)\n    ,\n    IF(Sum({<[License Token Type]={\"Analyzer*\"}>}[License Total Available Tokens])/Sum({<[License Token Type]={\"Analyzer*\"}>}[License Total Tokens])>0,\n    \tSum({<[License Token Type]={\"Analyzer*\"}>}[License Total Available Tokens])/Sum({<[License Token Type]={\"Analyzer*\"}>}[License Total Tokens]),0)\n    )\n,'0%')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "=IF((license_type_enabled)='Token-based','Available Login Access','Unallocated Analyzer Access')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "IF((license_type_enabled)='Token-based','% of Login Access available','% of unallocated Analyzer Access')"
+      }
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Available Login Access/ Unallocated Analyzer Access",
+    "description": "",
+    "tags": []
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "qInfo": {
+    "qId": "JJCm",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "UserId"
+    ],
+    "qFieldLabels": [
+      "User Id"
+    ],
+    "title": "User Id"
+  },
+  "qMetaDef": {
+    "title": "User Id",
+    "description": "Username of the individual performing an allocation change or accessing apps and using allocated tokens.",
+    "tags": [
+      "user"
+    ]
+  }
+}

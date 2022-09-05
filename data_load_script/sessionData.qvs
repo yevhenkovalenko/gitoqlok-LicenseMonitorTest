@@ -1,0 +1,41 @@
+///$tab sessionData
+SUB sessionData  (fdr)
+
+  // Initialize & Setup
+  Let carpeta			= peek('mainLogFolder',$(fdr),'logFolderList'); 
+  LET logName 			= '$(carpeta)Repository\Audit\*Activity';
+  Let extension			= peek('file_extension',$(fdr),'logFolderList');
+  
+  for each textFile in FileList(logName & '*.' & extension)
+    
+    // Only load the files updated since the last reload
+    If FileTime( '$(textFile)' ) >= $(lastReloadCompare) then
+    
+      CONCATENATE (working_session)
+      Load
+      	ProxySessionId,
+        ProxySessionId&ObjectId as proxy_session_id_app_id,		// count(distinct proxy_session_id_app_id) for surrogate "Session Count" in this app
+        timestamp(Timestamp(Timestamp#(Replace(Left(Timestamp,15),'T',' '), 'YYYYMMDD hhmmss')),'YYYY-MM-DD hh:mm:ss[.fff]') AS LogTimeStamp,
+        ObjectId as AppId,
+        ObjectName as [App Name],
+        Id as Id_temp		// Unique Identifier for Log entry to be used in the WHERE NOT EXISTS () clause to avoid loading duplicate log entries
+      
+      FROM '$(textFile)' 
+      (txt, utf8, embedded labels, delimiter is '\t', msq)
+       WHERE left(Command,8) = 'Open app'
+            AND ProxySessionId <> 0	// 0 entries are for sa_repository and sa_scheduler
+      ;
+      
+      // If there is an error in the loading of the log, send a trace message about it
+      LET tempErrorDetails = ScriptErrorDetails;
+      IF Len(tempErrorDetails) > 0 THEN
+        trace ERROR: $(tempErrorDetails);
+        CALL monitor_app_reload_stats('WARN','$(textFile)', tempErrorDetails,'Status Message')
+		tempErrorDetails = ;
+      END IF
+
+    ENDIF
+  
+  next textFile
+
+ENDSUB

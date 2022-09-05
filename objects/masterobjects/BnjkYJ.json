@@ -1,0 +1,385 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "BnjkYJ",
+      "qType": "masterobject"
+    },
+    "qMetaDef": {
+      "title": "User Access Pass by App with AppId",
+      "description": "Use this chart in case you have multiple apps with the same name in the same Stream. It includes AppId to distinguish the apps.",
+      "tags": []
+    },
+    "qHyperCubeDef": {
+      "qDimensions": [
+        {
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [
+              "App Name"
+            ],
+            "qFieldLabels": [
+              "App"
+            ],
+            "qSortCriterias": [
+              {
+                "qSortByAscii": 1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": true,
+            "cId": "pfNqjK",
+            "othersLabel": "Others",
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            },
+            "representation": {
+              "type": "text",
+              "urlLabel": ""
+            }
+          },
+          "qNullSuppression": true,
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_OFF",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {
+            "qv": "Others"
+          },
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          }
+        },
+        {
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [
+              "AppId"
+            ],
+            "qFieldLabels": [
+              ""
+            ],
+            "qSortCriterias": [
+              {
+                "qSortByAscii": 1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": true,
+            "cId": "sMCuVBH",
+            "othersLabel": "Others",
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            },
+            "representation": {
+              "type": "text",
+              "urlLabel": ""
+            }
+          },
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_OFF",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {
+            "qv": "Others"
+          },
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          }
+        },
+        {
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [
+              "App Stream"
+            ],
+            "qFieldLabels": [
+              "Stream"
+            ],
+            "qSortCriterias": [
+              {
+                "qSortByAscii": 1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": true,
+            "cId": "aAFaRb",
+            "othersLabel": "Others",
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            },
+            "representation": {
+              "type": "text",
+              "urlLabel": ""
+            }
+          },
+          "qNullSuppression": true,
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_OFF",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {
+            "qv": "Others"
+          },
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          }
+        }
+      ],
+      "qMeasures": [
+        {
+          "qDef": {
+            "qLabel": "All-time Users",
+            "qTags": [],
+            "qGrouping": "N",
+            "qDef": "count({<[Access Type]={'User Access'}>} distinct UserId)",
+            "qNumFormat": {
+              "qType": "F",
+              "qnDec": 2,
+              "qUseThou": 0,
+              "qFmt": "#,##0",
+              "qDec": ".",
+              "qThou": ","
+            },
+            "qAccumulate": 0,
+            "qActiveExpression": 0,
+            "qExpressions": [],
+            "autoSort": true,
+            "cId": "WqTSnAP",
+            "numFormatFromTemplate": true
+          },
+          "qSortBy": {
+            "qSortByNumeric": -1,
+            "qSortByLoadOrder": 1,
+            "qExpression": {}
+          },
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCond": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qTrendLines": [],
+          "qMiniChartDef": {
+            "qSortBy": {
+              "qExpression": {}
+            },
+            "qOtherTotalSpec": {
+              "qOtherMode": "OTHER_OFF",
+              "qOtherCounted": {},
+              "qOtherLimit": {},
+              "qOtherLimitMode": "OTHER_GT_LIMIT",
+              "qForceBadValueKeeping": true,
+              "qApplyEvenWhenPossiblyWrongResult": true,
+              "qOtherSortMode": "OTHER_SORT_DESCENDING",
+              "qTotalMode": "TOTAL_OFF",
+              "qReferencedExpression": {}
+            },
+            "qMaxNumberPoints": -1,
+            "qAttributeExpressions": []
+          }
+        },
+        {
+          "qLibraryId": "ZkcYmPr",
+          "qDef": {
+            "qTags": [],
+            "qGrouping": "N",
+            "qNumFormat": {
+              "qType": "U",
+              "qnDec": 10,
+              "qUseThou": 0,
+              "qDec": "."
+            },
+            "qAggrFunc": "Expr",
+            "qAccumulate": 0,
+            "qActiveExpression": 0,
+            "qExpressions": [],
+            "autoSort": false,
+            "cId": "mJJJ",
+            "numFormatFromTemplate": true,
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            }
+          },
+          "qSortBy": {
+            "qSortByNumeric": -1,
+            "qSortByLoadOrder": 1,
+            "qExpression": {}
+          },
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCond": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qTrendLines": [],
+          "qMiniChartDef": {
+            "qSortBy": {
+              "qExpression": {}
+            },
+            "qOtherTotalSpec": {
+              "qOtherMode": "OTHER_OFF",
+              "qOtherCounted": {},
+              "qOtherLimit": {},
+              "qOtherLimitMode": "OTHER_GT_LIMIT",
+              "qForceBadValueKeeping": true,
+              "qApplyEvenWhenPossiblyWrongResult": true,
+              "qOtherSortMode": "OTHER_SORT_DESCENDING",
+              "qTotalMode": "TOTAL_OFF",
+              "qReferencedExpression": {}
+            },
+            "qMaxNumberPoints": -1,
+            "qAttributeExpressions": []
+          }
+        }
+      ],
+      "qInterColumnSortOrder": [
+        4,
+        3,
+        2,
+        0,
+        1
+      ],
+      "qSuppressZero": true,
+      "qSuppressMissing": true,
+      "qInitialDataFetch": [],
+      "qReductionMode": "N",
+      "qMode": "S",
+      "qPseudoDimPos": -1,
+      "qNoOfLeftDims": -1,
+      "qMaxStackedCells": 5000,
+      "qCalcCond": {
+        "qv": "count({<[Access Type]={'User Access'}>} distinct ProxySessionId)>0"
+      },
+      "qTitle": {},
+      "qCalcCondition": {
+        "qCond": {},
+        "qMsg": {}
+      },
+      "qColumnOrder": [],
+      "qExpansionState": [],
+      "qDynamicScript": [],
+      "customErrorMessage": {
+        "calcCond": "No User Access Sessions are associated with your current selections."
+      },
+      "columnOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "columnWidths": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "qLayoutExclude": {
+        "qHyperCubeDef": {
+          "qDimensions": [],
+          "qMeasures": [],
+          "qInterColumnSortOrder": [],
+          "qInitialDataFetch": [],
+          "qReductionMode": "N",
+          "qMode": "S",
+          "qPseudoDimPos": -1,
+          "qNoOfLeftDims": -1,
+          "qMaxStackedCells": 5000,
+          "qCalcCond": {},
+          "qTitle": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qColumnOrder": [],
+          "qExpansionState": [],
+          "qDynamicScript": []
+        }
+      }
+    },
+    "showTitles": true,
+    "title": {
+      "qStringExpression": {
+        "qExpr": "='User Access Pass by App'"
+      }
+    },
+    "subtitle": {
+      "qStringExpression": {
+        "qExpr": "'Multiple apps can be accessed by a single user, so the total count of User Access Users can be lower than the sum of users shown for the apps listed.'"
+      }
+    },
+    "footnote": "",
+    "totals": {
+      "show": false,
+      "position": "bottom",
+      "label": "Totals"
+    },
+    "visualization": "table",
+    "masterVersion": 0.96
+  },
+  "qChildren": []
+}

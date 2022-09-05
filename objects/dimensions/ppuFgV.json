@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "ppuFgV",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Year"
+    ],
+    "qFieldLabels": [
+      "Year"
+    ],
+    "title": "Year"
+  },
+  "qMetaDef": {
+    "title": "Year",
+    "description": "",
+    "tags": []
+  }
+}

@@ -1,0 +1,42 @@
+///$tab logFolderList
+SUB logFolderList
+        
+  // Create a list of folders to search for log files, including all folders in the ..\Sense\Repository\ArchivedLogs folder
+  // For Multi-node configuration, please refer to the instructions below
+  FOR each node in 'ServerLogFolder'
+  
+      LET svr = 'lib://$(node)/';  
+      
+      logFolderList:
+      LOAD
+        '$(svr)' as mainLogFolder,
+          'txt' as file_extension
+      AutoGenerate(1);
+      
+  NEXT node    
+
+  FOR each fldr in DirList('$(archivedLogsFolder)'&'*')
+      Concatenate (logFolderList)
+      Load
+             '$(fldr)/' as mainLogFolder,
+          'log' as file_extension
+      AutoGenerate(1);        
+  
+  NEXT fldr
+  
+  /* =========== Instructions for Multi-node configuration	==================================================================================\\
+  
+	1.	Add new data connection for each rim node. If you have 5 RIM nodes, you will need to create 5 data connections. 
+		For example, data connection for RIM1 points to folder \\rim_node_1\c$\programdata\qlik\sense\log and is called RIM1
+
+	2.	Rename new data connections in QMC to remove the (username) which is appended to the data connection name --- Example RIM1 (user_183)
+
+	3.	Update load script in section SUBT logFolderList on line 5 by adding the names of all new data connections created in step 1 and 2. 
+    	Each new data connection name should be enclosed in single quotes ' and separated by a comman. For example:
+        	FOR each node in 'ServerLogFolder','RIM1','RIM2'
+
+	4.	Perform Step 3 in the other Monitor App
+    
+  /* ===========================================================================================================================================*/  
+
+ENDSUB

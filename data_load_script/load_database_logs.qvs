@@ -1,0 +1,79 @@
+///$tab load_database_logs
+SUB load_database_logs
+
+  LIB CONNECT TO 'QLogs';
+
+  TRACE Loading AuditActivity_AuditSecurity data for license entries;
+  CONCATENATE (working)
+  LOAD 
+    Timestamp((entry_timestamp))  AS LogEntryPeriodStart,
+    Timestamp((entry_timestamp))  AS LogTimeStamp,
+    id 												AS Id_temp, // For incremental reload
+	lower(process_host) 							AS Hostname, 
+	process_name, 
+	logger 											AS Logger, 
+	entry_level 									AS Severity,
+	message 										AS Message, 
+	description 									AS Description,
+    proxy_session_id & proxy_package_id 			AS _proxySessionPackage,
+	proxy_session_id 								AS ProxySessionId, 
+	proxy_package_id 								AS ProxyPackageId, 
+	request_sequence_id 							AS RequestSequenceId,
+	service 										AS Service, 
+	context 										AS Context, 
+	command 										AS Command, 
+	result 											AS Result, 
+	object_id 										AS ObjectId,
+	object_name 									AS ObjectName, 
+	user_directory 									AS UserDirectory, 
+	LOWER(user_directory & chr(92) & user_id)		AS UserId,
+    security_class,
+    If(result=0 or (result >=200 and result <=226),dual('OK',0), if(result=' ',dual('Blank',0), dual('NOK',1))) 		AS Status,        
+	IF(WildMatch(message,'* access granted*')>0,
+    	If(command='License analyzer time access','Analyzer Capacity',SubField(message,' ',1))) as [Access Type], 
+    Ceil(Num(TextBetween(message,'Duration: ' & chr(39),Chr(39) & ' (sec')/60),$(va_analyzer_capacity_consumption_minutes)) as [Analyzer Capacity Used (Minutes)],
+    If(WildMatch(message,'professional access gr*','analyzer access gr*','analyzertime access gr*','analyzer time access gr*')>0,'Sense') as [Unified Licensing Product],
+	IF(WildMatch(message,'* access granted*')>0,Date(Floor(entry_timestamp))) as [Access Date],
+    IF(result=403,1) 																								AS UsageDenied,
+    IF(result=403,TextBetween(message,'AccessID ',',')) as usage_denied_access_id,
+    IF(left(message,20)='Login access granted',purgechar(TextBetween(message,'UsageID: ',','),chr(39))) 			AS UsageId,	// for login pass usage, count(Distinct UsageId)
+    IF(left(message,20)='Login access granted',purgechar(TextBetween(message,'Accessname: ',','),chr(34)&chr(39)),
+        IF(left(message,24)='Login access for license',purgechar(TextBetween(message,' Name: ',','),chr(34)&chr(39)))) 	AS [Login Access Rule],
+    IF(((context='/qrs/licenseadd' and not origin = 'ManagementAccess') OR context='/qrs/licenseupdate' or context='/qrs/license/datamarket')
+      OR WildMatch(command,'Add * access','Update * access','Delete license')>0
+      OR (index(lower(object_name),'license')>=1 AND WildMatch(command,'Add rule','Update rule','Delete rule')>0),
+      1) as [License Allocation],
+    
+    IF(context='/qrs/license/datamarket','DataMarket License',
+        IF(context='/qrs/licenseadd' and origin = 'ManagementAccess',null(),//SKIP THIS extra entry for Data Market license addition
+            IF(context='/qrs/licenseadd' OR context='/qrs/licenseupdate','Site License',
+                IF(left(message,24)='Login access for license',purgechar(TextBetween(message,' Name: ',','),chr(34)&chr(39)),
+                    object_name)))) 																					AS [Affected Entity]
+    ;
+  SELECT * FROM "public"."view_audit_activity_audit_security"
+  WHERE entry_timestamp >= '$(LastReloadTime)'
+  	AND  security_class='License'
+    OR (security_class='Security' and message like '%License%');
+    
+  TRACE Loading Session Data now.;
+  CONCATENATE (working_session)
+  Load
+    proxy_session_id 								AS ProxySessionId,
+    proxy_session_id&object_id as proxy_session_id_app_id,		// count(distinct proxy_session_id_app_id) for surrogate "Session Count" in this app
+    Timestamp((entry_timestamp))  AS LogTimeStamp,
+    object_id 										AS AppId,
+    object_name 									AS [App Name],
+    id 												AS Id_temp // For incremental reload
+        ;
+  SELECT * FROM "public"."view_audit_activity_audit_security"
+  WHERE entry_timestamp >= '$(LastReloadTime)'
+  	AND process_name='repository'
+    AND Left(command,8)='Open app' 
+    AND not proxy_session_id='0'
+    AND not object_name='Not available';	// 0 entries are for sa_repository and sa_scheduler
+  
+  TRACE Finished loading data incrementally from database. Nice job!;
+  
+  drop field id;
+    
+ENDSUB

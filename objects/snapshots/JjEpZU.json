@@ -1,0 +1,519 @@
+{
+  "qInfo": {
+    "qId": "JjEpZU",
+    "qType": "snapshot"
+  },
+  "qMetaDef": {
+    "title": "Login Access Passes per User",
+    "description": ""
+  },
+  "sheetId": "RDJy",
+  "creationDate": "2015-07-31T15:41:04.2Z",
+  "qSelectionInfo": {},
+  "qHyperCube": {
+    "qSize": {
+      "qcx": 4,
+      "qcy": 520
+    },
+    "qDimensionInfo": [
+      {
+        "qFallbackTitle": "User Id",
+        "qApprMaxGlyphCount": 17,
+        "qCardinal": 1323,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "User Id"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 1323,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 0,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$ascii",
+          "$text"
+        ],
+        "qDimensionType": "D",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "UserId"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "title": "User Id",
+        "autoSort": false,
+        "cId": "UQeQTg",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      }
+    ],
+    "qMeasureInfo": [
+      {
+        "qFallbackTitle": "Last 28 Days",
+        "qApprMaxGlyphCount": 5,
+        "qCardinal": 0,
+        "qSortIndicator": "D",
+        "qNumFormat": {
+          "qType": "F",
+          "qnDec": 2,
+          "qUseThou": 0,
+          "qFmt": "#,##0",
+          "qDec": ".",
+          "qThou": ","
+        },
+        "qMin": 1,
+        "qMax": 30,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "CJsPTT",
+        "numFormatFromTemplate": true
+      },
+      {
+        "qFallbackTitle": "Total",
+        "qApprMaxGlyphCount": 6,
+        "qCardinal": 0,
+        "qSortIndicator": "D",
+        "qNumFormat": {
+          "qType": "F",
+          "qnDec": 2,
+          "qUseThou": 0,
+          "qFmt": "#,##0",
+          "qDec": ".",
+          "qThou": ","
+        },
+        "qMin": 2,
+        "qMax": 65,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "LtvuTA",
+        "numFormatFromTemplate": true
+      },
+      {
+        "qFallbackTitle": "Last Access",
+        "qApprMaxGlyphCount": 10,
+        "qCardinal": 0,
+        "qSortIndicator": "A",
+        "qNumFormat": {
+          "qType": "D",
+          "qnDec": 0,
+          "qUseThou": 0,
+          "qFmt": "YYYY-MM-DD"
+        },
+        "qMin": 42202,
+        "qMax": 42215,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "rcLCv"
+      }
+    ],
+    "qEffectiveInterColumnSortOrder": [
+      1,
+      2,
+      3,
+      0
+    ],
+    "qGrandTotalRow": [
+      {
+        "qText": "5,335",
+        "qNum": 5335,
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      },
+      {
+        "qText": "11,920",
+        "qNum": 11920,
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      },
+      {
+        "qText": "2015-07-30",
+        "qNum": 42215,
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      }
+    ],
+    "qDataPages": [
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "marketing_4",
+              "qNum": "NaN",
+              "qElemNumber": 108,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_5",
+              "qNum": "NaN",
+              "qElemNumber": 109,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_6",
+              "qNum": "NaN",
+              "qElemNumber": 110,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_7",
+              "qNum": "NaN",
+              "qElemNumber": 111,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_8",
+              "qNum": "NaN",
+              "qElemNumber": 112,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_9",
+              "qNum": "NaN",
+              "qElemNumber": 113,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_24",
+              "qNum": "NaN",
+              "qElemNumber": 285,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_25",
+              "qNum": "NaN",
+              "qElemNumber": 286,
+              "qState": "O"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 0,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "30",
+              "qNum": 30,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "30",
+              "qNum": 30,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "30",
+              "qNum": 30,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "30",
+              "qNum": 30,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "30",
+              "qNum": 30,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "30",
+              "qNum": 30,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "29",
+              "qNum": 29,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "29",
+              "qNum": 29,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 1,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "65",
+              "qNum": 65,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "65",
+              "qNum": 65,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "65",
+              "qNum": 65,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "65",
+              "qNum": 65,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "65",
+              "qNum": 65,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "65",
+              "qNum": 65,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "63",
+              "qNum": 63,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "63",
+              "qNum": 63,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 2,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 3,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      }
+    ],
+    "qPivotDataPages": [],
+    "qStackedDataPages": [],
+    "qMode": "S",
+    "qNoOfLeftDims": -1,
+    "qTreeNodesOnDim": [],
+    "qColumnOrder": [],
+    "columnOrder": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "customErrorMessage": {
+      "calcCond": "No license usage is associated with your current selections."
+    },
+    "columnWidths": [
+      -1,
+      -1,
+      -1,
+      -1
+    ]
+  },
+  "showTitles": true,
+  "title": "Login Access Passes per User",
+  "subtitle": "805 Users",
+  "footnote": "",
+  "totals": {
+    "show": false,
+    "position": "bottom",
+    "label": "Total"
+  },
+  "visualization": "table",
+  "qHasSoftPatches": true,
+  "snapshotData": {
+    "object": {
+      "size": {
+        "w": 807,
+        "h": 313
+      },
+      "dataTableRowCount": 8,
+      "dataTableHeight": 203.77804565429688
+    },
+    "parent": {
+      "h": 680,
+      "w": 1519
+    }
+  },
+  "visualizationType": "table",
+  "sourceObjectId": "JXBWFXE",
+  "timestamp": 1438357264183,
+  "isClone": false
+}

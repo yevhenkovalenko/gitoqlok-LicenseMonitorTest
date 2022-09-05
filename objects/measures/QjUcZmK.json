@@ -1,0 +1,23 @@
+{
+  "qInfo": {
+    "qId": "QjUcZmK",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Error Count",
+    "qDef": "count({<Level= {'ERROR','FATAL'} > } Level)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    }
+  },
+  "qMetaDef": {
+    "title": "Error Count",
+    "description": "Count of licensing errors. Examples include: Sense Server cannot access the active directory for user authentication or during sync of a User Directory Connector.",
+    "tags": []
+  }
+}

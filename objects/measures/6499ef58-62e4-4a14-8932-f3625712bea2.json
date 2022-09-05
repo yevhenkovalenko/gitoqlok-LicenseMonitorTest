@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "6499ef58-62e4-4a14-8932-f3625712bea2",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens or Access Used Last 14 Days",
+    "qDef": "num(ceil(count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-14))\"}>} distinct UsageId)/10)\r\n+count({<[Access Type]-={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-14))\"}>} distinct UserId)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "=IF((license_type_enabled)='Token-based','Tokens','Access') & ' Used Last 14 Days'",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {},
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "'Total ' & IF(license_type_enabled='Token-based','tokens','access') & ' used in last 14 days.'"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "Tokens or Access Used Last 14 Days",
+    "description": "",
+    "tags": []
+  }
+}

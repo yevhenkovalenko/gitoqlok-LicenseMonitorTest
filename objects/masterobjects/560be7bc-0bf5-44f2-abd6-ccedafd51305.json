@@ -1,0 +1,26 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "560be7bc-0bf5-44f2-abd6-ccedafd51305",
+      "qType": "masterobject"
+    },
+    "qMetaDef": {
+      "title": "App, Access Type, User Filter Pane",
+      "tags": []
+    },
+    "qChildListDef": {
+      "qData": {
+        "info": "/qInfo"
+      }
+    },
+    "showTitles": false,
+    "subtitle": "",
+    "footnote": "",
+    "showDetails": false,
+    "visualization": "filterpane",
+    "masterVersion": 0.96,
+    "metadata": {},
+    "title": ""
+  },
+  "qChildren": []
+}

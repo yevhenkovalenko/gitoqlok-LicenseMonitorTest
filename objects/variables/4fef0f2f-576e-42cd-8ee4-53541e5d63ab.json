@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "4fef0f2f-576e-42cd-8ee4-53541e5d63ab",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NumRows_monitor_apps_REST_user",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "1510",
+  "tags": []
+}

@@ -1,0 +1,14 @@
+{
+  "qInfo": {
+    "qId": "69b94c20-d6f9-4b6e-8e74-3934a784b30b",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "tempErrorDetails",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "tags": []
+}

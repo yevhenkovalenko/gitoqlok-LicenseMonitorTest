@@ -1,0 +1,18 @@
+///$tab user
+SUB monitor_apps_REST_user
+
+LIB CONNECT TO 'monitor_apps_REST_user_condensed';  
+
+User:
+  Load
+   LOWER(userDirectory & '\' & userId) AS UserId,
+   [name] AS [User Name],
+   userDirectory as [User Directory]
+  ;
+  SQL SELECT 
+      "userId",
+      "userDirectory",
+      "name"
+  FROM JSON (wrap on) "root"; 
+
+ENDSUB

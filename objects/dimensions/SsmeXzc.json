@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "SsmeXzc",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "DateTime"
+    ],
+    "qFieldLabels": [
+      "DateTime"
+    ],
+    "title": "DateTime"
+  },
+  "qMetaDef": {
+    "title": "DateTime",
+    "description": "",
+    "tags": []
+  }
+}

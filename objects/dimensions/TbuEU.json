@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "TbuEU",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "=Command"
+    ],
+    "qFieldLabels": [
+      "Change"
+    ],
+    "title": "Change",
+    "coloring": {
+      "colorMapRef": "TbuEU",
+      "changeHash": "0.21320174215361476"
+    }
+  },
+  "qMetaDef": {
+    "title": "Change",
+    "description": "General type of activity performed, for example: Add, Update, or Delete for Login Access groups.",
+    "tags": []
+  }
+}

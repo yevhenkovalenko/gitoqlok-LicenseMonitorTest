@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "b870f9dd-dcdf-417d-b8f1-abaf2509fcff",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "vLast24Hours",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "43229.315613426",
+  "tags": []
+}

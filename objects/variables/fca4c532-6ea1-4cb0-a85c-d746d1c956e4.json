@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "fca4c532-6ea1-4cb0-a85c-d746d1c956e4",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "vLast4Hours",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "43230.148946759",
+  "tags": []
+}

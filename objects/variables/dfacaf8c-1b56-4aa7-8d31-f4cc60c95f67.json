@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "dfacaf8c-1b56-4aa7-8d31-f4cc60c95f67",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NumRows_qrs_stream",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "8",
+  "tags": []
+}

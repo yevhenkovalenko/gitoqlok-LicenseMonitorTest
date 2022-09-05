@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "4c60ad6d-0744-47c2-9123-2c5585146b02",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "va_analyzer_capacity_lease_minutes",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "6",
+  "tags": []
+}

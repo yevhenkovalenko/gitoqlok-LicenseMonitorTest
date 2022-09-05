@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "b8568c55-df53-4b6a-b085-c0231727df9b",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "startMsg_1",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "Reloading License Monitor 7.18.0 from QV-BOS-WIN10 running QIX Engine version 12.334.3",
+  "tags": []
+}

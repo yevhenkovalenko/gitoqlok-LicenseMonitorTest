@@ -1,0 +1,34 @@
+{
+  "qInfo": {
+    "qId": "KTVm",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Analyzer Capacity Time Used",
+    "qDef": "If(vs_analyzer_capacity_Allocated>5,Num([License Used Analyzer Capacity (Minutes)],'#,##0'),'N/A')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {
+      "baseColor": {
+        "color": "#578b60",
+        "index": 10
+      }
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "analyzer_capacity_message\r\n//If(vs_analyzer_capacity_Allocated>5,va_analyzer_capacity_message,'') & 'See: https://help.qlik.com/en-US/search/?q=analyzer+capacity+license'"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "Analyzer Capacity Time Used",
+    "description": "",
+    "tags": []
+  }
+}

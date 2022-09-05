@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "zFXJdf",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Analyzer Capacity Usage Message",
+    "qDef": "analyzer_capacity_message",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Analyzer Capacity Usage Message",
+    "description": "Analyzer Capacity Usage Message (Applicable only if Analyzer Capacity has been allocated.)",
+    "tags": []
+  }
+}

@@ -1,0 +1,1515 @@
+///$tab Initialize
+//	License Monitor
+LET yr			= year(ReloadTime());
+SET copyright = 'Copyright 1993-$(yr) Qliktech International AB';
+
+// Messaging and QVD file name variables
+Let ReloadStartTime 		= now(1);
+Set ahora = ; SET msg =; SET skipped=0; SET loaded =0; SET textFile =;	// Reset these variables
+SET app_name				= 'License Monitor';
+SET app_version				= '7.19.0';
+Let comp 					= ComputerName(); 
+LET EngineVer = PurgeChar(EngineVersion(),chr(39)); 
+LET startMsg				= 'Reloading $(app_name) $(app_version) from $(comp) running QIX Engine version $(EngineVer)';
+TRACE $(startMsg);
+
+// Runtime date/time variables
+SET monthsOfHistory 		= 12;		// How many months of history should be available in the app. More history = more processing, bigger app, etc.
+LET cutoffDate 				= AddMonths(today(),-$(monthsOfHistory),1);		// Filter individual .log files and baseTable; note: the 1 
+Let LastReloadTime 			= timestamp(if(isnull(LastSuccessfulReloadStartTime),cutoffDate,LastSuccessfulReloadStartTime));
+Let lastReloadCompare 		= num(LastReloadTime)-1;	// (Re-)load any logs updated within 24 hours of the last reload
+SET minSenseActivityDate	= 42005;	// Jan 1, 2015 - cutoff for all Sense-related activity
+
+// Miscellaneous
+SET hideprefix 				= 'log';	// Hiding logList from view, though preserving it for now (not dropping it)
+SET firstReload 			= 0;		// RESET this each time -- it will check.
+SET va_LoginToUserPass		= 10;		// How many Login Access sessions = 1 token
+SET va_analyzer_capacity_consumption_minutes	= 6;	// How many minutes for each Analyzer Capacity unit of consumption? Default = 6.
+SET va_analyzer_capacity_message = '';	// Reset this each reload
+SET vs_analyzer_capacity_Allocated =; SET vs_analyzer_capacity_Used = ; SET vs_analyzer_capacity_Unavailable = ;	// reset these
+SET va_analyzer_capacity_help_link = 'https://help.qlik.com/en-US/search/?q=analyzer+capacity+license';
+
+// Data connection & file name variables
+LET serverLogFolder			= 'lib://ServerLogFolder/';	
+LET archivedLogsFolder		= 'lib://ArchivedLogsFolder/';
+SET central_node_name		=  ;	// Multinode intialize
+
+LET baseFileName	 		= 'governanceLicenseLog_$(app_version)';	
+LET baseTableName 			= '$(serverLogFolder)$(baseFileName)';
+
+LET SessionFileName 		= 'governanceSession_$(app_version)';
+LET sessionTableName		= '$(serverLogFolder)$(SessionFileName)';
+LET monitorAppStatsFile		= '$(serverLogFolder)License_Monitor_Reload_Stats_$(app_version).txt';
+
+SET storeBaseTableFail 		= 0;		// If script fails to store base table, set to 1 and do not update LastSuccessfulReloadStartTime variable
+LET tempErrorDetails 		=  ;
+
+// Set date and time formats
+SET TimeFormat		= 'hh:mm:ss';
+SET DateFormat		= 'YYYY-MM-DD';
+SET TimestampFormat	= 'YYYY-MM-DD hh:mm:ss';
+// Calendar Variables
+Let vLast72Hours =	Num(timestamp(Now(1)-3));
+Let vLast7Days  = Num(timestamp(Now(1)-7));
+Let vLast14Days  = Num(timestamp(Now(1)-14));
+Let vLast28Days  = Num(timestamp(Now(1)-28));
+Let vLast90Days  = Num(timestamp(Now(1)-90));
+
+// Colors
+set c_red					= 'RGB(204,102,119)';
+set c_yellow				= 'RGB(221,204,119)';
+set c_blue					= 'RGB(68,119,170)';
+set c_green					= 'RGB(17,119,51)';
+set c_gray 					= 'RGB(150,150,150)';
+set c_lightred 				= 'RGB(240,209,214)';
+set c_lightblue 			= 'RGB(188,181,201)';
+//// ARGB colors -- requires input value to set the intensity (alpha) value of the color. Example using field [dual90]:  $(c_red_alpha(dual90))
+set c_red_alpha				= 'ARGB($1,204,102,119)';
+set c_orange_alpha			= 'ARGB($1,233,141,54)';
+set c_yellow_alpha			= 'ARGB($1,221,204,119)';
+set c_blue_alpha			= 'ARGB($1,68,119,170)';
+set c_green_alpha			= 'ARGB($1,17,119,51)';
+set c_gray_alpha			= 'ARGB($1,150,150,150)';
+set c_red_breeze_alpha		= 'ARGB($1,155,58,59)';
+set c_orange_breeze_alpha	= 'ARGB($1,233,141,54)';
+set c_teal_breeze_alpha		= 'ARGB($1,19,118,122)';
+set c_green_breeze_alpha	= 'ARGB($1,101,177,99)';
+set c_red_0_green_alpha		= 'If($1=0,c_red,ARGB($1,101,177,99))';
+
+///$tab logList
+SUB logList
+
+	logList:
+    LOAD * INLINE [
+    	logService, logArea, logType, logStart, logAddlFields,logAddlFilter
+        Repository, Audit, Security,Timestamp,fieldsAuditSecurity,additionalFilterAuditSecurity
+
+     ];
+ENDSUB
+
+///$tab defineFields
+SUB defineFields
+	// End each variable definition (list of fields) with a comma //
+  // Common Fields are defined on the loadFiles
+  
+  LET fieldsAuditSecurity 		= '';
+
+ENDSUB
+
+
+///$tab CommandList
+SUB CommandList
+
+  CommandList:	//This is the list (with exception of special "Rule" commands) that will be loaded into this app
+  LOAD 
+      Command, 
+      CommandType
+  Inline [
+    Command, CommandType
+    Add license, Allocation
+    Add user access, Usage
+    Delete user access, Allocation
+    License maintenance, Usage
+    License user access, Usage
+    License user access request, Usage
+    Request access type, Usage
+    Update license, Allocation
+    Update user access, Allocation
+    ];
+
+ENDSUB
+
+///$tab loadBaseTable
+SUB loadBaseTable (nombre, archivo)
+	// Check to see if governanceLicenseContents (LogContent) qvd exists
+	Let baseFileSize = FileSize('$(archivo).qvd');
+
+    IF  baseFileSize > 0 THEN 	    // Yes - QVD exists = not first load
+
+		trace Incremental reload (not first reload);
+    	Let firstReload = 0;
+        
+        $(nombre):
+        NoConcatenate
+    	Load * FROM $(archivo).qvd (qvd)
+        WHERE LogTimeStamp >= '$(cutoffDate)'
+        ;
+        
+        LET tempErrorDetails = ScriptErrorDetails;
+        IF Len(tempErrorDetails)>0 THEN
+          CALL monitor_app_reload_stats('WARN','$(archivo)', tempErrorDetails,'Status Message')
+		  tempErrorDetails = ;	// Reset this
+        END IF
+        
+    ELSE		// No - no QVD exists = First (initial) load
+        
+        trace Initial Load for $(nombre);
+        Let firstReload = 1;
+        LET lastReloadCompare		= num(cutoffDate);	//num('2014-01-01');	// If First reload, do not filter logs by LastReload
+        Let LastReloadTime 			= timestamp(cutoffDate);
+       
+        IF nombre = 'LogContent' THEN	// License Repository log data
+          $(nombre):
+          NoConcatenate
+          Load * Inline [Id, LogEntryPeriodStart, LogTimeStamp,Hostname,Message			
+                          ];
+        ELSEIF nombre = 'sessionData' THEN 	// nombre = 'sessionData' > Session_Engine log data
+          $(nombre):
+          NoConcatenate
+          Load * Inline [ProxySessionId,LogTimeStamp]; 
+       ELSEIF WildMatch('$(nombre)','qlikview*') = 1 THEN // for QlikView Server and QlikView Event logs; dual-use license consumption analysis only
+          $(nombre):
+          NoConcatenate
+          Load * Inline [SessionId,LogTimeStamp]; 
+          // Note: this table will be dropped if no qlikview logs are fetched.
+        ELSE 			
+        	TRACE Error in loadBaseTable subroutine.;
+        END IF
+        
+    END IF
+    
+    LET NoOfRows$(nombre)BASE = NoOfRows('$(nombre)');
+    
+ENDSUB
+
+///$tab multiNodeConfig
+SUB multiNodeConfig		
+	// Check for multi-node environment by verifying files in Repository\ArchivedLogs folder
+	
+    FOR each folder in DirList(archivedLogsFolder & '*')
+      node_list:
+      Load
+        '$(folder)'&'\' as folder,
+        mid('$(folder)',26) as [Node Name],
+        FileTime( '$(folder)' ) as folder_Time
+      AutoGenerate 1;
+      
+	NEXT folder
+    
+    LET count_of_nodes	= NoOfRows('node_list');
+    
+    IF count_of_nodes > 1 then
+    	LET multiNode = 'Multi-Node';
+        TRACE Multi-Node environment detected;
+    ELSE
+        LET multiNode = 'Single-Node';
+        TRACE Single-Node environment detected;
+        let count_of_nodes = If(isnull(count_of_nodes),0,1);
+    ENDIF
+
+EndSub
+
+///$tab logFolderList
+SUB logFolderList
+        
+  // Create a list of folders to search for log files, including all folders in the ..\Sense\Repository\ArchivedLogs folder
+  // For Multi-node configuration, please refer to the instructions below
+  FOR each node in 'ServerLogFolder'
+  
+      LET svr = 'lib://$(node)/';  
+      
+      logFolderList:
+      LOAD
+        '$(svr)' as mainLogFolder,
+          'txt' as file_extension
+      AutoGenerate(1);
+      
+  NEXT node    
+
+  FOR each fldr in DirList('$(archivedLogsFolder)'&'*')
+      Concatenate (logFolderList)
+      Load
+             '$(fldr)/' as mainLogFolder,
+          'log' as file_extension
+      AutoGenerate(1);        
+  
+  NEXT fldr
+  
+  /* =========== Instructions for Multi-node configuration	==================================================================================\\
+  
+	1.	Add new data connection for each rim node. If you have 5 RIM nodes, you will need to create 5 data connections. 
+		For example, data connection for RIM1 points to folder \\rim_node_1\c$\programdata\qlik\sense\log and is called RIM1
+
+	2.	Rename new data connections in QMC to remove the (username) which is appended to the data connection name --- Example RIM1 (user_183)
+
+	3.	Update load script in section SUBT logFolderList on line 5 by adding the names of all new data connections created in step 1 and 2. 
+    	Each new data connection name should be enclosed in single quotes ' and separated by a comman. For example:
+        	FOR each node in 'ServerLogFolder','RIM1','RIM2'
+
+	4.	Perform Step 3 in the other Monitor App
+    
+  /* ===========================================================================================================================================*/  
+
+ENDSUB
+
+///$tab loadFiles
+SUB loadFiles (fdr,iter)
+  // Use the iteration number (on Run Logic section) to load all log files listed in the logList SUB
+  Let carpeta			= peek('mainLogFolder',$(fdr),'logFolderList');
+  Let extension			= peek('file_extension',$(fdr),'logFolderList');
+  Let logService 		= peek('logService',$(iter),'logList');
+  Let logArea	 		= peek('logArea',$(iter),'logList');
+  Let logType	 		= peek('logType',$(iter),'logList');
+  Let logAddlFields		= peek('logAddlFields',$(iter),'logList');
+  LET logName 			= '$(carpeta)$(logService)\$(logArea)\*$(logType)';
+  LET addlFilter1		= peek('logAddlFilter',$(iter),'logList');
+  LET additionalFilter	= $(addlFilter1);
+
+  // Log-specific fields spelled out in the SUB defineFields
+  LET fields2Load 		= $(logAddlFields);
+  
+  // Session and TaskExecution log files have a start and stop timestamp;  all other logs use Timestamp as start and stop, per the logList table
+  LET logStartTS	= 'Timestamp("' & peek('logStart',$(iter),'logList') &'")';
+
+  for each textFile in FileList(logName & '*.' & extension)
+  
+    // Only load the files updated since the last reload
+    If FileTime( '$(textFile)' ) >= $(lastReloadCompare) then
+    //working:
+      CONCATENATE (working)  
+      LOAD
+        $(logStartTS) AS LogEntryPeriodStart,
+        Timestamp("Timestamp") as LogTimeStamp,
+        lower(Hostname) as Hostname,
+		Description,		
+        ProxySessionId,
+        ProxyPackageId,
+        RequestSequenceId,
+        ProxySessionId&ProxyPackageId as _proxySessionPackage,
+        Message,
+		Service,
+        Context,
+        Command,
+        Result,
+        ProductVersion,
+        ObjectId,
+        ObjectName,
+        UserDirectory,
+        LOWER(UserDirectory & '\' & UserId) as UserId,	// To link to qrs user data
+        // For Audit Security Log only! If additional logs are added, move this back to the "defineFields" SUB
+        SecurityClass,
+        If(Result=0 or (Result >=200 and Result <=226),dual('OK',0), if(Result=' ',dual('Blank',0), dual('NOK',1))) as Status,        
+        IF(WildMatch(Message,'* access granted*')>0,
+        	If(Command='License analyzer time access','Analyzer Capacity',SubField(Message,' ',1))) as [Access Type], 
+        Ceil(Num(TextBetween(Message,'Duration: ' & chr(39),Chr(39) & ' (sec')/60),$(va_analyzer_capacity_consumption_minutes)) as [Analyzer Capacity Used (Minutes)],
+        If(WildMatch(Message,'professional access gr*','analyzer access gr*','analyzertime access gr*','analyzer time access gr*')>0,'Sense') as [Unified Licensing Product],
+        IF(WildMatch(Message,'* access granted*')>0,Date(Floor("Timestamp"))) as [Access Date],
+        IF(Result=403,1) as UsageDenied,
+        IF(Result=403,TextBetween(Message,'AccessID ',',')) as usage_denied_access_id,
+        IF(left(Message,20)='Login access granted',purgechar(TextBetween(Message,'UsageID: ',','),chr(39))) as UsageId,	// for login pass usage, count(Distinct UsageId)
+        IF(left(Message,20)='Login access granted',purgechar(TextBetween(Message,'Accessname: ',','),chr(34)&chr(39)),
+            IF(left(Message,24)='Login access for license',purgechar(TextBetween(Message,' Name: ',','),chr(34)&chr(39)))) as [Login Access Rule],
+        IF(((Context='/qrs/licenseadd' and not Origin = 'ManagementAccess') OR Context='/qrs/licenseupdate' or Context='/qrs/license/datamarket')
+            OR WildMatch(Command,'Add * access','Update * access','Delete license')>0  
+            OR (index(lower(ObjectName),'license')>=1  AND WildMatch(Command,'Add rule','Update rule','Delete rule')>0),
+            1) as [License Allocation],													// To track Allocations
+
+        IF(Context='/qrs/license/datamarket','DataMarket License',
+            IF(Context='/qrs/licenseadd' and Origin = 'ManagementAccess',null(),//SKIP THIS extra entry for Data Market license addition
+                IF(Context='/qrs/licenseadd' OR Context='/qrs/licenseupdate','Site License',
+                    IF(left(Message,24)='Login access for license',purgechar(TextBetween(Message,' Name: ',','),chr(34)&chr(39)),
+                        ObjectName)))) as [Affected Entity],
+        //        $(fields2Load)    	// Currently empty for just Audit Security Log
+        Id as Id_temp		// Unique Identifier for Log entry to be used in the WHERE NOT EXISTS () clause to avoid loading duplicate log entries
+                        
+      FROM '$(textFile)'
+      (txt, utf8, embedded labels, delimiter is '\t', msq)
+          WHERE isnum(Sequence#)
+           AND (exists(Command)	
+                OR (index(lower(ObjectName),'license')>=1  AND (Command = 'Add rule' or Command = 'Update rule' or Command = 'Delete rule'))
+                OR SecurityClass = 'License');
+      
+      // If there is an error in the loading of the log, send a trace message about it
+      LET tempErrorDetails = ScriptErrorDetails;
+      IF Len(tempErrorDetails) > 0 THEN
+        trace ERROR: $(tempErrorDetails);
+        CALL monitor_app_reload_stats('WARN','$(textFile)', tempErrorDetails, 'Status Message')
+        tempErrorDetails =;	// Reset this variable
+      END IF
+      
+    ENDIF
+  
+  next textFile
+
+ENDSUB
+///$tab load_database_logs
+SUB load_database_logs
+
+  LIB CONNECT TO 'QLogs';
+
+  TRACE Loading AuditActivity_AuditSecurity data for license entries;
+  CONCATENATE (working)
+  LOAD 
+    Timestamp((entry_timestamp))  AS LogEntryPeriodStart,
+    Timestamp((entry_timestamp))  AS LogTimeStamp,
+    id 												AS Id_temp, // For incremental reload
+	lower(process_host) 							AS Hostname, 
+	process_name, 
+	logger 											AS Logger, 
+	entry_level 									AS Severity,
+	message 										AS Message, 
+	description 									AS Description,
+    proxy_session_id & proxy_package_id 			AS _proxySessionPackage,
+	proxy_session_id 								AS ProxySessionId, 
+	proxy_package_id 								AS ProxyPackageId, 
+	request_sequence_id 							AS RequestSequenceId,
+	service 										AS Service, 
+	context 										AS Context, 
+	command 										AS Command, 
+	result 											AS Result, 
+	object_id 										AS ObjectId,
+	object_name 									AS ObjectName, 
+	user_directory 									AS UserDirectory, 
+	LOWER(user_directory & chr(92) & user_id)		AS UserId,
+    security_class,
+    If(result=0 or (result >=200 and result <=226),dual('OK',0), if(result=' ',dual('Blank',0), dual('NOK',1))) 		AS Status,        
+	IF(WildMatch(message,'* access granted*')>0,
+    	If(command='License analyzer time access','Analyzer Capacity',SubField(message,' ',1))) as [Access Type], 
+    Ceil(Num(TextBetween(message,'Duration: ' & chr(39),Chr(39) & ' (sec')/60),$(va_analyzer_capacity_consumption_minutes)) as [Analyzer Capacity Used (Minutes)],
+    If(WildMatch(message,'professional access gr*','analyzer access gr*','analyzertime access gr*','analyzer time access gr*')>0,'Sense') as [Unified Licensing Product],
+	IF(WildMatch(message,'* access granted*')>0,Date(Floor(entry_timestamp))) as [Access Date],
+    IF(result=403,1) 																								AS UsageDenied,
+    IF(result=403,TextBetween(message,'AccessID ',',')) as usage_denied_access_id,
+    IF(left(message,20)='Login access granted',purgechar(TextBetween(message,'UsageID: ',','),chr(39))) 			AS UsageId,	// for login pass usage, count(Distinct UsageId)
+    IF(left(message,20)='Login access granted',purgechar(TextBetween(message,'Accessname: ',','),chr(34)&chr(39)),
+        IF(left(message,24)='Login access for license',purgechar(TextBetween(message,' Name: ',','),chr(34)&chr(39)))) 	AS [Login Access Rule],
+    IF(((context='/qrs/licenseadd' and not origin = 'ManagementAccess') OR context='/qrs/licenseupdate' or context='/qrs/license/datamarket')
+      OR WildMatch(command,'Add * access','Update * access','Delete license')>0
+      OR (index(lower(object_name),'license')>=1 AND WildMatch(command,'Add rule','Update rule','Delete rule')>0),
+      1) as [License Allocation],
+    
+    IF(context='/qrs/license/datamarket','DataMarket License',
+        IF(context='/qrs/licenseadd' and origin = 'ManagementAccess',null(),//SKIP THIS extra entry for Data Market license addition
+            IF(context='/qrs/licenseadd' OR context='/qrs/licenseupdate','Site License',
+                IF(left(message,24)='Login access for license',purgechar(TextBetween(message,' Name: ',','),chr(34)&chr(39)),
+                    object_name)))) 																					AS [Affected Entity]
+    ;
+  SELECT * FROM "public"."view_audit_activity_audit_security"
+  WHERE entry_timestamp >= '$(LastReloadTime)'
+  	AND  security_class='License'
+    OR (security_class='Security' and message like '%License%');
+    
+  TRACE Loading Session Data now.;
+  CONCATENATE (working_session)
+  Load
+    proxy_session_id 								AS ProxySessionId,
+    proxy_session_id&object_id as proxy_session_id_app_id,		// count(distinct proxy_session_id_app_id) for surrogate "Session Count" in this app
+    Timestamp((entry_timestamp))  AS LogTimeStamp,
+    object_id 										AS AppId,
+    object_name 									AS [App Name],
+    id 												AS Id_temp // For incremental reload
+        ;
+  SELECT * FROM "public"."view_audit_activity_audit_security"
+  WHERE entry_timestamp >= '$(LastReloadTime)'
+  	AND process_name='repository'
+    AND Left(command,8)='Open app' 
+    AND not proxy_session_id='0'
+    AND not object_name='Not available';	// 0 entries are for sa_repository and sa_scheduler
+  
+  TRACE Finished loading data incrementally from database. Nice job!;
+  
+  drop field id;
+    
+ENDSUB
+///$tab concatTables
+SUB concatTables (concatToTable, incrementalTable, concatField)
+
+  TRACE Concatenating tables...;
+  
+  Let rows$(incrementalTable)Final = num(NoOfRows('$(incrementalTable)'),'#,##0');
+  trace $(rows$(incrementalTable)Final) incremental rows loaded;
+  
+  IF NoOfRows('$(incrementalTable)')>0 then
+  
+    IF concatToTable = 'LogContent' THEN	
+      CONCATENATE ($(concatToTable))
+      LOAD 
+          *, 
+          $(concatField)_temp as $(concatField),
+          (round(num(LogEntryPeriodStart),0.0006)&'|'&round(num(LogTimeStamp),0.0006)) as _TimeDIM_Link	// to link w/ datetime table
+      RESIDENT $(incrementalTable)
+          WHERE NOT Exists ($(concatField),$(concatField)_temp);
+  
+    ELSE	// sessionData does no have LogEntryPeriodStart field
+  
+      CONCATENATE ($(concatToTable))
+      LOAD 
+          *, 
+          $(concatField)_temp as $(concatField)
+      RESIDENT $(incrementalTable)
+          WHERE NOT Exists ($(concatField),$(concatField)_temp);
+      
+    END IF
+    
+    drop field $(concatField)_temp from $(concatToTable);
+    
+  ELSE
+    Trace No incremental rows for $(incrementalTable);  // Should only ever occur if all Qlik Services are stopped  
+  
+  ENDIF
+  
+    drop table $(incrementalTable);
+
+ENDSUB
+
+///$tab sessionData
+SUB sessionData  (fdr)
+
+  // Initialize & Setup
+  Let carpeta			= peek('mainLogFolder',$(fdr),'logFolderList'); 
+  LET logName 			= '$(carpeta)Repository\Audit\*Activity';
+  Let extension			= peek('file_extension',$(fdr),'logFolderList');
+  
+  for each textFile in FileList(logName & '*.' & extension)
+    
+    // Only load the files updated since the last reload
+    If FileTime( '$(textFile)' ) >= $(lastReloadCompare) then
+    
+      CONCATENATE (working_session)
+      Load
+      	ProxySessionId,
+        ProxySessionId&ObjectId as proxy_session_id_app_id,		// count(distinct proxy_session_id_app_id) for surrogate "Session Count" in this app
+        timestamp(Timestamp(Timestamp#(Replace(Left(Timestamp,15),'T',' '), 'YYYYMMDD hhmmss')),'YYYY-MM-DD hh:mm:ss[.fff]') AS LogTimeStamp,
+        ObjectId as AppId,
+        ObjectName as [App Name],
+        Id as Id_temp		// Unique Identifier for Log entry to be used in the WHERE NOT EXISTS () clause to avoid loading duplicate log entries
+      
+      FROM '$(textFile)' 
+      (txt, utf8, embedded labels, delimiter is '\t', msq)
+       WHERE left(Command,8) = 'Open app'
+            AND ProxySessionId <> 0	// 0 entries are for sa_repository and sa_scheduler
+      ;
+      
+      // If there is an error in the loading of the log, send a trace message about it
+      LET tempErrorDetails = ScriptErrorDetails;
+      IF Len(tempErrorDetails) > 0 THEN
+        trace ERROR: $(tempErrorDetails);
+        CALL monitor_app_reload_stats('WARN','$(textFile)', tempErrorDetails,'Status Message')
+		tempErrorDetails = ;
+      END IF
+
+    ENDIF
+  
+  next textFile
+
+ENDSUB
+
+///$tab storeFiles
+SUB storeFiles (nombre, archivo)
+
+  	Store '$(nombre)' into [$(archivo).qvd];
+    
+    LET tempErrorDetails = ScriptErrorDetails;
+  	IF LEN(tempErrorDetails) > 0 THEN
+    	SET storeBaseTableFail = 1;
+        CALL monitor_app_reload_stats('WARN','$(archivo)', tempErrorDetails, 'Status Message')
+		tempErrorDetails = ; 	// Reset This
+  	ELSE
+    	SET storeBaseTableFail = 0;
+    END IF
+      
+    LET NoOfRowsLogContent = num(NoOfRows('$(nombre)'),'#,##0');
+    LET NoOfRowsIncremental = NoOfRowsLogContent - NoOfRowsLogContentBASE;
+    Let storeTime = now(1);
+    TRACE $(nombre) table stored at $(storeTime) with $(NoOfRowsLogContent) rows;
+
+ENDSUB
+
+///$tab monitor_app_reload_stats
+SUB monitor_app_stats_incremental	// Use this to append new 'status' entry to table  
+    Concatenate (monitor_app_reload_stats)
+    Load
+      RowNo() as [Log Entry],
+      timestamp(now(1)) as [Log Timestamp],
+      '$(sev)' as [Log Severity],
+      '$(comp)' as Host,
+      '$(description)' as Description,
+      '$(message)' as [Log Message],
+      '$(obj)' as Object
+    AutoGenerate (1);
+    
+ENDSUB
+   
+SUB monitor_app_reload_stats (sev, obj, message, description)
+  
+  IF description = 'Reload Start' THEN
+  	// Check for existing base status file
+	IF FileSize('$(monitorAppStatsFile)') > 0 THEN
+      monitor_app_reload_stats:
+      Load * From '$(monitorAppStatsFile)' (txt, utf8, embedded labels, delimiter is '\t', msq);
+    ELSE
+      Trace Did not find $(monitorAppStatsFile) - will create a new file.;
+      monitor_app_reload_stats:
+      Load * Inline [Log Entry, Log Timestamp, Log Severity,Host,Description,Log Message,Object];
+    ENDIF
+
+    Let appMonitorStatsRowsInit = NoOfRows('monitor_app_reload_stats');
+    CALL monitor_app_stats_incremental		// Add start message
+  
+  ELSEIF description = 'Status Message' THEN    
+    CALL monitor_app_stats_incremental		// Add status message
+    
+  ELSEIF description = 'Reload Finish' THEN
+  	CALL monitor_app_stats_incremental		// Add Finish message
+    STORE monitor_app_reload_stats into '$(monitorAppStatsFile)' (txt, delimiter is '\t');
+    DROP TABLE monitor_app_reload_stats; 
+  
+  ELSE
+  	trace Something went wrong with the monitor app reload status messaging.;
+  
+  ENDIF
+
+ENDSUB
+
+///$tab QRS
+SUB QRS
+	// Here we load data from Qlik Sense Repository (QRS) database 
+    // If the connection fails (missing REST connector, can't connect to QRS) - the load script will fail :(
+    //	Also, if no data is returned from the QRS, the load script will terminate as well because there is something wrong to be investigated :(
+    LET NumRowsQRS = 0;
+    SET QRS_RowCounts = 'QRS Row Counts: ';
+    
+    For each endpoint in 'monitor_apps_REST_license_user','monitor_apps_REST_license_login','monitor_apps_REST_user','monitor_apps_REST_license_access','monitor_apps_REST_app','monitor_apps_REST_license'
+    	CALL $(endpoint)
+        DisConnect;
+		LET rose			= evaluate(NumRows_$(endpoint));
+        LET rose			= if(isnull(rose),0,rose);
+        LET NumRowsQRS		= $(NumRowsQRS) + $(rose);
+        LET QRS_RowCounts 	= '$(QRS_RowCounts) $(endpoint) = $(rose) lines,';
+    Next endpoint
+
+	If NumRowsQRS > 0 Then
+    	CALL monitor_app_reload_stats('INFO','License Monitor', '$(QRS_RowCounts)','Status Message')
+        TRACE Reload Status: $(QRS_RowCounts);
+    ELSE	// No data fetched from QRS! This throws an error message, but will not fail the reload
+   		LET msg_qrs =  'There was a problem fetching data from QRS via the REST connector. We could connect, but failed to fetch data. $(QRS_RowCounts)';
+   		CALL monitor_app_reload_stats('ERROR','License Monitor', msg_qrs,'Status Message')
+        // This msg_qrs message will be reported on the Log Details page
+    ENDIF
+ 
+ENDSUB
+///$tab license_user
+SUB monitor_apps_REST_license_user
+  Set NumRows_monitor_apps_REST_license_user = 0;	// Reset this
+  
+  License_User_Access_Types:
+  NoConcatenate Load * Inline [UserId];
+
+  For Each tipo in 'User','Professional','Analyzer'
+  	LET f_unused = '[Unused UserId' & if(tipo='user',']',' $(tipo)]');
+    LET f_quarantine = '[Quarantined UserId' & if(tipo='user',']',' $(tipo)]');
+    LET tipo_lower = lower(tipo);
+
+    LIB CONNECT TO 'monitor_apps_REST_license_$(tipo_lower)';
+	trace connect to monitor_apps_REST_license_$(tipo_lower);
+
+    user_map:
+    Mapping LOAD
+	[__FK_user]&'$(tipo_lower)' as key,
+	LOWER(userDirectory & '\' & userId) as UserId   
+    ;
+    SQL SELECT 
+        (SELECT 
+            "id",
+            "userId",
+            "userDirectory",
+            "__FK_user"
+        FROM "user" FK "__FK_user")
+    FROM JSON (wrap on) "root" PK "__KEY_root" ;
+
+    //License_$(tipo)Access:
+    Concatenate (License_User_Access_Types)
+    LOAD
+      *,
+      if(ualu > $(minSenseActivityDate),null(), UserId) as [Unused but Allocated UserId],	// Populate this only with UserIds of allocated but unused user access passes
+      if(ualu > $(minSenseActivityDate), ualu,'Never') as [User Access Last Used],
+      if(lower([User Access Quarantined])='true',UserId) as [Quarantined UserId],
+      if(uaqe > $(minSenseActivityDate),uaqe,null()) as [User Access Quarantine End]
+    ;
+    LOAD	
+      date(
+        alt(
+          date#(left(createdDate,10),'YYYY-MM-DD'),
+          date#(left(createdDate,10),'YYYY/MM/DD'),
+          date#(left(createdDate,10),'MM-DD-YYYY'),
+          date#(left(createdDate,10),'MM/DD/YYYY'),
+          date#(left(createdDate,10),'YYYY.MM.DD'),
+          'No valid date')
+          ) as [User Access Created],
+      date(
+        alt(
+          date#(left(modifiedDate,10),'YYYY-MM-DD'),
+          date#(left(modifiedDate,10),'YYYY/MM/DD'),
+          date#(left(modifiedDate,10),'MM-DD-YYYY'),
+          date#(left(modifiedDate,10),'MM/DD/YYYY'),
+          date#(left(modifiedDate,10),'YYYY.MM.DD'),
+          'No valid date')
+          ) as [User Access Modified],
+      [modifiedByUserName] as [User Access Modified by],
+      date(
+        alt(
+          date#(left(lastUsed,10),'YYYY-MM-DD'),
+          date#(left(lastUsed,10),'YYYY/MM/DD'),
+          date#(left(lastUsed,10),'MM-DD-YYYY'),
+          date#(left(lastUsed,10),'MM/DD/YYYY'),
+          date#(left(lastUsed,10),'YYYY.MM.DD'),
+          'No valid date')
+          ) as ualu,
+
+       if(quarantined='True',
+        date(
+          alt(
+            date#(left(quarantineEnd,10),'YYYY-MM-DD'),
+            date#(left(quarantineEnd,10),'YYYY/MM/DD'),
+            date#(left(quarantineEnd,10),'MM-DD-YYYY'),
+            date#(left(quarantineEnd,10),'MM/DD/YYYY'),
+            date#(left(quarantineEnd,10),'YYYY.MM.DD'),
+            'No valid date')
+              )) as uaqe,
+        quarantined as [User Access Quarantined],
+        1 as [User Access Token Count],
+        '$(tipo)' as [Allocated Access Type],
+        applymap('user_map',__KEY_root&'$(tipo_lower)','Unknown') as UserId		// Link to LogContent > userDirectory\userId
+    ;
+    SQL SELECT 
+      "id",
+      "createdDate",
+      "modifiedDate",
+      "modifiedByUserName",
+      "lastUsed",
+      "quarantined",
+      "quarantineEnd",
+      "__KEY_root"
+    FROM JSON (wrap on) "root" PK "__KEY_root" ;//QDL;    
+
+    LET NumRows_monitor_apps_REST_license_$(tipo) = NoOfRows('License_User_Access_Types');
+    
+    DROP FIELDs uaqe, ualu;
+    DisConnect;
+    
+  Next tipo
+
+  LET NumRows_monitor_apps_REST_license_user = NoOfRows('License_User_Access_Types');
+
+ENDSUB
+
+///$tab license_login
+SUB monitor_apps_REST_license_login
+  
+  LIB CONNECT TO 'monitor_apps_REST_license_login';
+  
+  License_LoginAccessGroups:
+  Load
+      timestamp("createdDate",'YYYY-MM-DD hh:mm') as [Login Access Created],
+      timestamp("modifiedDate",'YYYY-MM-DD hh:mm') as [Login Access Modified],
+      "modifiedByUserName" as [Login Access Modified by],
+      "name" as [Login Access Rule],
+      "usedAccessTypes" as [Login Passes Used],
+      "remainingAccessTypes" as [Login Passes Remaining],	// ??
+      "assignedAccessTypes" as [Login Passes Assigned],	// ??
+      "assignedTokens" as [Login Access Token Count];
+  SQL SELECT 
+      "createdDate",
+      "modifiedDate",
+      "modifiedByUserName",
+      "name",
+      "usedAccessTypes",
+      "remainingAccessTypes",
+      "assignedAccessTypes",
+      "assignedTokens"
+      
+  FROM JSON (wrap on) "root";
+  
+  LET NumRows_monitor_apps_REST_license_login = NoOfRows('License_LoginAccessGroups');
+  
+ENDSUB
+
+///$tab user
+SUB monitor_apps_REST_user
+
+LIB CONNECT TO 'monitor_apps_REST_user_condensed';  
+
+User:
+  Load
+   LOWER(userDirectory & '\' & userId) AS UserId,
+   [name] AS [User Name],
+   userDirectory as [User Directory]
+  ;
+  SQL SELECT 
+      "userId",
+      "userDirectory",
+      "name"
+  FROM JSON (wrap on) "root"; 
+
+ENDSUB
+///$tab license_access
+SUB monitor_apps_REST_license_access
+
+  LIB CONNECT TO 'monitor_apps_REST_license_overview';
+
+  RestConnectorMasterTable:
+  SQL SELECT 
+      "totalTokens",
+      "availableTokens",
+      "tokensEnabled",
+      "__KEY_root",
+      (SELECT 
+          "enabled" AS "enabled_user",
+          "tokenCost" AS "tokenCost_user",
+          "allocatedTokens" AS "allocatedTokens_user",
+          "usedTokens" AS "usedTokens_user",
+          "quarantinedTokens" AS "quarantinedTokens_user",
+          "__FK_userAccess"
+      FROM "userAccess" FK "__FK_userAccess"),
+      (SELECT 
+          "enabled" AS "enabled_login",
+          "tokenCost" AS "tokenCost_login",
+          "allocatedTokens" AS "allocatedTokens_login",
+          "usedTokens" AS "usedTokens_login",
+          "unavailableTokens" AS "unavailableTokens_login",
+          "__FK_loginAccess"
+      FROM "loginAccess" FK "__FK_loginAccess"),
+      (SELECT 
+          "enabled" AS "enabled_professional",
+          "total" AS "total_professional",
+          "allocated" AS "allocated_professional",
+          "used" AS "used_professional",
+          "quarantined" AS "quarantined_professional",
+          "available" AS "available_professional",
+          "__FK_professionalAccess"
+      FROM "professionalAccess" FK "__FK_professionalAccess"),
+      (SELECT 
+          "enabled" AS "enabled_analyzer",
+          "total" AS "total_analyzer",
+          "allocated" AS "allocated_analyzer",
+          "used" AS "used_analyzer",
+          "quarantined" AS "quarantined_analyzer",
+          "available" AS "available_analyzer",
+          "__FK_analyzerAccess"
+      FROM "analyzerAccess" FK "__FK_analyzerAccess"),
+	(SELECT 
+		"enabled" AS "enabled_analyzer_capacity",
+		"allocatedMinutes" as "allocated_analyzer_capacity_minutes",
+		"usedMinutes" as "used_analyzer_capacity_minutes",
+		"unavailableMinutes" as "unavailable_analyzer_capacity_minutes",
+		"__FK_analyzerTimeAccess"
+	FROM "analyzerTimeAccess" FK "__FK_analyzerTimeAccess")
+  FROM JSON (wrap on) "root" PK "__KEY_root";
+
+  LET NumRows_monitor_apps_REST_license_access = NoOfRows('RestConnectorMasterTable');
+
+  License_Summary:
+  LOAD
+    [totalTokens] AS [License Total Tokens],
+    [availableTokens] AS [License Total Available Tokens],
+    IF(upper([tokensEnabled])='FALSE',Dual('User-based',1),Dual('Token-based',0)) AS [License Type Enabled]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__KEY_root]);
+  
+  Let license_type_enabled = Peek('License Type Enabled');
+  TRACE $(license_type_enabled) license type enabled;
+
+  //loginAccess:
+  Concatenate (License_Summary) LOAD
+    [enabled_login] AS [License Access Enabled],
+    'Login Access' as [License Token Type],
+    [tokenCost_login] AS [License Token Cost],
+    [allocatedTokens_login] AS [License Allocated Tokens],
+    [usedTokens_login] AS [License Used Tokens],
+    [unavailableTokens_login] AS [License Unavailable Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_loginAccess]) AND NOT UPPER([enabled_login])='FALSE';
+
+  //userAccess:
+  Concatenate (License_Summary) LOAD
+    [enabled_user] AS [License Access Enabled],
+    'User Access' as [License Token Type],
+    [tokenCost_user] AS [License Token Cost],
+    [allocatedTokens_user] AS [License Allocated Tokens],
+    [usedTokens_user] AS [License Used Tokens],
+    [quarantinedTokens_user] AS [License Quarantined Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_userAccess]) AND NOT UPPER([enabled_user])='FALSE';
+
+  //professionalAccess:
+  Concatenate (License_Summary) LOAD
+	[enabled_professional] AS [License Access Enabled],
+    'Professional Access' as [License Token Type],
+    [total_professional] AS [License Total Tokens],
+    [allocated_professional] AS [License Allocated Tokens],
+    [used_professional] AS [License Used Tokens],
+    [quarantined_professional] AS [License Quarantined Tokens],
+    [available_professional] AS [License Total Available Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_professionalAccess]) AND NOT UPPER([enabled_professional])='FALSE';
+  
+  //analyzerAccess:
+  Concatenate (License_Summary) LOAD
+	[enabled_analyzer] AS [License Access Enabled],
+    'Analyzer Access' as [License Token Type],
+    [total_analyzer] AS [License Total Tokens],
+    [allocated_analyzer] AS [License Allocated Tokens],
+    [used_analyzer] AS [License Used Tokens],
+    [quarantined_analyzer] AS [License Quarantined Tokens],
+    [available_analyzer] AS [License Total Available Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_analyzerAccess]) AND NOT UPPER([enabled_analyzer])='FALSE';
+  
+    // analyzerTimeAccess:	== Analyzer Capacity
+  Concatenate (License_Summary) LOAD
+	[enabled_analyzer_capacity] AS [License Access Enabled],
+    'Analyzer Capacity' as [License Token Type],
+    [allocated_analyzer_capacity_minutes] AS [License Allocated Analyzer Capacity (Minutes)],
+    [used_analyzer_capacity_minutes] AS [License Used Analyzer Capacity (Minutes)],
+    [unavailable_analyzer_capacity_minutes] AS [License Unavailable Analyzer Capacity (Minutes)]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_analyzerTimeAccess]) AND NOT UPPER([enabled_analyzer_capacity])='FALSE';
+
+  DROP TABLE RestConnectorMasterTable;
+  
+ENDSUB
+///$tab license
+SUB monitor_apps_REST_license
+
+   Set errormode = 0;	// TODO -- temporary until Repo update
+  LIB CONNECT TO 'monitor_apps_REST_license';
+
+  License:
+  Load *,
+  	[License Message] & '. ' & Subfield([License Details],', Expired',1) as [License Message + Details] 
+  ;
+  Load
+  	serial as [License Serial Number],
+    name & ': ' & organization as [License Name & Organization],
+    if(len(key)>1,'Signed License',lef) as [License LEF],
+    Date(createdDate) as [License Created Date],
+    Date(modifiedDate) as [License Modified Date],
+    serial & ' for ' & name & ': ' & organization 
+    	& ' created ' & Date(createdDate) 
+        & ' and last modified ' & Date(modifiedDate) & ' by ' & modifiedByUserName
+    			AS [License Message],
+    'Site License created ' & Date(createdDate) 
+        & ', last modified ' & Date(modifiedDate) & ' by ' & modifiedByUserName
+    			AS [License Created & Modified Message],
+    'Subscription: ' & isSubscription 
+        & ', Product: ' & product & ', Cores: ' & numberOfCores
+    	& ', Elastic: ' & isElastic & ', CloudServices: ' & isCloudServices
+        & ', Expired: ' & isExpired & If(isExpired,'('&expiredReason & ')')
+        & ', Invalid: ' & isInvalid & ', Blacklisted: ' & isBlacklisted
+        		AS [License Details]  
+  ;
+  SQL SELECT 
+      "createdDate",
+      "modifiedDate",
+      "modifiedByUserName",
+      "lef",
+      "serial",
+      "key",
+      "name",
+      "organization",
+      "product",
+      "numberOfCores",
+      "isExpired",
+      "expiredReason",
+      "isBlacklisted",
+      "isInvalid",
+      "isSubscription",
+      "isCloudServices",
+      "isElastic"
+  FROM JSON (wrap on) "root";
+
+  LET license_message 	= If(IsNull(Peek('License Message')),'License Details not available',Peek('License Message'));
+  LET license_details 	= If(IsNull(Peek('License Details')),'License Details not available',Peek('License Details'));
+  LET license_created_modified 	= If(IsNull(Peek('License Created & Modified Message')),'License Details not available',Peek('License Created & Modified Message'));
+  LET license_lef 		= If(IsNull(Peek('License LEF')),'License Details not available',Peek('License LEF'));
+  LET license_number 	= If(IsNull(Peek('License Serial Number')),'Not available',Peek('License Serial Number'));
+  TRACE License Details: $(license_details);
+  LET NumRows_monitor_apps_REST_license = NoOfRows('License');
+
+  Set errormode = 1;	// TODO -- temporary
+
+ENDSUB
+///$tab app
+SUB monitor_apps_REST_app
+
+  //  1 Get App Id (ID) and Stream name from app & stream endpoints
+  LIB CONNECT TO 'monitor_apps_REST_app';
+  
+  RestConnectorMasterTable:
+  SQL SELECT 
+      "id" AS "id_u1",
+      "__KEY_root",
+      (SELECT 
+          "id" AS "id_u0",
+          "name" AS "name_u0",
+          "__FK_stream"
+      FROM "stream" FK "__FK_stream")
+  FROM JSON (wrap on) "root" PK "__KEY_root";
+  
+  LET NumRows_monitor_apps_REST_app = NoOfRows('RestConnectorMasterTable');
+  
+  mapStream:
+  MAPPING LOAD
+      [__FK_stream],
+      [name_u0] as streamName	
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_stream]);
+  
+  App:
+  LOAD	[id_u1] AS AppId,
+      ApplyMap('mapStream',__KEY_root,'Unpublished') as [App Stream]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__KEY_root]);
+  
+  DROP TABLE RestConnectorMasterTable;
+
+ENDSUB
+///$tab qlikview_logs
+SUB qlikview_logs
+
+  TRACE Checking for presence of QlikView Server logs (for dual-use QV and Sense customers).;
+  SET qlikview_license_logs_present = 0;	// Reset this each time
+  
+  // Set some variables then check for Sessions and events QVDs
+  for each log in 'Sessions','Events'
+    Let qv_$(log)_qvd_file_name = '$(serverLogFolder)governance_qlikview_$(log)_$(app_version)';
+    Set rows_$(log)_incremental = 0;
+    SET rows_$(log)_final		= 0;
+    
+    CALL loadBaseTable ('qlikview_$(log)_historical', '$(qv_$(log)_qvd_file_name)')
+    If NoOfRowsqlikview_$(log)_historicalBASE > 0 Then 	// Check historical QVD data fetched?
+      TRACE Found QlikView $(log) historical QVD with $(NoOfRowsqlikview_$(log)_historicalBASE) rows fetched;
+    ELSE
+      TRACE No QlikView $(log) logs historical QVD found (stay calm).;
+    ENDIF
+    
+    LET qlikview_log_cutoff			= lastReloadCompare;		// Align this
+    LET qlivkiew_log_cutoff_pretty	= Timestamp(lastReloadCompare);
+    
+    // Start a table to which we will concatenate log file data if they exist
+    qlikview_$(log):
+    NoConcatenate Load * Inline [SessionId];
+    
+    // For Session log, create mapping table of user -- temporary table that disappears post reload
+    If log = 'Sessions' Then
+      map_user:
+      Mapping Load Distinct UserId, [User Name] Resident User;
+      
+    ENDIF
+    
+    // Allow looping through multiple qlikview_logs data connections in case customer wants to add usage data from multiple QlikView deployments.
+    Set errormode = 0;		// Disable task failure on error because old QlikView Server logs might not include SessionId
+    For each data_connection in 'monitor_apps_qlikview_logs'
+    // Find each "log" file and fetch it, taking notie of the qlikview_log_cutoff
+      For Each log_file in FileList('lib://$(data_connection)/$(log)_*.log')
+        If FileTime('$(log_file)') >= qlikview_log_cutoff Then
+        
+          IF '$(log)' = 'Sessions' Then
+            Concatenate (qlikview_$(log))
+            Load
+            	SessionId,
+               '$(log)' & SessionId & "Timestamp" as _session_id_timestamp,	// field for concatenation
+               '$(log)' & SessionId & "Timestamp" as _concat_temp,			// temp field for concatenation
+                Timestamp("Timestamp") as LogTimeStamp,
+                Timestamp("Session Start") as LogEntryPeriodStart,
+                Date(Floor("Timestamp")) as [Access Date],
+                "Cal Type" as [Access Type],                
+                TextBetween('$(log_file)','sions_','_20') as Hostname,
+                (round(num("Session Start"),0.0006)&'|'&round(num("Timestamp"),0.0006)) as _TimeDIM_Link,
+                [Exe Version],
+                LOWER("Authenticated user") as [UserId],
+                SubField("Authenticated user",'\',1) as [User Directory],
+                ApplyMap('map_user',LOWER("Authenticated user"),SubField(LOWER("Authenticated user"),'\',-1)) as [User Name],	// Attempt to get User Name from QRS table, but might not exist here in Sense (from QlikView)
+                SubField(SubField(Document,'/',-1),'.qvw',1) as [App Name],	// Using SubField to capture just the file name without the entire path. 
+//                 Document as [App Name],									// NOTE: If the same named app exists in multiple Source Doc folders, use this [App Name] (uncomment this line) and comment the [App Name] in the previous line. 
+                Hash128(Document & "Document Timestamp") as [AppId],		// Since we do not have true AppId from QlikView logs
+                SessionId & Session & Document as proxy_session_id_app_id,
+                'QlikView' as [App Stream]
+            FROM '$(log_file)' (txt, utf8, embedded labels, delimiter is '\t', msq)
+            WHERE "Timestamp" > '$(qlikview_log_cutoff)'
+            	AND WildMatch("Cal Type",'Professional*','Analyzer*') > 0	// We only want Analyzer, Professional, and Analyzer Capacity session data
+            ;
+          
+          ELSEIF '$(log)' = 'Events' Then
+            Concatenate (qlikview_$(log))
+            Load
+            	SessionId,
+                '$(log)' & SessionId & "Timestamp" as _session_id_timestamp,
+                '$(log)' & SessionId & "Timestamp" as _concat_temp,			// temp field for concatenation
+                Timestamp("Timestamp") as LogTimeStamp,
+                'Analyzer Capacity' as [Access Type],
+                Message
+            FROM '$(log_file)' (txt, utf8, embedded labels, delimiter is '\t', msq)
+            WHERE "Timestamp" > '$(qlikview_log_cutoff)'
+            	AND WildMatch(Message,'*Analyzer Capacity*')=1;          
+          
+          ELSE
+          	TRACE Problem resolving "log" variable in loop in qlikview_logs subroutine. Contact support.;
+          ENDIF
+        
+        ELSE
+          TRACE $(log_file) older than cutoff date $(qlikview_log_cutoff_pretty);
+        ENDIF
+
+      Next log_file
+    Next data_connection
+    Set errormode = 1;	// Enable error failure again
+    
+    Let rows_$(log)_incremental = NoOfRows('qlikview_$(log)');
+    
+    // If there are no QlikView Session log entries (incremental or historical) then we exit out of here because we either do not have data or the monitor_apps_qlikview_logs data connection was not properly set
+    //		This will be the more common scenario because only dual-use (QV + Qlik Sense) customers will configure things in this manner
+    IF rows_Sessions_incremental +  NoOfRowsqlikview_Sessions_historicalBASE = 0 Then
+      TRACE No QlikView Server logs found. Skipping remaining qlikview log logic. No worries. This is expected behavior unless you are a dual-use customer and have configured the monitor_apps_qlikview_logs data connection.;
+      Drop table qlikview_$(log), qlikview_$(log)_historical;
+      Exit Sub;
+    ENDIF
+    
+    // Concatenate and Store table as needed
+    If rows_$(log)_incremental > 0 Then
+    
+      If NoOfRowsqlikview_$(log)_historicalBASE > 0 Then
+        // Concatenate
+        Concatenate (qlikview_$(log))
+        Load * Resident qlikview_$(log)_historical
+        Where not Exists (_concat_temp,_session_id_timestamp);		// Avoid loading session / audit entries from historical QVD that we already loaded incrementally
+              
+      ELSE
+        TRACE No Historical QVD found for $(log) -- so saving the incremental $(log) logs to QVD for next reload.;
+      ENDIF
+      
+      Let f_name = '$(qv_$(log)_qvd_file_name)';
+      Drop field _concat_temp;	// Drop concatenation-only field(s 
+      CALL storeFiles ('qlikview_$(log)','$(f_name)')
+      Drop Table qlikview_$(log)_historical;
+      
+    ELSE	// No incremental logs
+      TRACE No Incremental QlikView $(log) log entries found (Expected for all but Unified Licensing customers using QlikView). If you believe you should have incremental entries, please verify the monitor_apps_qlikview_logs data connection and that there are logs newer than $(qlivkiew_log_cutoff_pretty).;
+      Drop Table qlikview_$(log);
+      
+      If NoOfRowsqlikview_$(log)_historicalBASE > 0 Then	// Historical QVD has data but no incremental logs
+      	Rename Table qlikview_$(log)_historical to qlikview_$(log);
+      ELSE	// No historical QVD or incremental logs. This should only ever happen for Events logs when you are not using Analyzer Capacity minutes
+      	Drop Table qlikview_$(log)_historical;
+      ENDIF
+      
+    ENDIF	// incremental logs check
+    
+    Let rows_$(log)_final = NoOfRows('qlikview_$(log)');
+    
+  next log
+  
+  // Aggregate and join Analyzer Capacity log entries (from QlikView Events log) to Sessions to get correct consumption of Analyzer Capacity minutes
+  If rows_Events_final > 0 Then
+    TRACE Aggregating Analyzer Capacity usage (from QlikView Events log);
+    
+    aggregated_events_analyzer_capacity:
+    Load
+      SessionId,
+      Count(SessionId) as [Analyzer Capacity Used (Units)],
+      Count(SessionId)*$(va_analyzer_capacity_consumption_minutes) as [Analyzer Capacity Used (Minutes)]
+    Resident qlikview_Events
+    Group By SessionId;
+    
+    
+    Join (qlikview_Sessions)
+    Load 
+      SessionId,  
+      [Analyzer Capacity Used (Units)],  
+      [Analyzer Capacity Used (Units)]*$(va_analyzer_capacity_consumption_minutes) as [Analyzer Capacity Used (Minutes)] 
+    Resident aggregated_events_analyzer_capacity;
+    
+    Drop table aggregated_events_analyzer_capacity;
+   
+  ELSE	// No QlikView Event log entries for Analyzer Capacity usage found
+    TRACE  No QlikView Event log entries for Analyzer Capacity usage found. Not a problem unless you have been using Analyzer Capacity (minutes) in QlikView.;
+    // For consistency when appending this data below to LogContent, we need to have Analyzer Capcity fields
+    Concatenate (qlikview_Sessions) load * Inline [ SessionId, Analyzer Capacity Used (Minutes), Analyzer Capacity Used (Units)];
+  ENDIF      
+  
+  Drop Table qlikview_Events;	// No longer need this table
+  
+  IF rows_Sessions_final > 0 Then
+  
+	  TRACE Appending QlikView Session (license consumption) data to existing tables so that it becomes part of the happy License Monitor Data Model;
+	  Concatenate (LogContent)
+	  Load
+		SessionId as ProxySessionId,
+	//     [Exe Version] as [QlikView Exe Version],
+		UserId,
+		LogEntryPeriodStart,
+		LogTimeStamp,
+		[_TimeDIM_Link],		// this should get incorporated into the master calendar with the other log data
+		Hostname,
+		[Access Type],
+		[Access Date],
+		[Analyzer Capacity Used (Minutes)],
+		[Analyzer Capacity Used (Units)],
+		'QlikView' as [Unified Licensing Product]
+	  Resident qlikview_Sessions;
+	  
+	  Concatenate (User)
+	  Load
+		Distinct UserId,
+		[User Name],
+		[User Directory]
+	  Resident qlikview_Sessions;
+	  
+	  Concatenate (sessionData)
+	  Load
+		SessionId as ProxySessionId,
+		AppId,
+		[App Name],
+		proxy_session_id_app_id
+	  Resident qlikview_Sessions;
+	  
+	  Concatenate (App)
+	  Load
+		Distinct AppId,
+		[App Stream]
+	  Resident qlikview_Sessions;
+	  
+	  // Get max Exe Version from QlikView Session log
+	  max_exe_version:
+	  Load 
+		MaxString([Exe Version]) as maxstring_exe_version
+	  Resident qlikview_Sessions;
+	  
+	  Let qlikview_maxstring_exe_version = Peek('maxstring_exe_version');
+	  TRACE QlikView Exe version (maxString) = $(qlikview_maxstring_exe_version);
+	  
+	  Drop tables qlikview_Sessions, max_exe_version;	// No longer need this table
+	  
+	  TRACE Celebrate! This script has included QlikView Professional and Analyzer Usage data in the License Monitor. Woohoo!;
+	  SET qlikview_license_logs_present = 1;		// This is used in the UI of the app to hide/show metrics (see supportingLogic) and provide different messaging
+
+	ELSE
+	  TRACE No QlikView Server logs found (which is expected for all non-Unified Licensing QlikView and Sense customers).;
+	  Drop Table qlikview_Sessions;
+	ENDIF
+	  
+ENDSUB
+///$tab calendarization
+SUB calendarization
+  
+// Work out the first and last date from my data
+  Range:
+  LOAD 
+    DayStart(min) as startdate,
+    DayStart(max) as enddate,
+    timestamp(max) as maxLogTimeStamp;
+  LOAD    
+     min(LogEntryPeriodStart) as min,
+     max(LogTimeStamp) as max
+  resident LogContent;
+
+  IF Not NoOfRows('Range')> 0 THEN
+  // If no LogContent messages found, script would fail. Need to verify data connections - most likely issue with ArchivedLogsFolder QLIK-88005
+      set msg = 'ERROR: No license usage data found. Reload aborted.
+	Please verify that the following data connections are correct: ArchivedLogsFolder, ServerLogFolder.';
+      CALL monitor_app_reload_stats('ERROR','License Monitor',msg,'Reload Finish');
+      TRACE $(msg);
+      Exit Script;
+  ENDIF
+
+  let startdate= num(peek('startdate',-1,'Range'),'###0.#####','.');
+  let enddate= num(num(peek('enddate',-1,'Range')) +1,'###0.#####','.') ;
+  let maxLogTimeStamp = peek('maxLogTimeStamp',-1,'Range');
+  Let maxLogTimeStamp_Hour = hour(maxLogTimeStamp);
+
+// Build a table of every minute between my start and end date
+    drop table Range;
+
+    do while startdate <= enddate
+          tempDateTimeList:
+          load
+               timestamp($(startdate) + (1/(24*60))*(recno()-1),'YYYY-MM-DD h:mm') as DateTime
+          autogenerate (24*60);
+
+          let startdate = num($(startdate) + 1,'###0.#####','.') ;
+    loop 
+
+  // To create hour sort order which sorts backward from now(reload) -- for 24-Hour summary charts
+  Let hour_now = maxLogTimeStamp_Hour;
+  hour_temp:
+  mapping Load 
+     recno()-1 & ':00' as Hour,
+     if($(hour_now)-(recno()-1)>=0, $(hour_now)-(recno()-1),23+($(hour_now)-(recno()-1))+1) as hour_sort
+  autogenerate (24);
+
+
+//Build time table
+  TimeDIM:
+  LOAD
+    DISTINCT DateTime,
+    Year(DateTime) as Year,
+    MonthName(DateTime) as Month,		// replace with date(DateTime, 'MMM YYYY') for better performance
+    WeekStart(DateTime) as [Week Beginning],
+    date(dayname(DateTime),'MMM-DD') as Day,
+    WeekDay(DateTime) as Weekday,
+    makedate(year(DateTime),month(DateTime),day(DateTime)) as Date,  
+    Hour(DateTime)&':00' as Hour,
+    ApplyMap('hour_temp',Hour(DateTime)&':00' ) as hour_sort,
+    Minute(DateTime) as [Minute of Hour],
+    timestamp(floor(DateTime,1/(24)),'MMM-DD hh:00') as [Hour Timeline],
+    -1*InMonthToDate(DateTime,today(1),0)					AS month_to_date,
+    -1*InMonth(DateTime,today(1),-1)						AS last_month,
+    If(DateTime>=$(vLast7Days),1) 							AS last7days,
+    If(DateTime>=$(vLast14Days),1) 							AS last14days,
+    If(DateTime>=$(vLast28Days),1) 							AS last28days,
+    If(DateTime>=$(vLast90Days),1) 							AS last90days
+  resident tempDateTimeList;
+
+  Drop table tempDateTimeList;  
+
+  Last:
+  Load Distinct [Hour Timeline], 'Last 7 Days' as [Timeframe] Resident TimeDIM Where last7days=1;
+  Concatenate Load [Hour Timeline], 'Last 14 Days' as [Timeframe] Resident TimeDIM Where last14days=1;
+  Concatenate Load [Hour Timeline], 'Last 28 Days' as [Timeframe] Resident TimeDIM Where last28days=1;
+  Concatenate Load [Hour Timeline], 'Last 90 Days' as [Timeframe] Resident TimeDIM Where last90days=1;
+
+//Interval Match dates
+  inner join (TimeDIM) Intervalmatch (DateTime) Load LogEntryPeriodStart-(1/(24*60)) AS start_minus_one, LogTimeStamp Resident LogContent;
+
+  datetime:
+  NoConcatenate
+  Load
+   hour_sort, DateTime,Year, Month,[Week Beginning], Day, Weekday, Date, Hour,[Minute of Hour],[Hour Timeline],last28days,month_to_date,last_month,
+   (round(num(start_minus_one+1/(24*60)),0.0006)&'|'&round(num(LogTimeStamp),0.0006)) as _TimeDIM_Link	// LINK w/ LogContent
+  RESIDENT TimeDIM
+  order by DateTime DESC;
+
+  drop table TimeDIM;
+
+// For all non-24-hour Summary charts, we want "normal" numeric sorting of Hour from 0 to 23 hours
+  Hour_Table:
+  NoConcatenate
+  Load
+      rowno()-1 & ':00' as Hour,
+      rowno()-1 & ':00' as [Hour of Day]
+  AutoGenerate (24);
+
+  Minute_Table:
+  NoConcatenate
+  Load
+      rowno()-1 as [Minute of Hour],		// Link Field
+      rowno()-1 as Minute       			// Field for filter, dimension, etc.
+  AutoGenerate (60);	
+
+ENDSUB
+
+///$tab supportingLogic
+SUB supportingLogic
+
+  //// Dimension table to support Dashboard "Excel" chart
+ 
+  IF license_type_enabled = 'User-based' THEN
+    
+    If qlikview_license_logs_present = 1 THEN
+  	// QlikView logs loaded, which means Sense is also licensing with user-based Analyzer, Professional
+    // Add a few more metrics
+      dim_dash:
+      LOAD * INLINE
+      [
+        dimNum, dimName
+        1, Total Users
+        2, First-time Users
+        3, Sense Professional Users
+        3.1, QlikView Professional Users
+        4, Sense Analyzer Users
+        4.1, QlikView Analyzer Users
+        4.5, Sense Analyzer Capacity Users    
+        4.8, QlikView Analyzer Capacity Users        
+        5, Avg Daily Users
+        6, Max Daily Users
+        7, Access Denials      
+        8, Allocation Changes
+      ];
+      
+    ELSE 
+    
+      dim_dash:
+      LOAD * INLINE
+      [
+          dimNum, dimName
+          1, Total Users
+          2, First-time Users
+          3, Professional Users
+          4, Analyzer Users
+          4.5, Analyzer Capacity Users
+          5, Avg Daily Users
+          6, Max Daily Users
+          7, Access Denials      
+          8, Allocation Changes
+      ];
+    ENDIF
+    
+    // Messaging for Analyzer Capacity Time usage
+    For each vs_analyzer_capacity_var in 'Allocated','Used','Unavailable'
+      Let vs_analyzer_capacity_$(vs_analyzer_capacity_var) = Num(Peek('License $(vs_analyzer_capacity_var) Analyzer Capacity (Minutes)',-1,'License_Summary'),'#,##0');
+    Next vs_analyzer_capacity_var 
+    
+    IF vs_analyzer_capacity_Allocated >5 Then
+    	Let vs_analyzer_capacity_per_day = Ceil($(vs_analyzer_capacity_Used)/(today(1)-MonthStart(Today(1))+1));
+        
+        // QB-3498: Added IsNull check. 
+        Let vs_analyzer_capacity_run_out_days = if(	IsNull( vs_analyzer_capacity_per_day ),0, If(vs_analyzer_capacity_per_day = 0,99, Floor( vs_analyzer_capacity_Allocated/vs_analyzer_capacity_per_day)));
+        
+    	Let va_analyzer_capacity_message = 'Analyzer Capacity Minutes:  To date in '& MonthName(Today(1)) & ' you have used $(vs_analyzer_capacity_Used) of $(vs_analyzer_capacity_Allocated) total minutes'
+        										& ' as reported at ' & ReloadTime() & '. At an average of $(vs_analyzer_capacity_per_day) minutes used per day, you would' 
+// 												& 'run out of minutes in $(vs_analyzer_capacity_run_out_days) days.'
+                                                & IF(vs_analyzer_capacity_run_out_days < 32,'run out of minutes in ' & $(vs_analyzer_capacity_run_out_days) & ' days.',' not run out of minutes before the new month starts and Analyzer Time is reset!')
+												& '  Analyzer Capacity time resets the first day of each calendar month.';
+    Else
+      SET va_analyzer_capacity_message ='Analyzer Capacity Time not licensed or allocated.';
+    EndIf
+    
+  ELSE	// Token-based license model
+
+    dim_dash:
+    LOAD * INLINE
+    [
+        dimNum, dimName
+        1, Total Users
+        2, Total Tokens Used
+        3, User Access Tokens Used
+        4, Login Access Tokens Used
+        5, Avg Daily Tokens Used
+        6, Max Daily Tokens Used
+        7, Access Denials      
+        8, Allocation Changes
+    ];
+    
+    SET va_analyzer_capacity_message ='Analyzer Capacity Time not licensed or allocated.';
+    
+  ENDIF
+
+  analyzer_capacity_message:
+  Load '$(va_analyzer_capacity_message)' as analyzer_capacity_message AutoGenerate 1;
+  Load '$(va_analyzer_capacity_help_link)' as analyzer_capacity_help_link AutoGenerate 1;
+  TRACE $(va_analyzer_capacity_message);
+  
+  REM For selecting a session count threshold for custom ELA usage analysis;
+  Let v_session_count_threshold = '=Max([session_count_threshold])';
+  session_count_threshold:
+  Load RowNo()+1 as session_count_threshold Autogenerate (11);	// For session counts 2 through 12
+  Concatenate (session_count_threshold) Load 20 as session_count_threshold AutoGenerate 1;
+  Concatenate (session_count_threshold) Load 50 as session_count_threshold AutoGenerate 1;
+
+  // Limit Smart search to relevant fields
+  Search Include *;
+  Search Exclude [*Id],[dim*],[_*],[folder*],[*ort];
+  Search Include UserId;
+  
+  // For UI simplicity when making selections in the Allocation History page, these little tables are created
+  allocationUser:
+  NoConcatenate Load distinct UserId resident LogContent where [License Allocation]=1;
+  allocationMessage:
+  NoConcatenate Load distinct Message resident LogContent where [License Allocation]=1;
+  AllocationAffectedEntity:
+  NoConcatenate Load distinct [Affected Entity] resident LogContent where [License Allocation]=1;
+
+  
+ENDSUB
+
+///$tab finalize
+SUB finalize
+  
+  If firstReload = 1 THEN
+     SET PriorReloadDuration = 0;		// Initialize ReloadDuration for first reload
+  ELSE
+  	Let PriorReloadDuration = ReloadDuration;  
+  END IF
+  
+  //// Set Reload Stats Variables	//// 
+  Let ReloadDuration = interval(now(1)-ReloadStartTime,'hh:mm:ss');
+  
+  IF storeBaseTableFail = 0 then
+      Let LastSuccessfulReloadStartTime = ReloadStartTime;
+  ELSE
+      Let LastSuccessfulReloadStartTime = LastReloadTime;	// reset this to prior reload time
+  END IF
+
+// Monitor reload statistics
+  Let ttlRows 		= num(NoOfRows('LogContent'),'#,##0');
+  let hst			= lower(ComputerName());
+  let ahora			= now(1);
+  
+  // Check to see if there were any reload errors associated with this app; report them on the Log Details page
+  let reloadWarn	= NoOfRows('monitor_app_reload_stats')-$(appMonitorStatsRowsInit)-1;	// There will already be an 'reload start' entry in this table
+  let reloadWarnMsg	= if(reloadWarn>1,' Reloaded with ' & reloadWarn & ' warning(s). Consult the License_Monitor_Reload_Stats.txt log for details.','');
+LET reloadWarnMsg	= reloadWarnMsg & if(NumRowsQRS>0,'',msg_qrs);	// Add error message if failure to fetch data from qrs
+  Let msg			= 'Reloaded at $(ahora) on $(hst) for $(ReloadDuration) with $(ttlRows) log entries from $(logSource).$(reloadWarnMsg)';
+  
+  // Write final reload message and store App Reload Stats
+  CALL monitor_app_reload_stats('INFO','License Monitor',msg,'Reload Finish')
+
+  
+ENDSUB
+
+///$tab RUN Logic
+//// Reload Logic  ////
+
+CALL monitor_app_reload_stats('INFO','License Monitor', startMsg,'Reload Start')
+
+LET baseTableName = '$(baseTableName)_file';		// Store log history QVD with suffix _file so it only gets used with file logging
+TRACE Last Reload Compare time = $(lastReloadCompare). CutoffDate = $(cutoffDate).;
+
+REM Load the historical (incremental) QVD if it exists;
+CALL loadBaseTable ('LogContent', '$(baseTableName)')		// Main License_Repository logs
+CALL loadBaseTable ('sessionData','$(sessionTableName)')	// Session_Engine log for App Name	TODO App Name for License
+
+REM table for commands;
+CALL CommandList
+
+REM initialize working tables;
+working:
+Load * inline [ProxyPackageId,RequestSequenceId]; 
+working_session:
+NoConcatenate Load * Inline [ProxySessionId, LogTimeStamp]; 
+
+REM The log source (file or database) determines how the log data are loaded, which is defined next;
+
+CALL logList
+CALL defineFields
+CALL multiNodeConfig
+CALL logFolderList
+// This loops through the Sense\Log folder on the central node + each [hostname] folder in the Sense\Repository\Archived Logs folder
+for i = 0 to noofrows('logFolderList')-1
+  // Loop through each logfile enumerated in the logList SUB
+  FOR j = 0 to noofrows('logList')-1  
+    CALL loadFiles (i,j)
+  next j  
+  CALL sessionData (i)
+next i
+drop tables logList, logFolderList;
+SET logSource = 'Log Files';
+SET LastReloadSource = 1;
+
+Let rowsWorkingFinal = num(NoOfRows('working'),'#,##0');
+trace $(rowsWorkingFinal) incremental rows loaded;
+ 
+CALL concatTables ('LogContent', 'working','Id')
+CALL storeFiles ('LogContent', '$(baseTableName)')
+
+Let sessionTableCount = NoOfRows('working_session');
+IF $(sessionTableCount) > 0 THEN	// check sessionData for rows -- otherwise this reload will fail until there is at least one session
+  CALL concatTables ('sessionData', 'working_session','Id')
+  CALL storeFiles ('sessionData', '$(sessionTableName)')
+  Drop fields LogTimeStamp, Id from sessionData;	// To avoid synthetic keys
+  
+ELSEIF NoOfRows('sessionData') >0 then
+  Drop fields LogTimeStamp, Id from sessionData;
+  drop table working_session;
+ELSE
+  trace No incremental session data (Open App) found. Skipping update.;
+  drop tables working_session, sessionData;		// Drop these tables if no sessions to avoid synthetic keys
+END IF
+
+CALL QRS		// Call QRS data AFTER LogContent table is stored
+
+CALL qlikview_logs	// For Unified Licensing of QlikView + Qlik Sense customers. This checks for QlikView Server logs in the monitor_apps_qlikview_logs data connection. No data = skip the script logic for dual-use
+
+CALL calendarization
+CALL supportingLogic
+CALL finalize

@@ -1,0 +1,77 @@
+///$tab Initialize
+//	License Monitor
+LET yr			= year(ReloadTime());
+SET copyright = 'Copyright 1993-$(yr) Qliktech International AB';
+
+// Messaging and QVD file name variables
+Let ReloadStartTime 		= now(1);
+Set ahora = ; SET msg =; SET skipped=0; SET loaded =0; SET textFile =;	// Reset these variables
+SET app_name				= 'License Monitor';
+SET app_version				= '7.19.0';
+Let comp 					= ComputerName(); 
+LET EngineVer = PurgeChar(EngineVersion(),chr(39)); 
+LET startMsg				= 'Reloading $(app_name) $(app_version) from $(comp) running QIX Engine version $(EngineVer)';
+TRACE $(startMsg);
+
+// Runtime date/time variables
+SET monthsOfHistory 		= 12;		// How many months of history should be available in the app. More history = more processing, bigger app, etc.
+LET cutoffDate 				= AddMonths(today(),-$(monthsOfHistory),1);		// Filter individual .log files and baseTable; note: the 1 
+Let LastReloadTime 			= timestamp(if(isnull(LastSuccessfulReloadStartTime),cutoffDate,LastSuccessfulReloadStartTime));
+Let lastReloadCompare 		= num(LastReloadTime)-1;	// (Re-)load any logs updated within 24 hours of the last reload
+SET minSenseActivityDate	= 42005;	// Jan 1, 2015 - cutoff for all Sense-related activity
+
+// Miscellaneous
+SET hideprefix 				= 'log';	// Hiding logList from view, though preserving it for now (not dropping it)
+SET firstReload 			= 0;		// RESET this each time -- it will check.
+SET va_LoginToUserPass		= 10;		// How many Login Access sessions = 1 token
+SET va_analyzer_capacity_consumption_minutes	= 6;	// How many minutes for each Analyzer Capacity unit of consumption? Default = 6.
+SET va_analyzer_capacity_message = '';	// Reset this each reload
+SET vs_analyzer_capacity_Allocated =; SET vs_analyzer_capacity_Used = ; SET vs_analyzer_capacity_Unavailable = ;	// reset these
+SET va_analyzer_capacity_help_link = 'https://help.qlik.com/en-US/search/?q=analyzer+capacity+license';
+
+// Data connection & file name variables
+LET serverLogFolder			= 'lib://ServerLogFolder/';	
+LET archivedLogsFolder		= 'lib://ArchivedLogsFolder/';
+SET central_node_name		=  ;	// Multinode intialize
+
+LET baseFileName	 		= 'governanceLicenseLog_$(app_version)';	
+LET baseTableName 			= '$(serverLogFolder)$(baseFileName)';
+
+LET SessionFileName 		= 'governanceSession_$(app_version)';
+LET sessionTableName		= '$(serverLogFolder)$(SessionFileName)';
+LET monitorAppStatsFile		= '$(serverLogFolder)License_Monitor_Reload_Stats_$(app_version).txt';
+
+SET storeBaseTableFail 		= 0;		// If script fails to store base table, set to 1 and do not update LastSuccessfulReloadStartTime variable
+LET tempErrorDetails 		=  ;
+
+// Set date and time formats
+SET TimeFormat		= 'hh:mm:ss';
+SET DateFormat		= 'YYYY-MM-DD';
+SET TimestampFormat	= 'YYYY-MM-DD hh:mm:ss';
+// Calendar Variables
+Let vLast72Hours =	Num(timestamp(Now(1)-3));
+Let vLast7Days  = Num(timestamp(Now(1)-7));
+Let vLast14Days  = Num(timestamp(Now(1)-14));
+Let vLast28Days  = Num(timestamp(Now(1)-28));
+Let vLast90Days  = Num(timestamp(Now(1)-90));
+
+// Colors
+set c_red					= 'RGB(204,102,119)';
+set c_yellow				= 'RGB(221,204,119)';
+set c_blue					= 'RGB(68,119,170)';
+set c_green					= 'RGB(17,119,51)';
+set c_gray 					= 'RGB(150,150,150)';
+set c_lightred 				= 'RGB(240,209,214)';
+set c_lightblue 			= 'RGB(188,181,201)';
+//// ARGB colors -- requires input value to set the intensity (alpha) value of the color. Example using field [dual90]:  $(c_red_alpha(dual90))
+set c_red_alpha				= 'ARGB($1,204,102,119)';
+set c_orange_alpha			= 'ARGB($1,233,141,54)';
+set c_yellow_alpha			= 'ARGB($1,221,204,119)';
+set c_blue_alpha			= 'ARGB($1,68,119,170)';
+set c_green_alpha			= 'ARGB($1,17,119,51)';
+set c_gray_alpha			= 'ARGB($1,150,150,150)';
+set c_red_breeze_alpha		= 'ARGB($1,155,58,59)';
+set c_orange_breeze_alpha	= 'ARGB($1,233,141,54)';
+set c_teal_breeze_alpha		= 'ARGB($1,19,118,122)';
+set c_green_breeze_alpha	= 'ARGB($1,101,177,99)';
+set c_red_0_green_alpha		= 'If($1=0,c_red,ARGB($1,101,177,99))';

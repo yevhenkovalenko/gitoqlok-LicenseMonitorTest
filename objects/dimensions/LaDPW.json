@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "LaDPW",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "=Num(aggr(count(Distinct proxy_session_id_app_id),UserId),'#,##0')"
+    ],
+    "qFieldLabels": [
+      "User Session Count"
+    ],
+    "title": "User Session Count",
+    "coloring": {
+      "changeHash": "0.4552457013633102",
+      "colorMapRef": "LaDPW"
+    }
+  },
+  "qMetaDef": {
+    "title": "User Session Count",
+    "description": "Count of sessions (defined by licensed sessions) per user.",
+    "tags": []
+  }
+}

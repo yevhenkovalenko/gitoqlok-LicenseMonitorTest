@@ -1,0 +1,29 @@
+{
+  "qInfo": {
+    "qId": "HcUGYn",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Available Analyzer Capacity (Minutes)",
+    "qDef": "IF([License Allocated Analyzer Capacity (Minutes)] > 5,\r\n\tNum(([License Allocated Analyzer Capacity (Minutes)]-[License Used Analyzer Capacity (Minutes)]-[License Unavailable Analyzer Capacity (Minutes)])/[License Allocated Analyzer Capacity (Minutes)],'0.0%'),'N/A')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "'Unused or \"remaining available\" Analyzer Capacity minutes.  '\n& IF([License Allocated Analyzer Capacity (Minutes)]>5,\n\tchr(10) & ' To date in '& MonthName(Today(1)) & ' you have used ' & Num([License Used Analyzer Capacity (Minutes)],'#,##0') \n    & ' of ' & Num([License Allocated Analyzer Capacity (Minutes)],'#,##0') \n    & ' total minutes as reported at ' & ReloadTime() & '.'\n& chr(10) & ' At an average of ' & Num([License Used Analyzer Capacity (Minutes)]/(today(1)-MonthStart(Today(1))),'#,##0') & ' minutes used per day, you would ' \n& IF([License Used Analyzer Capacity (Minutes)]/(today(1)-MonthStart(Today(1)))>5,'run out of minutes in ' & Num(CEIL([License Allocated Analyzer Capacity (Minutes)]/([License Used Analyzer Capacity (Minutes)]/(today(1)-MonthStart(Today(1))))),'#,##0') & ' days.',' never run out!')\n& chr(10) & chr(10) & 'Analyzer Capacity minutes reset the first day of each calendar month. '\n,' ')\n& ' Refer to the online help documentation: https://help.qlik.com/en-US/search/?q=analyzer+capacity+license'"
+      }
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Available Analyzer Capacity (Minutes)",
+    "description": "",
+    "tags": []
+  }
+}

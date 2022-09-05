@@ -1,0 +1,10 @@
+///$tab logList
+SUB logList
+
+	logList:
+    LOAD * INLINE [
+    	logService, logArea, logType, logStart, logAddlFields,logAddlFilter
+        Repository, Audit, Security,Timestamp,fieldsAuditSecurity,additionalFilterAuditSecurity
+
+     ];
+ENDSUB

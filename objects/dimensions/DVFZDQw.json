@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "DVFZDQw",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "UserDirectory"
+    ],
+    "qFieldLabels": [
+      "User Directory"
+    ],
+    "title": "User Directory"
+  },
+  "qMetaDef": {
+    "title": "User Directory",
+    "description": "",
+    "tags": []
+  }
+}

@@ -1,0 +1,35 @@
+///$tab app
+SUB monitor_apps_REST_app
+
+  //  1 Get App Id (ID) and Stream name from app & stream endpoints
+  LIB CONNECT TO 'monitor_apps_REST_app';
+  
+  RestConnectorMasterTable:
+  SQL SELECT 
+      "id" AS "id_u1",
+      "__KEY_root",
+      (SELECT 
+          "id" AS "id_u0",
+          "name" AS "name_u0",
+          "__FK_stream"
+      FROM "stream" FK "__FK_stream")
+  FROM JSON (wrap on) "root" PK "__KEY_root";
+  
+  LET NumRows_monitor_apps_REST_app = NoOfRows('RestConnectorMasterTable');
+  
+  mapStream:
+  MAPPING LOAD
+      [__FK_stream],
+      [name_u0] as streamName	
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_stream]);
+  
+  App:
+  LOAD	[id_u1] AS AppId,
+      ApplyMap('mapStream',__KEY_root,'Unpublished') as [App Stream]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__KEY_root]);
+  
+  DROP TABLE RestConnectorMasterTable;
+
+ENDSUB

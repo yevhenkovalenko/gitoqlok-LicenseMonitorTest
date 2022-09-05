@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "0631ea7a-fc2b-4b30-acb8-56b5907a99fa",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens or Access Used Last 7 Days",
+    "qDef": "num(ceil(count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-7))\"}>} distinct UsageId)/10)\r\n+count({<[Access Type]-={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-7))\"}>} distinct UserId)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','Tokens Used Last 7 Days','Access Used Last 7 Days')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {},
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "'Total ' & IF(license_type_enabled='Token-based','tokens','access') & ' used in last 7 days.'"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "Tokens or Access Used Last 7 Days",
+    "description": "",
+    "tags": []
+  }
+}

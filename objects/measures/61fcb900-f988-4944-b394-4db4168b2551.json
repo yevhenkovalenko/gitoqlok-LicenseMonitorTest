@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "61fcb900-f988-4944-b394-4db4168b2551",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Allocated User Access/ Licensed Professional Users",
+    "qDef": "Num(\nIF((license_type_enabled)='Token-based',\n\tSum({<[License Token Type]={\"User*\"}>}[License Allocated Tokens]),\n    Sum({<[License Token Type]={\"Professional*\"}>}[License Total Tokens]),\n    )\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "=IF((license_type_enabled)='Token-based','Available User Access','Licensed Professional Users')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "IF((license_type_enabled)='Token-based','Allocated User Access','Licensed Professional Users')"
+      }
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Allocated User Access/ Licensed Professional Users",
+    "description": "",
+    "tags": []
+  }
+}

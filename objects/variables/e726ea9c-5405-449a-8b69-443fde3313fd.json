@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "e726ea9c-5405-449a-8b69-443fde3313fd",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NoOfRowscounterEngineBASE",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "0",
+  "tags": []
+}

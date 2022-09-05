@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "zHqABy",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Unallocated Tokens / Access",
+    "qDef": "Num(\r\nIF(Sum([License Total Available Tokens])/Sum([License Total Tokens])>0,Sum([License Total Available Tokens])/Sum([License Total Tokens]),0)\n,'0%')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "=IF((license_type_enabled)='Token-based','Unallocated Tokens','Unallocated Access')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "IF((license_type_enabled)='Token-based','% of total tokens unallocated','% of total access unallocated')"
+      }
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Unallocated Tokens / Access",
+    "description": "",
+    "tags": []
+  }
+}

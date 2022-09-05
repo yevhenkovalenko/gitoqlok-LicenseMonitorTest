@@ -1,0 +1,52 @@
+///$tab loadBaseTable
+SUB loadBaseTable (nombre, archivo)
+	// Check to see if governanceLicenseContents (LogContent) qvd exists
+	Let baseFileSize = FileSize('$(archivo).qvd');
+
+    IF  baseFileSize > 0 THEN 	    // Yes - QVD exists = not first load
+
+		trace Incremental reload (not first reload);
+    	Let firstReload = 0;
+        
+        $(nombre):
+        NoConcatenate
+    	Load * FROM $(archivo).qvd (qvd)
+        WHERE LogTimeStamp >= '$(cutoffDate)'
+        ;
+        
+        LET tempErrorDetails = ScriptErrorDetails;
+        IF Len(tempErrorDetails)>0 THEN
+          CALL monitor_app_reload_stats('WARN','$(archivo)', tempErrorDetails,'Status Message')
+		  tempErrorDetails = ;	// Reset this
+        END IF
+        
+    ELSE		// No - no QVD exists = First (initial) load
+        
+        trace Initial Load for $(nombre);
+        Let firstReload = 1;
+        LET lastReloadCompare		= num(cutoffDate);	//num('2014-01-01');	// If First reload, do not filter logs by LastReload
+        Let LastReloadTime 			= timestamp(cutoffDate);
+       
+        IF nombre = 'LogContent' THEN	// License Repository log data
+          $(nombre):
+          NoConcatenate
+          Load * Inline [Id, LogEntryPeriodStart, LogTimeStamp,Hostname,Message			
+                          ];
+        ELSEIF nombre = 'sessionData' THEN 	// nombre = 'sessionData' > Session_Engine log data
+          $(nombre):
+          NoConcatenate
+          Load * Inline [ProxySessionId,LogTimeStamp]; 
+       ELSEIF WildMatch('$(nombre)','qlikview*') = 1 THEN // for QlikView Server and QlikView Event logs; dual-use license consumption analysis only
+          $(nombre):
+          NoConcatenate
+          Load * Inline [SessionId,LogTimeStamp]; 
+          // Note: this table will be dropped if no qlikview logs are fetched.
+        ELSE 			
+        	TRACE Error in loadBaseTable subroutine.;
+        END IF
+        
+    END IF
+    
+    LET NoOfRows$(nombre)BASE = NoOfRows('$(nombre)');
+    
+ENDSUB

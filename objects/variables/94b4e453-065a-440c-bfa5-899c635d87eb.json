@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "94b4e453-065a-440c-bfa5-899c635d87eb",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NoOfRows_db_check",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "788",
+  "tags": []
+}

@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "pymuPhV",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "App Stream"
+    ],
+    "qFieldLabels": [
+      "App Stream"
+    ],
+    "title": "App Stream"
+  },
+  "qMetaDef": {
+    "title": "App Stream",
+    "description": "Stream into which an app is published.",
+    "tags": []
+  }
+}

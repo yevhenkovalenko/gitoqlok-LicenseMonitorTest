@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "18432478-76e3-4f09-82eb-43d2391a0ed6",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens from Login Access",
+    "qDef": "Ceil(count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-28))\"}>} distinct UsageId)/10)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Tokens from Login Access",
+    "description": "Calculates the equivalent number of tokens consumed on Login Access Passes by app during the last 28 days.\nRefer to the Documentation for more details on how Login Access Passes are measured.",
+    "tags": []
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "qInfo": {
+    "qId": "JWAWxsj",
+    "qType": "snapshot"
+  },
+  "qMetaDef": {
+    "title": "Overview",
+    "description": ""
+  },
+  "sheetId": "c9a130fa-ca10-4c05-9ee0-76115970868e",
+  "creationDate": "2015-07-31T15:36:58.201Z",
+  "qSelectionInfo": {},
+  "qHyperCube": {
+    "qSize": {
+      "qcx": 3,
+      "qcy": 7
+    },
+    "qDimensionInfo": [
+      {
+        "qFallbackTitle": "Measure ",
+        "qApprMaxGlyphCount": 29,
+        "qCardinal": 7,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "Measure "
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 7,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 0,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$ascii",
+          "$text"
+        ],
+        "qDimensionType": "D",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "=dimName"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "autoSort": false,
+        "cId": "GdSYEF",
+        "othersLabel": "Others"
+      }
+    ],
+    "qMeasureInfo": [
+      {
+        "qFallbackTitle": "Last 7 Days",
+        "qApprMaxGlyphCount": 5,
+        "qCardinal": 0,
+        "qSortIndicator": "A",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qMin": 0,
+        "qMax": 1074,
+        "qIsAutoFormat": true,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": false,
+        "cId": "kthjn"
+      },
+      {
+        "qFallbackTitle": "Last 28 Days",
+        "qApprMaxGlyphCount": 5,
+        "qCardinal": 0,
+        "qSortIndicator": "A",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qMin": 19,
+        "qMax": 5335,
+        "qIsAutoFormat": true,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "RmZPDrP"
+      }
+    ],
+    "qEffectiveInterColumnSortOrder": [
+      0,
+      1,
+      2
+    ],
+    "qGrandTotalRow": [
+      {
+        "qText": " ",
+        "qNum": "NaN",
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      },
+      {
+        "qText": " ",
+        "qNum": "NaN",
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      }
+    ],
+    "qDataPages": [
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "Total Users",
+              "qNum": "NaN",
+              "qElemNumber": 0,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "Avg Daily Login Access Passes",
+              "qNum": "NaN",
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "Max Daily Login Access Passes",
+              "qNum": "NaN",
+              "qElemNumber": 2,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "Total Login Passes",
+              "qNum": "NaN",
+              "qElemNumber": 3,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "User Access Sessions",
+              "qNum": "NaN",
+              "qElemNumber": 4,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "Access Denials",
+              "qNum": "NaN",
+              "qElemNumber": 5,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "Allocation Changes",
+              "qNum": "NaN",
+              "qElemNumber": 6,
+              "qState": "O"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 0,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 7
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "766",
+              "qNum": 766,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "154",
+              "qNum": 154,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "372",
+              "qNum": 372,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "1,074",
+              "qNum": 1074,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "964",
+              "qNum": 964,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "148",
+              "qNum": 148,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "0",
+              "qNum": 0,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 1,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 7
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "870",
+              "qNum": 870,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "191",
+              "qNum": 191,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "507",
+              "qNum": 507,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "5,335",
+              "qNum": 5335,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "3,979",
+              "qNum": 3979,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "690",
+              "qNum": 690,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "19",
+              "qNum": 19,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 2,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 7
+        }
+      }
+    ],
+    "qPivotDataPages": [],
+    "qStackedDataPages": [],
+    "qMode": "S",
+    "qNoOfLeftDims": -1,
+    "qTreeNodesOnDim": [],
+    "qColumnOrder": [],
+    "columnOrder": [
+      0,
+      1,
+      2
+    ],
+    "columnWidths": [
+      -1,
+      -1,
+      -1
+    ]
+  },
+  "showTitles": true,
+  "title": "Overview",
+  "subtitle": "2015-07-24  to  2015-07-31",
+  "footnote": "",
+  "totals": {
+    "show": false,
+    "position": "noTotals"
+  },
+  "visualization": "table",
+  "snapshotData": {
+    "object": {
+      "size": {
+        "w": 744,
+        "h": 313
+      },
+      "dataTableRowCount": 7,
+      "dataTableHeight": 189.49615478515625
+    },
+    "parent": {
+      "h": 680,
+      "w": 1519
+    }
+  },
+  "visualizationType": "table",
+  "sourceObjectId": "35934897-54ea-4282-b640-a8f569d19230",
+  "timestamp": 1438357018182,
+  "isClone": false
+}

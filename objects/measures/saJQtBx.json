@@ -1,0 +1,23 @@
+{
+  "qInfo": {
+    "qId": "saJQtBx",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Allocation Changes",
+    "qDef": "Sum([License Allocation])",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    }
+  },
+  "qMetaDef": {
+    "title": "Allocation Changes",
+    "description": "",
+    "tags": []
+  }
+}

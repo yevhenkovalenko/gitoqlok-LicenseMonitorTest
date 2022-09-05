@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "2a6b0d0a-04b8-4714-9079-3eff52db9c43",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "User Access Users",
+    "qDef": "count({1<[Access Type] = {'User'},LogTimeStamp= {\">=$(=DayStart(today()-6))\"}>} distinct UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "User Access Users",
+    "description": "Count of unique users who accessed an app(s) using a user access pass during the most recent 7 days.",
+    "tags": [
+      "last_7_days"
+    ]
+  }
+}

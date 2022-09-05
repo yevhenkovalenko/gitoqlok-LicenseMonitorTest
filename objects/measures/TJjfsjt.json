@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "TJjfsjt",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Passes (28 Days)",
+    "qDef": "count({<[Access Type]={'Login Access'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-28))\"}>} distinct UsageId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Passes (28 Days)",
+    "description": "Login Access Passes used during the most recent 28 days based on date selections.  \nIf no selections are made, this displays usage for the most recent 28 days.\nIf month \"Jan 2014\" were selected, this measure would report the usage for the last 28 days of January 2014. \nRefer to the Documentation for more details on how Login Access Passes are measured.",
+    "tags": [
+      "last_28_days"
+    ]
+  }
+}

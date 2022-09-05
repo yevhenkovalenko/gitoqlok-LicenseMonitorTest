@@ -1,0 +1,26 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "PdfSmr",
+      "qType": "masterobject"
+    },
+    "qMetaDef": {
+      "title": "Log Date-Time",
+      "tags": []
+    },
+    "qChildListDef": {
+      "qData": {
+        "info": "/qInfo"
+      }
+    },
+    "metadata": {},
+    "showTitles": false,
+    "subtitle": "",
+    "footnote": "",
+    "visualization": "filterpane",
+    "dimensions": [],
+    "visualizationType": "filterpane",
+    "title": "Log Date-Time"
+  },
+  "qChildren": []
+}

@@ -1,0 +1,104 @@
+///$tab license_user
+SUB monitor_apps_REST_license_user
+  Set NumRows_monitor_apps_REST_license_user = 0;	// Reset this
+  
+  License_User_Access_Types:
+  NoConcatenate Load * Inline [UserId];
+
+  For Each tipo in 'User','Professional','Analyzer'
+  	LET f_unused = '[Unused UserId' & if(tipo='user',']',' $(tipo)]');
+    LET f_quarantine = '[Quarantined UserId' & if(tipo='user',']',' $(tipo)]');
+    LET tipo_lower = lower(tipo);
+
+    LIB CONNECT TO 'monitor_apps_REST_license_$(tipo_lower)';
+	trace connect to monitor_apps_REST_license_$(tipo_lower);
+
+    user_map:
+    Mapping LOAD
+	[__FK_user]&'$(tipo_lower)' as key,
+	LOWER(userDirectory & '\' & userId) as UserId   
+    ;
+    SQL SELECT 
+        (SELECT 
+            "id",
+            "userId",
+            "userDirectory",
+            "__FK_user"
+        FROM "user" FK "__FK_user")
+    FROM JSON (wrap on) "root" PK "__KEY_root" ;
+
+    //License_$(tipo)Access:
+    Concatenate (License_User_Access_Types)
+    LOAD
+      *,
+      if(ualu > $(minSenseActivityDate),null(), UserId) as [Unused but Allocated UserId],	// Populate this only with UserIds of allocated but unused user access passes
+      if(ualu > $(minSenseActivityDate), ualu,'Never') as [User Access Last Used],
+      if(lower([User Access Quarantined])='true',UserId) as [Quarantined UserId],
+      if(uaqe > $(minSenseActivityDate),uaqe,null()) as [User Access Quarantine End]
+    ;
+    LOAD	
+      date(
+        alt(
+          date#(left(createdDate,10),'YYYY-MM-DD'),
+          date#(left(createdDate,10),'YYYY/MM/DD'),
+          date#(left(createdDate,10),'MM-DD-YYYY'),
+          date#(left(createdDate,10),'MM/DD/YYYY'),
+          date#(left(createdDate,10),'YYYY.MM.DD'),
+          'No valid date')
+          ) as [User Access Created],
+      date(
+        alt(
+          date#(left(modifiedDate,10),'YYYY-MM-DD'),
+          date#(left(modifiedDate,10),'YYYY/MM/DD'),
+          date#(left(modifiedDate,10),'MM-DD-YYYY'),
+          date#(left(modifiedDate,10),'MM/DD/YYYY'),
+          date#(left(modifiedDate,10),'YYYY.MM.DD'),
+          'No valid date')
+          ) as [User Access Modified],
+      [modifiedByUserName] as [User Access Modified by],
+      date(
+        alt(
+          date#(left(lastUsed,10),'YYYY-MM-DD'),
+          date#(left(lastUsed,10),'YYYY/MM/DD'),
+          date#(left(lastUsed,10),'MM-DD-YYYY'),
+          date#(left(lastUsed,10),'MM/DD/YYYY'),
+          date#(left(lastUsed,10),'YYYY.MM.DD'),
+          'No valid date')
+          ) as ualu,
+
+       if(quarantined='True',
+        date(
+          alt(
+            date#(left(quarantineEnd,10),'YYYY-MM-DD'),
+            date#(left(quarantineEnd,10),'YYYY/MM/DD'),
+            date#(left(quarantineEnd,10),'MM-DD-YYYY'),
+            date#(left(quarantineEnd,10),'MM/DD/YYYY'),
+            date#(left(quarantineEnd,10),'YYYY.MM.DD'),
+            'No valid date')
+              )) as uaqe,
+        quarantined as [User Access Quarantined],
+        1 as [User Access Token Count],
+        '$(tipo)' as [Allocated Access Type],
+        applymap('user_map',__KEY_root&'$(tipo_lower)','Unknown') as UserId		// Link to LogContent > userDirectory\userId
+    ;
+    SQL SELECT 
+      "id",
+      "createdDate",
+      "modifiedDate",
+      "modifiedByUserName",
+      "lastUsed",
+      "quarantined",
+      "quarantineEnd",
+      "__KEY_root"
+    FROM JSON (wrap on) "root" PK "__KEY_root" ;//QDL;    
+
+    LET NumRows_monitor_apps_REST_license_$(tipo) = NoOfRows('License_User_Access_Types');
+    
+    DROP FIELDs uaqe, ualu;
+    DisConnect;
+    
+  Next tipo
+
+  LET NumRows_monitor_apps_REST_license_user = NoOfRows('License_User_Access_Types');
+
+ENDSUB

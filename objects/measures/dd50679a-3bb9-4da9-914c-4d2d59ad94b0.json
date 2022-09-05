@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "dd50679a-3bb9-4da9-914c-4d2d59ad94b0",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Allocated Login Access/ Licensed Analyzer Access",
+    "qDef": "Num(\nIF((license_type_enabled)='Token-based',\n\tSum({<[License Token Type]={\"Login*\"}>}[License Allocated Tokens]),\n    Sum({<[License Token Type]={\"Analyzer*\"}>}[License Total Tokens]),\n    )\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "=IF((license_type_enabled)='Token-based','Allocated Login Access','Licensed Analyzer Users')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "IF((license_type_enabled)='Token-based','Allocated Login Access','Analyzer Access Users licensed')"
+      }
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Allocated Login Access/ Licensed Analyzer Access",
+    "description": "",
+    "tags": []
+  }
+}

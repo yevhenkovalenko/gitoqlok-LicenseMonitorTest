@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "qyTgxb",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens for User Access",
+    "qDef": "count({<[Access Type]={'User'},LogTimeStamp= {\">=$(=daystart(today()-27))\"}>} distinct UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Tokens for User Access",
+    "description": "Equivalent count of tokens consumed on User Access Passes during the past 28 days.\nNote: This does not count the tokens allocated to User Access Passes. Rather, it counts User Access Passes that were used during the selected timeframe.\nRefer to the Documentation for more details on User Access Passes.",
+    "tags": [
+      "last_28_days"
+    ]
+  }
+}

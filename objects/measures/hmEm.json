@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "hmEm",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Access Passes",
+    "qDef": "count({<[Access Type]={'Login'}>} distinct UsageId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Access Passes",
+    "description": "Login Access Passes used across time.\nRefer to the Documentation for more details on how Login Access Passes are measured.",
+    "tags": []
+  }
+}

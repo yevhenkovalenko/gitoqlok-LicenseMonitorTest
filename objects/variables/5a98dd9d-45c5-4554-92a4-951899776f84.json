@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "5a98dd9d-45c5-4554-92a4-951899776f84",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "log_file",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "lib://monitor_apps_qlikview_logs/Events_SELUN-JDT.log",
+  "tags": []
+}

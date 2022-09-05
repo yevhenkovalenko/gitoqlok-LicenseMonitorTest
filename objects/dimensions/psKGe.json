@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "psKGe",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Unused but Allocated UserId"
+    ],
+    "qFieldLabels": [
+      "Unused but Allocated UserId"
+    ],
+    "title": "Unused but Allocated UserId",
+    "coloring": {
+      "changeHash": "0.22890494856983423"
+    }
+  },
+  "qMetaDef": {
+    "title": "Unused but Allocated UserId",
+    "description": "",
+    "tags": []
+  }
+}

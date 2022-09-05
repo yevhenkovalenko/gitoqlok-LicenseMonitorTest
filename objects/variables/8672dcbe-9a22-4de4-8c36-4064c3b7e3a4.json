@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "8672dcbe-9a22-4de4-8c36-4064c3b7e3a4",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "analyzer_capacity_Used",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "168",
+  "tags": []
+}

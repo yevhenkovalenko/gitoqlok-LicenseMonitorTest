@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "LvPZx",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Professional Access",
+    "qDef": "Num(Count({<[Access Type]={\"Professional\"},proxy_session_id_app_id={\"*\"}>} distinct UserId),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Professional Access",
+    "description": "Count of professional access users active during a specified timeframe.",
+    "tags": []
+  }
+}

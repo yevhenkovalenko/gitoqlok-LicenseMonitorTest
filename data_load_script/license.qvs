@@ -1,0 +1,61 @@
+///$tab license
+SUB monitor_apps_REST_license
+
+   Set errormode = 0;	// TODO -- temporary until Repo update
+  LIB CONNECT TO 'monitor_apps_REST_license';
+
+  License:
+  Load *,
+  	[License Message] & '. ' & Subfield([License Details],', Expired',1) as [License Message + Details] 
+  ;
+  Load
+  	serial as [License Serial Number],
+    name & ': ' & organization as [License Name & Organization],
+    if(len(key)>1,'Signed License',lef) as [License LEF],
+    Date(createdDate) as [License Created Date],
+    Date(modifiedDate) as [License Modified Date],
+    serial & ' for ' & name & ': ' & organization 
+    	& ' created ' & Date(createdDate) 
+        & ' and last modified ' & Date(modifiedDate) & ' by ' & modifiedByUserName
+    			AS [License Message],
+    'Site License created ' & Date(createdDate) 
+        & ', last modified ' & Date(modifiedDate) & ' by ' & modifiedByUserName
+    			AS [License Created & Modified Message],
+    'Subscription: ' & isSubscription 
+        & ', Product: ' & product & ', Cores: ' & numberOfCores
+    	& ', Elastic: ' & isElastic & ', CloudServices: ' & isCloudServices
+        & ', Expired: ' & isExpired & If(isExpired,'('&expiredReason & ')')
+        & ', Invalid: ' & isInvalid & ', Blacklisted: ' & isBlacklisted
+        		AS [License Details]  
+  ;
+  SQL SELECT 
+      "createdDate",
+      "modifiedDate",
+      "modifiedByUserName",
+      "lef",
+      "serial",
+      "key",
+      "name",
+      "organization",
+      "product",
+      "numberOfCores",
+      "isExpired",
+      "expiredReason",
+      "isBlacklisted",
+      "isInvalid",
+      "isSubscription",
+      "isCloudServices",
+      "isElastic"
+  FROM JSON (wrap on) "root";
+
+  LET license_message 	= If(IsNull(Peek('License Message')),'License Details not available',Peek('License Message'));
+  LET license_details 	= If(IsNull(Peek('License Details')),'License Details not available',Peek('License Details'));
+  LET license_created_modified 	= If(IsNull(Peek('License Created & Modified Message')),'License Details not available',Peek('License Created & Modified Message'));
+  LET license_lef 		= If(IsNull(Peek('License LEF')),'License Details not available',Peek('License LEF'));
+  LET license_number 	= If(IsNull(Peek('License Serial Number')),'Not available',Peek('License Serial Number'));
+  TRACE License Details: $(license_details);
+  LET NumRows_monitor_apps_REST_license = NoOfRows('License');
+
+  Set errormode = 1;	// TODO -- temporary
+
+ENDSUB

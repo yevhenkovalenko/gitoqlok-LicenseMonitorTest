@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "578194f3-98be-45e9-94f0-06bae492e160",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "tmp",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "0",
+  "tags": []
+}

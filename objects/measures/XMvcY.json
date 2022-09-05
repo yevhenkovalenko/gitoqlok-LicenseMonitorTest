@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "XMvcY",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens or Access Used",
+    "qDef": "num(ceil(count({<[Access Type]={'Login'}>} distinct UsageId)/10)\r\n+count({<[Access Type]-={'Login'}>} distinct UserId)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','Tokens Used','Access Used')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Tokens or Access Used",
+    "description": "Total tokens or access used.\nIf Login Access passes are present, this measure is only valid when viewed by month!",
+    "tags": []
+  }
+}

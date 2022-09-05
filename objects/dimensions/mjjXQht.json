@@ -1,0 +1,22 @@
+{
+  "qInfo": {
+    "qId": "mjjXQht",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "LogTimeStamp"
+    ],
+    "qFieldLabels": [
+      "Timestamp"
+    ],
+    "title": "Timestamp"
+  },
+  "qMetaDef": {
+    "title": "Timestamp",
+    "description": "Timestamp in the log file at which the activity ocurred.",
+    "tags": []
+  },
+  "isEditMode": true
+}

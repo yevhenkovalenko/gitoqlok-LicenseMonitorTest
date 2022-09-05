@@ -1,0 +1,27 @@
+{
+  "qInfo": {
+    "qId": "PBYupZ",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Tokens or Analyzer Access - 7-days",
+    "qDef": "num(\r\n\tIF((license_type_enabled)='Token-based',\n\tceil(count({<[Access Type]={'Login Access','Analyzer Access'},LogTimeStamp= {\">=$(=DayStart(today()-6))\"}>} distinct UsageId)/10)\n    ,Count({<[Access Type]={'Analyzer Access'},LogTimeStamp= {\">=$(=DayStart(today()-6))\"},proxy_session_id_app_id={\"*\"}>} distinct UserId)\n    )\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','Login Access Tokens','Analyzer Access Users')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Tokens or Analyzer Access - 7-days",
+    "description": "",
+    "tags": [
+      "last 7 days"
+    ]
+  }
+}

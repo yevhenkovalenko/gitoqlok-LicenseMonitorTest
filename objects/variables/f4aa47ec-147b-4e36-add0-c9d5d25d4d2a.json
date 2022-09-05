@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "f4aa47ec-147b-4e36-add0-c9d5d25d4d2a",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NumRows_qrs_licenseSummary",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "3",
+  "tags": []
+}

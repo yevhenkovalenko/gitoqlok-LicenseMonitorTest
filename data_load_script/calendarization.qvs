@@ -1,0 +1,108 @@
+///$tab calendarization
+SUB calendarization
+  
+// Work out the first and last date from my data
+  Range:
+  LOAD 
+    DayStart(min) as startdate,
+    DayStart(max) as enddate,
+    timestamp(max) as maxLogTimeStamp;
+  LOAD    
+     min(LogEntryPeriodStart) as min,
+     max(LogTimeStamp) as max
+  resident LogContent;
+
+  IF Not NoOfRows('Range')> 0 THEN
+  // If no LogContent messages found, script would fail. Need to verify data connections - most likely issue with ArchivedLogsFolder QLIK-88005
+      set msg = 'ERROR: No license usage data found. Reload aborted.
+	Please verify that the following data connections are correct: ArchivedLogsFolder, ServerLogFolder.';
+      CALL monitor_app_reload_stats('ERROR','License Monitor',msg,'Reload Finish');
+      TRACE $(msg);
+      Exit Script;
+  ENDIF
+
+  let startdate= num(peek('startdate',-1,'Range'),'###0.#####','.');
+  let enddate= num(num(peek('enddate',-1,'Range')) +1,'###0.#####','.') ;
+  let maxLogTimeStamp = peek('maxLogTimeStamp',-1,'Range');
+  Let maxLogTimeStamp_Hour = hour(maxLogTimeStamp);
+
+// Build a table of every minute between my start and end date
+    drop table Range;
+
+    do while startdate <= enddate
+          tempDateTimeList:
+          load
+               timestamp($(startdate) + (1/(24*60))*(recno()-1),'YYYY-MM-DD h:mm') as DateTime
+          autogenerate (24*60);
+
+          let startdate = num($(startdate) + 1,'###0.#####','.') ;
+    loop 
+
+  // To create hour sort order which sorts backward from now(reload) -- for 24-Hour summary charts
+  Let hour_now = maxLogTimeStamp_Hour;
+  hour_temp:
+  mapping Load 
+     recno()-1 & ':00' as Hour,
+     if($(hour_now)-(recno()-1)>=0, $(hour_now)-(recno()-1),23+($(hour_now)-(recno()-1))+1) as hour_sort
+  autogenerate (24);
+
+
+//Build time table
+  TimeDIM:
+  LOAD
+    DISTINCT DateTime,
+    Year(DateTime) as Year,
+    MonthName(DateTime) as Month,		// replace with date(DateTime, 'MMM YYYY') for better performance
+    WeekStart(DateTime) as [Week Beginning],
+    date(dayname(DateTime),'MMM-DD') as Day,
+    WeekDay(DateTime) as Weekday,
+    makedate(year(DateTime),month(DateTime),day(DateTime)) as Date,  
+    Hour(DateTime)&':00' as Hour,
+    ApplyMap('hour_temp',Hour(DateTime)&':00' ) as hour_sort,
+    Minute(DateTime) as [Minute of Hour],
+    timestamp(floor(DateTime,1/(24)),'MMM-DD hh:00') as [Hour Timeline],
+    -1*InMonthToDate(DateTime,today(1),0)					AS month_to_date,
+    -1*InMonth(DateTime,today(1),-1)						AS last_month,
+    If(DateTime>=$(vLast7Days),1) 							AS last7days,
+    If(DateTime>=$(vLast14Days),1) 							AS last14days,
+    If(DateTime>=$(vLast28Days),1) 							AS last28days,
+    If(DateTime>=$(vLast90Days),1) 							AS last90days
+  resident tempDateTimeList;
+
+  Drop table tempDateTimeList;  
+
+  Last:
+  Load Distinct [Hour Timeline], 'Last 7 Days' as [Timeframe] Resident TimeDIM Where last7days=1;
+  Concatenate Load [Hour Timeline], 'Last 14 Days' as [Timeframe] Resident TimeDIM Where last14days=1;
+  Concatenate Load [Hour Timeline], 'Last 28 Days' as [Timeframe] Resident TimeDIM Where last28days=1;
+  Concatenate Load [Hour Timeline], 'Last 90 Days' as [Timeframe] Resident TimeDIM Where last90days=1;
+
+//Interval Match dates
+  inner join (TimeDIM) Intervalmatch (DateTime) Load LogEntryPeriodStart-(1/(24*60)) AS start_minus_one, LogTimeStamp Resident LogContent;
+
+  datetime:
+  NoConcatenate
+  Load
+   hour_sort, DateTime,Year, Month,[Week Beginning], Day, Weekday, Date, Hour,[Minute of Hour],[Hour Timeline],last28days,month_to_date,last_month,
+   (round(num(start_minus_one+1/(24*60)),0.0006)&'|'&round(num(LogTimeStamp),0.0006)) as _TimeDIM_Link	// LINK w/ LogContent
+  RESIDENT TimeDIM
+  order by DateTime DESC;
+
+  drop table TimeDIM;
+
+// For all non-24-hour Summary charts, we want "normal" numeric sorting of Hour from 0 to 23 hours
+  Hour_Table:
+  NoConcatenate
+  Load
+      rowno()-1 & ':00' as Hour,
+      rowno()-1 & ':00' as [Hour of Day]
+  AutoGenerate (24);
+
+  Minute_Table:
+  NoConcatenate
+  Load
+      rowno()-1 as [Minute of Hour],		// Link Field
+      rowno()-1 as Minute       			// Field for filter, dimension, etc.
+  AutoGenerate (60);	
+
+ENDSUB

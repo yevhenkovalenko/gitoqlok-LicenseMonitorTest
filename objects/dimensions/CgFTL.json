@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "CgFTL",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Allocated Access Type"
+    ],
+    "qFieldLabels": [
+      "Allocated Access Type"
+    ],
+    "title": "Allocated Access Type",
+    "coloring": {
+      "changeHash": "0.33894467540085316",
+      "colorMapRef": "CgFTL"
+    }
+  },
+  "qMetaDef": {
+    "title": "Allocated Access Type",
+    "description": "",
+    "tags": []
+  }
+}

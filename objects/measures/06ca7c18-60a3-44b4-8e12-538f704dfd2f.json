@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "06ca7c18-60a3-44b4-8e12-538f704dfd2f",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Analyzer Capacity Help Link",
+    "qDef": "analyzer_capacity_help_link",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Analyzer Capacity Help Link",
+    "description": "Analyzer Capacity Usage Message (Applicable only if Analyzer Capacity has been allocated.)",
+    "tags": []
+  }
+}

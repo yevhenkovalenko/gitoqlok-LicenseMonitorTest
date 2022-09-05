@@ -1,0 +1,26 @@
+///$tab multiNodeConfig
+SUB multiNodeConfig		
+	// Check for multi-node environment by verifying files in Repository\ArchivedLogs folder
+	
+    FOR each folder in DirList(archivedLogsFolder & '*')
+      node_list:
+      Load
+        '$(folder)'&'\' as folder,
+        mid('$(folder)',26) as [Node Name],
+        FileTime( '$(folder)' ) as folder_Time
+      AutoGenerate 1;
+      
+	NEXT folder
+    
+    LET count_of_nodes	= NoOfRows('node_list');
+    
+    IF count_of_nodes > 1 then
+    	LET multiNode = 'Multi-Node';
+        TRACE Multi-Node environment detected;
+    ELSE
+        LET multiNode = 'Single-Node';
+        TRACE Single-Node environment detected;
+        let count_of_nodes = If(isnull(count_of_nodes),0,1);
+    ENDIF
+
+EndSub

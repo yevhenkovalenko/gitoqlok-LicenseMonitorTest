@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "VJdrF",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "App Name"
+    ],
+    "qFieldLabels": [
+      "App"
+    ],
+    "title": "App"
+  },
+  "qMetaDef": {
+    "title": "App",
+    "description": "Name of the app that was accessed.",
+    "tags": []
+  }
+}

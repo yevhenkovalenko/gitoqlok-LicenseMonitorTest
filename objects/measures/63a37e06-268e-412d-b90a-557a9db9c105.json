@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "63a37e06-268e-412d-b90a-557a9db9c105",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Access Tokens",
+    "qDef": "num(ceil(count({<[Access Type]={'Login'}>} distinct UsageId)/10),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Access Tokens",
+    "description": "Calculates the equivalent number of tokens consumed on Login Access Passes. This is only valid when viewed at a month timeframe or shorter (i.e. Week or Day).\nRefer to the Documentation for more details on how Login Access Passes are measured.",
+    "tags": []
+  }
+}

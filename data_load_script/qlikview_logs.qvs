@@ -1,0 +1,225 @@
+///$tab qlikview_logs
+SUB qlikview_logs
+
+  TRACE Checking for presence of QlikView Server logs (for dual-use QV and Sense customers).;
+  SET qlikview_license_logs_present = 0;	// Reset this each time
+  
+  // Set some variables then check for Sessions and events QVDs
+  for each log in 'Sessions','Events'
+    Let qv_$(log)_qvd_file_name = '$(serverLogFolder)governance_qlikview_$(log)_$(app_version)';
+    Set rows_$(log)_incremental = 0;
+    SET rows_$(log)_final		= 0;
+    
+    CALL loadBaseTable ('qlikview_$(log)_historical', '$(qv_$(log)_qvd_file_name)')
+    If NoOfRowsqlikview_$(log)_historicalBASE > 0 Then 	// Check historical QVD data fetched?
+      TRACE Found QlikView $(log) historical QVD with $(NoOfRowsqlikview_$(log)_historicalBASE) rows fetched;
+    ELSE
+      TRACE No QlikView $(log) logs historical QVD found (stay calm).;
+    ENDIF
+    
+    LET qlikview_log_cutoff			= lastReloadCompare;		// Align this
+    LET qlivkiew_log_cutoff_pretty	= Timestamp(lastReloadCompare);
+    
+    // Start a table to which we will concatenate log file data if they exist
+    qlikview_$(log):
+    NoConcatenate Load * Inline [SessionId];
+    
+    // For Session log, create mapping table of user -- temporary table that disappears post reload
+    If log = 'Sessions' Then
+      map_user:
+      Mapping Load Distinct UserId, [User Name] Resident User;
+      
+    ENDIF
+    
+    // Allow looping through multiple qlikview_logs data connections in case customer wants to add usage data from multiple QlikView deployments.
+    Set errormode = 0;		// Disable task failure on error because old QlikView Server logs might not include SessionId
+    For each data_connection in 'monitor_apps_qlikview_logs'
+    // Find each "log" file and fetch it, taking notie of the qlikview_log_cutoff
+      For Each log_file in FileList('lib://$(data_connection)/$(log)_*.log')
+        If FileTime('$(log_file)') >= qlikview_log_cutoff Then
+        
+          IF '$(log)' = 'Sessions' Then
+            Concatenate (qlikview_$(log))
+            Load
+            	SessionId,
+               '$(log)' & SessionId & "Timestamp" as _session_id_timestamp,	// field for concatenation
+               '$(log)' & SessionId & "Timestamp" as _concat_temp,			// temp field for concatenation
+                Timestamp("Timestamp") as LogTimeStamp,
+                Timestamp("Session Start") as LogEntryPeriodStart,
+                Date(Floor("Timestamp")) as [Access Date],
+                "Cal Type" as [Access Type],                
+                TextBetween('$(log_file)','sions_','_20') as Hostname,
+                (round(num("Session Start"),0.0006)&'|'&round(num("Timestamp"),0.0006)) as _TimeDIM_Link,
+                [Exe Version],
+                LOWER("Authenticated user") as [UserId],
+                SubField("Authenticated user",'\',1) as [User Directory],
+                ApplyMap('map_user',LOWER("Authenticated user"),SubField(LOWER("Authenticated user"),'\',-1)) as [User Name],	// Attempt to get User Name from QRS table, but might not exist here in Sense (from QlikView)
+                SubField(SubField(Document,'/',-1),'.qvw',1) as [App Name],	// Using SubField to capture just the file name without the entire path. 
+//                 Document as [App Name],									// NOTE: If the same named app exists in multiple Source Doc folders, use this [App Name] (uncomment this line) and comment the [App Name] in the previous line. 
+                Hash128(Document & "Document Timestamp") as [AppId],		// Since we do not have true AppId from QlikView logs
+                SessionId & Session & Document as proxy_session_id_app_id,
+                'QlikView' as [App Stream]
+            FROM '$(log_file)' (txt, utf8, embedded labels, delimiter is '\t', msq)
+            WHERE "Timestamp" > '$(qlikview_log_cutoff)'
+            	AND WildMatch("Cal Type",'Professional*','Analyzer*') > 0	// We only want Analyzer, Professional, and Analyzer Capacity session data
+            ;
+          
+          ELSEIF '$(log)' = 'Events' Then
+            Concatenate (qlikview_$(log))
+            Load
+            	SessionId,
+                '$(log)' & SessionId & "Timestamp" as _session_id_timestamp,
+                '$(log)' & SessionId & "Timestamp" as _concat_temp,			// temp field for concatenation
+                Timestamp("Timestamp") as LogTimeStamp,
+                'Analyzer Capacity' as [Access Type],
+                Message
+            FROM '$(log_file)' (txt, utf8, embedded labels, delimiter is '\t', msq)
+            WHERE "Timestamp" > '$(qlikview_log_cutoff)'
+            	AND WildMatch(Message,'*Analyzer Capacity*')=1;          
+          
+          ELSE
+          	TRACE Problem resolving "log" variable in loop in qlikview_logs subroutine. Contact support.;
+          ENDIF
+        
+        ELSE
+          TRACE $(log_file) older than cutoff date $(qlikview_log_cutoff_pretty);
+        ENDIF
+
+      Next log_file
+    Next data_connection
+    Set errormode = 1;	// Enable error failure again
+    
+    Let rows_$(log)_incremental = NoOfRows('qlikview_$(log)');
+    
+    // If there are no QlikView Session log entries (incremental or historical) then we exit out of here because we either do not have data or the monitor_apps_qlikview_logs data connection was not properly set
+    //		This will be the more common scenario because only dual-use (QV + Qlik Sense) customers will configure things in this manner
+    IF rows_Sessions_incremental +  NoOfRowsqlikview_Sessions_historicalBASE = 0 Then
+      TRACE No QlikView Server logs found. Skipping remaining qlikview log logic. No worries. This is expected behavior unless you are a dual-use customer and have configured the monitor_apps_qlikview_logs data connection.;
+      Drop table qlikview_$(log), qlikview_$(log)_historical;
+      Exit Sub;
+    ENDIF
+    
+    // Concatenate and Store table as needed
+    If rows_$(log)_incremental > 0 Then
+    
+      If NoOfRowsqlikview_$(log)_historicalBASE > 0 Then
+        // Concatenate
+        Concatenate (qlikview_$(log))
+        Load * Resident qlikview_$(log)_historical
+        Where not Exists (_concat_temp,_session_id_timestamp);		// Avoid loading session / audit entries from historical QVD that we already loaded incrementally
+              
+      ELSE
+        TRACE No Historical QVD found for $(log) -- so saving the incremental $(log) logs to QVD for next reload.;
+      ENDIF
+      
+      Let f_name = '$(qv_$(log)_qvd_file_name)';
+      Drop field _concat_temp;	// Drop concatenation-only field(s 
+      CALL storeFiles ('qlikview_$(log)','$(f_name)')
+      Drop Table qlikview_$(log)_historical;
+      
+    ELSE	// No incremental logs
+      TRACE No Incremental QlikView $(log) log entries found (Expected for all but Unified Licensing customers using QlikView). If you believe you should have incremental entries, please verify the monitor_apps_qlikview_logs data connection and that there are logs newer than $(qlivkiew_log_cutoff_pretty).;
+      Drop Table qlikview_$(log);
+      
+      If NoOfRowsqlikview_$(log)_historicalBASE > 0 Then	// Historical QVD has data but no incremental logs
+      	Rename Table qlikview_$(log)_historical to qlikview_$(log);
+      ELSE	// No historical QVD or incremental logs. This should only ever happen for Events logs when you are not using Analyzer Capacity minutes
+      	Drop Table qlikview_$(log)_historical;
+      ENDIF
+      
+    ENDIF	// incremental logs check
+    
+    Let rows_$(log)_final = NoOfRows('qlikview_$(log)');
+    
+  next log
+  
+  // Aggregate and join Analyzer Capacity log entries (from QlikView Events log) to Sessions to get correct consumption of Analyzer Capacity minutes
+  If rows_Events_final > 0 Then
+    TRACE Aggregating Analyzer Capacity usage (from QlikView Events log);
+    
+    aggregated_events_analyzer_capacity:
+    Load
+      SessionId,
+      Count(SessionId) as [Analyzer Capacity Used (Units)],
+      Count(SessionId)*$(va_analyzer_capacity_consumption_minutes) as [Analyzer Capacity Used (Minutes)]
+    Resident qlikview_Events
+    Group By SessionId;
+    
+    
+    Join (qlikview_Sessions)
+    Load 
+      SessionId,  
+      [Analyzer Capacity Used (Units)],  
+      [Analyzer Capacity Used (Units)]*$(va_analyzer_capacity_consumption_minutes) as [Analyzer Capacity Used (Minutes)] 
+    Resident aggregated_events_analyzer_capacity;
+    
+    Drop table aggregated_events_analyzer_capacity;
+   
+  ELSE	// No QlikView Event log entries for Analyzer Capacity usage found
+    TRACE  No QlikView Event log entries for Analyzer Capacity usage found. Not a problem unless you have been using Analyzer Capacity (minutes) in QlikView.;
+    // For consistency when appending this data below to LogContent, we need to have Analyzer Capcity fields
+    Concatenate (qlikview_Sessions) load * Inline [ SessionId, Analyzer Capacity Used (Minutes), Analyzer Capacity Used (Units)];
+  ENDIF      
+  
+  Drop Table qlikview_Events;	// No longer need this table
+  
+  IF rows_Sessions_final > 0 Then
+  
+	  TRACE Appending QlikView Session (license consumption) data to existing tables so that it becomes part of the happy License Monitor Data Model;
+	  Concatenate (LogContent)
+	  Load
+		SessionId as ProxySessionId,
+	//     [Exe Version] as [QlikView Exe Version],
+		UserId,
+		LogEntryPeriodStart,
+		LogTimeStamp,
+		[_TimeDIM_Link],		// this should get incorporated into the master calendar with the other log data
+		Hostname,
+		[Access Type],
+		[Access Date],
+		[Analyzer Capacity Used (Minutes)],
+		[Analyzer Capacity Used (Units)],
+		'QlikView' as [Unified Licensing Product]
+	  Resident qlikview_Sessions;
+	  
+	  Concatenate (User)
+	  Load
+		Distinct UserId,
+		[User Name],
+		[User Directory]
+	  Resident qlikview_Sessions;
+	  
+	  Concatenate (sessionData)
+	  Load
+		SessionId as ProxySessionId,
+		AppId,
+		[App Name],
+		proxy_session_id_app_id
+	  Resident qlikview_Sessions;
+	  
+	  Concatenate (App)
+	  Load
+		Distinct AppId,
+		[App Stream]
+	  Resident qlikview_Sessions;
+	  
+	  // Get max Exe Version from QlikView Session log
+	  max_exe_version:
+	  Load 
+		MaxString([Exe Version]) as maxstring_exe_version
+	  Resident qlikview_Sessions;
+	  
+	  Let qlikview_maxstring_exe_version = Peek('maxstring_exe_version');
+	  TRACE QlikView Exe version (maxString) = $(qlikview_maxstring_exe_version);
+	  
+	  Drop tables qlikview_Sessions, max_exe_version;	// No longer need this table
+	  
+	  TRACE Celebrate! This script has included QlikView Professional and Analyzer Usage data in the License Monitor. Woohoo!;
+	  SET qlikview_license_logs_present = 1;		// This is used in the UI of the app to hide/show metrics (see supportingLogic) and provide different messaging
+
+	ELSE
+	  TRACE No QlikView Server logs found (which is expected for all non-Unified Licensing QlikView and Sense customers).;
+	  Drop Table qlikview_Sessions;
+	ENDIF
+	  
+ENDSUB

@@ -1,0 +1,21 @@
+///$tab CommandList
+SUB CommandList
+
+  CommandList:	//This is the list (with exception of special "Rule" commands) that will be loaded into this app
+  LOAD 
+      Command, 
+      CommandType
+  Inline [
+    Command, CommandType
+    Add license, Allocation
+    Add user access, Usage
+    Delete user access, Allocation
+    License maintenance, Usage
+    License user access, Usage
+    License user access request, Usage
+    Request access type, Usage
+    Update license, Allocation
+    Update user access, Allocation
+    ];
+
+ENDSUB

@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "e1ed79fb-9896-41ba-89cb-e1ec4ad474e8",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "minTimeQRS",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "2015-07-22 12:57:01",
+  "tags": []
+}

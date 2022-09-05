@@ -1,0 +1,90 @@
+///$tab loadFiles
+SUB loadFiles (fdr,iter)
+  // Use the iteration number (on Run Logic section) to load all log files listed in the logList SUB
+  Let carpeta			= peek('mainLogFolder',$(fdr),'logFolderList');
+  Let extension			= peek('file_extension',$(fdr),'logFolderList');
+  Let logService 		= peek('logService',$(iter),'logList');
+  Let logArea	 		= peek('logArea',$(iter),'logList');
+  Let logType	 		= peek('logType',$(iter),'logList');
+  Let logAddlFields		= peek('logAddlFields',$(iter),'logList');
+  LET logName 			= '$(carpeta)$(logService)\$(logArea)\*$(logType)';
+  LET addlFilter1		= peek('logAddlFilter',$(iter),'logList');
+  LET additionalFilter	= $(addlFilter1);
+
+  // Log-specific fields spelled out in the SUB defineFields
+  LET fields2Load 		= $(logAddlFields);
+  
+  // Session and TaskExecution log files have a start and stop timestamp;  all other logs use Timestamp as start and stop, per the logList table
+  LET logStartTS	= 'Timestamp("' & peek('logStart',$(iter),'logList') &'")';
+
+  for each textFile in FileList(logName & '*.' & extension)
+  
+    // Only load the files updated since the last reload
+    If FileTime( '$(textFile)' ) >= $(lastReloadCompare) then
+    //working:
+      CONCATENATE (working)  
+      LOAD
+        $(logStartTS) AS LogEntryPeriodStart,
+        Timestamp("Timestamp") as LogTimeStamp,
+        lower(Hostname) as Hostname,
+		Description,		
+        ProxySessionId,
+        ProxyPackageId,
+        RequestSequenceId,
+        ProxySessionId&ProxyPackageId as _proxySessionPackage,
+        Message,
+		Service,
+        Context,
+        Command,
+        Result,
+        ProductVersion,
+        ObjectId,
+        ObjectName,
+        UserDirectory,
+        LOWER(UserDirectory & '\' & UserId) as UserId,	// To link to qrs user data
+        // For Audit Security Log only! If additional logs are added, move this back to the "defineFields" SUB
+        SecurityClass,
+        If(Result=0 or (Result >=200 and Result <=226),dual('OK',0), if(Result=' ',dual('Blank',0), dual('NOK',1))) as Status,        
+        IF(WildMatch(Message,'* access granted*')>0,
+        	If(Command='License analyzer time access','Analyzer Capacity',SubField(Message,' ',1))) as [Access Type], 
+        Ceil(Num(TextBetween(Message,'Duration: ' & chr(39),Chr(39) & ' (sec')/60),$(va_analyzer_capacity_consumption_minutes)) as [Analyzer Capacity Used (Minutes)],
+        If(WildMatch(Message,'professional access gr*','analyzer access gr*','analyzertime access gr*','analyzer time access gr*')>0,'Sense') as [Unified Licensing Product],
+        IF(WildMatch(Message,'* access granted*')>0,Date(Floor("Timestamp"))) as [Access Date],
+        IF(Result=403,1) as UsageDenied,
+        IF(Result=403,TextBetween(Message,'AccessID ',',')) as usage_denied_access_id,
+        IF(left(Message,20)='Login access granted',purgechar(TextBetween(Message,'UsageID: ',','),chr(39))) as UsageId,	// for login pass usage, count(Distinct UsageId)
+        IF(left(Message,20)='Login access granted',purgechar(TextBetween(Message,'Accessname: ',','),chr(34)&chr(39)),
+            IF(left(Message,24)='Login access for license',purgechar(TextBetween(Message,' Name: ',','),chr(34)&chr(39)))) as [Login Access Rule],
+        IF(((Context='/qrs/licenseadd' and not Origin = 'ManagementAccess') OR Context='/qrs/licenseupdate' or Context='/qrs/license/datamarket')
+            OR WildMatch(Command,'Add * access','Update * access','Delete license')>0  
+            OR (index(lower(ObjectName),'license')>=1  AND WildMatch(Command,'Add rule','Update rule','Delete rule')>0),
+            1) as [License Allocation],													// To track Allocations
+
+        IF(Context='/qrs/license/datamarket','DataMarket License',
+            IF(Context='/qrs/licenseadd' and Origin = 'ManagementAccess',null(),//SKIP THIS extra entry for Data Market license addition
+                IF(Context='/qrs/licenseadd' OR Context='/qrs/licenseupdate','Site License',
+                    IF(left(Message,24)='Login access for license',purgechar(TextBetween(Message,' Name: ',','),chr(34)&chr(39)),
+                        ObjectName)))) as [Affected Entity],
+        //        $(fields2Load)    	// Currently empty for just Audit Security Log
+        Id as Id_temp		// Unique Identifier for Log entry to be used in the WHERE NOT EXISTS () clause to avoid loading duplicate log entries
+                        
+      FROM '$(textFile)'
+      (txt, utf8, embedded labels, delimiter is '\t', msq)
+          WHERE isnum(Sequence#)
+           AND (exists(Command)	
+                OR (index(lower(ObjectName),'license')>=1  AND (Command = 'Add rule' or Command = 'Update rule' or Command = 'Delete rule'))
+                OR SecurityClass = 'License');
+      
+      // If there is an error in the loading of the log, send a trace message about it
+      LET tempErrorDetails = ScriptErrorDetails;
+      IF Len(tempErrorDetails) > 0 THEN
+        trace ERROR: $(tempErrorDetails);
+        CALL monitor_app_reload_stats('WARN','$(textFile)', tempErrorDetails, 'Status Message')
+        tempErrorDetails =;	// Reset this variable
+      END IF
+      
+    ENDIF
+  
+  next textFile
+
+ENDSUB

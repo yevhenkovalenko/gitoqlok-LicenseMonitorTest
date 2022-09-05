@@ -1,0 +1,126 @@
+///$tab license_access
+SUB monitor_apps_REST_license_access
+
+  LIB CONNECT TO 'monitor_apps_REST_license_overview';
+
+  RestConnectorMasterTable:
+  SQL SELECT 
+      "totalTokens",
+      "availableTokens",
+      "tokensEnabled",
+      "__KEY_root",
+      (SELECT 
+          "enabled" AS "enabled_user",
+          "tokenCost" AS "tokenCost_user",
+          "allocatedTokens" AS "allocatedTokens_user",
+          "usedTokens" AS "usedTokens_user",
+          "quarantinedTokens" AS "quarantinedTokens_user",
+          "__FK_userAccess"
+      FROM "userAccess" FK "__FK_userAccess"),
+      (SELECT 
+          "enabled" AS "enabled_login",
+          "tokenCost" AS "tokenCost_login",
+          "allocatedTokens" AS "allocatedTokens_login",
+          "usedTokens" AS "usedTokens_login",
+          "unavailableTokens" AS "unavailableTokens_login",
+          "__FK_loginAccess"
+      FROM "loginAccess" FK "__FK_loginAccess"),
+      (SELECT 
+          "enabled" AS "enabled_professional",
+          "total" AS "total_professional",
+          "allocated" AS "allocated_professional",
+          "used" AS "used_professional",
+          "quarantined" AS "quarantined_professional",
+          "available" AS "available_professional",
+          "__FK_professionalAccess"
+      FROM "professionalAccess" FK "__FK_professionalAccess"),
+      (SELECT 
+          "enabled" AS "enabled_analyzer",
+          "total" AS "total_analyzer",
+          "allocated" AS "allocated_analyzer",
+          "used" AS "used_analyzer",
+          "quarantined" AS "quarantined_analyzer",
+          "available" AS "available_analyzer",
+          "__FK_analyzerAccess"
+      FROM "analyzerAccess" FK "__FK_analyzerAccess"),
+	(SELECT 
+		"enabled" AS "enabled_analyzer_capacity",
+		"allocatedMinutes" as "allocated_analyzer_capacity_minutes",
+		"usedMinutes" as "used_analyzer_capacity_minutes",
+		"unavailableMinutes" as "unavailable_analyzer_capacity_minutes",
+		"__FK_analyzerTimeAccess"
+	FROM "analyzerTimeAccess" FK "__FK_analyzerTimeAccess")
+  FROM JSON (wrap on) "root" PK "__KEY_root";
+
+  LET NumRows_monitor_apps_REST_license_access = NoOfRows('RestConnectorMasterTable');
+
+  License_Summary:
+  LOAD
+    [totalTokens] AS [License Total Tokens],
+    [availableTokens] AS [License Total Available Tokens],
+    IF(upper([tokensEnabled])='FALSE',Dual('User-based',1),Dual('Token-based',0)) AS [License Type Enabled]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__KEY_root]);
+  
+  Let license_type_enabled = Peek('License Type Enabled');
+  TRACE $(license_type_enabled) license type enabled;
+
+  //loginAccess:
+  Concatenate (License_Summary) LOAD
+    [enabled_login] AS [License Access Enabled],
+    'Login Access' as [License Token Type],
+    [tokenCost_login] AS [License Token Cost],
+    [allocatedTokens_login] AS [License Allocated Tokens],
+    [usedTokens_login] AS [License Used Tokens],
+    [unavailableTokens_login] AS [License Unavailable Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_loginAccess]) AND NOT UPPER([enabled_login])='FALSE';
+
+  //userAccess:
+  Concatenate (License_Summary) LOAD
+    [enabled_user] AS [License Access Enabled],
+    'User Access' as [License Token Type],
+    [tokenCost_user] AS [License Token Cost],
+    [allocatedTokens_user] AS [License Allocated Tokens],
+    [usedTokens_user] AS [License Used Tokens],
+    [quarantinedTokens_user] AS [License Quarantined Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_userAccess]) AND NOT UPPER([enabled_user])='FALSE';
+
+  //professionalAccess:
+  Concatenate (License_Summary) LOAD
+	[enabled_professional] AS [License Access Enabled],
+    'Professional Access' as [License Token Type],
+    [total_professional] AS [License Total Tokens],
+    [allocated_professional] AS [License Allocated Tokens],
+    [used_professional] AS [License Used Tokens],
+    [quarantined_professional] AS [License Quarantined Tokens],
+    [available_professional] AS [License Total Available Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_professionalAccess]) AND NOT UPPER([enabled_professional])='FALSE';
+  
+  //analyzerAccess:
+  Concatenate (License_Summary) LOAD
+	[enabled_analyzer] AS [License Access Enabled],
+    'Analyzer Access' as [License Token Type],
+    [total_analyzer] AS [License Total Tokens],
+    [allocated_analyzer] AS [License Allocated Tokens],
+    [used_analyzer] AS [License Used Tokens],
+    [quarantined_analyzer] AS [License Quarantined Tokens],
+    [available_analyzer] AS [License Total Available Tokens]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_analyzerAccess]) AND NOT UPPER([enabled_analyzer])='FALSE';
+  
+    // analyzerTimeAccess:	== Analyzer Capacity
+  Concatenate (License_Summary) LOAD
+	[enabled_analyzer_capacity] AS [License Access Enabled],
+    'Analyzer Capacity' as [License Token Type],
+    [allocated_analyzer_capacity_minutes] AS [License Allocated Analyzer Capacity (Minutes)],
+    [used_analyzer_capacity_minutes] AS [License Used Analyzer Capacity (Minutes)],
+    [unavailable_analyzer_capacity_minutes] AS [License Unavailable Analyzer Capacity (Minutes)]
+  RESIDENT RestConnectorMasterTable
+  WHERE NOT IsNull([__FK_analyzerTimeAccess]) AND NOT UPPER([enabled_analyzer_capacity])='FALSE';
+
+  DROP TABLE RestConnectorMasterTable;
+  
+ENDSUB

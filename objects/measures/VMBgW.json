@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "VMBgW",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Available User Access/ Unallocated Professional Access",
+    "qDef": "Num(\r\nIF((license_type_enabled)='Token-based',\n\tIF(Sum({<[License Token Type]={\"User*\"}>}[License Allocated Tokens]-[License Used Tokens]-[License Quarantined Tokens])/Sum({<[License Token Type]={\"User*\"}>}[License Allocated Tokens])>0,\n    \tSum({<[License Token Type]={\"User*\"}>}[License Allocated Tokens]-[License Used Tokens]-[License Quarantined Tokens])/Sum({<[License Token Type]={\"User*\"}>}[License Allocated Tokens]),0)\n    ,\n    IF(Sum({<[License Token Type]={\"Professional*\"}>}[License Total Available Tokens])/Sum({<[License Token Type]={\"Professional*\"}>}[License Total Tokens])>0,\n    \tSum({<[License Token Type]={\"Professional*\"}>}[License Total Available Tokens])/Sum({<[License Token Type]={\"Professional*\"}>}[License Total Tokens]),0)\n    )\n,'0%')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "=IF((license_type_enabled)='Token-based','Available User Access','Unallocated Professional Access')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "IF((license_type_enabled)='Token-based','% of User Access available','% of unallocated Professional Access')"
+      }
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Available User Access/ Unallocated Professional Access",
+    "description": "",
+    "tags": []
+  }
+}

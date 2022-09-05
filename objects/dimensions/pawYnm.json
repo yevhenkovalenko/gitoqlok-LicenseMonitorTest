@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "pawYnm",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Hostname"
+    ],
+    "qFieldLabels": [
+      "Hostname"
+    ],
+    "title": "Hostname"
+  },
+  "qMetaDef": {
+    "title": "Hostname",
+    "description": "",
+    "tags": []
+  }
+}

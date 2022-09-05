@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "Phbvp",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Tokens or Analyzer Access Used",
+    "qDef": "num(\n\tIF((license_type_enabled)='Token-based',\n\tceil(count({<[Access Type]={'Login Access'},LogTimeStamp= {\">=$(=DayStart(today()-6))\"}>} distinct UsageId)/10)\n    ,Sum({<[License Token Type]={'Analyzer Access'}>} distinct [License Total Tokens])\n    )\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','Login Access Tokens','Analyzer Access Users')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Tokens or Analyzer Access Used",
+    "description": "For Login Access usage, please view this by Month only.",
+    "tags": []
+  }
+}

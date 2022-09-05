@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "ebc7a172-dda9-4774-af9e-f2f84c1e3d48",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NumRows_qrs_user",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "14",
+  "tags": []
+}

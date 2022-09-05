@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "d1128e63-d7e3-46af-83c6-3d484613c734",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Analyzer Capacity Minutes Used Last Month",
+    "qDef": "Num(Sum({<[Access Type]={\"Analyzer Capacity\"}, last_month= {'1'}>} [Analyzer Capacity Used (Minutes)]),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "='Minutes Last Month'",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Analyzer Capacity Minutes Used Last Month",
+    "description": "Analyzer Capacity Minutes renew the first day of each month. This measure calculates Analyzer Capacity minutes used last month.",
+    "tags": []
+  }
+}

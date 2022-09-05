@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "dWeVaj",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Access Granted",
+    "qDef": "min([User Access Created])",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Access Granted",
+    "description": "First time license access was granted.",
+    "tags": []
+  }
+}

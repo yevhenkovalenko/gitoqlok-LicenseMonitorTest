@@ -1,0 +1,20 @@
+///$tab storeFiles
+SUB storeFiles (nombre, archivo)
+
+  	Store '$(nombre)' into [$(archivo).qvd];
+    
+    LET tempErrorDetails = ScriptErrorDetails;
+  	IF LEN(tempErrorDetails) > 0 THEN
+    	SET storeBaseTableFail = 1;
+        CALL monitor_app_reload_stats('WARN','$(archivo)', tempErrorDetails, 'Status Message')
+		tempErrorDetails = ; 	// Reset This
+  	ELSE
+    	SET storeBaseTableFail = 0;
+    END IF
+      
+    LET NoOfRowsLogContent = num(NoOfRows('$(nombre)'),'#,##0');
+    LET NoOfRowsIncremental = NoOfRowsLogContent - NoOfRowsLogContentBASE;
+    Let storeTime = now(1);
+    TRACE $(nombre) table stored at $(storeTime) with $(NoOfRowsLogContent) rows;
+
+ENDSUB

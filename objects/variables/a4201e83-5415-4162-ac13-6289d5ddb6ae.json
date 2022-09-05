@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "a4201e83-5415-4162-ac13-6289d5ddb6ae",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "analyzer_capacity_Allocated",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "50,000",
+  "tags": []
+}

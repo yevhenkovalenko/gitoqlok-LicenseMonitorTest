@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "79a93952-c48b-40e0-b9fd-50521aa6d987",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens or Access Summary % Total",
+    "qDef": "num(\r\n  (\n  \tceil(count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-28))\"}>} distinct UsageId)/10)\n  \t+count({<[Access Type]-={'Login'}>} distinct UserId)\n  )/(\n  \tceil(count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-28))\"}>} distinct TOTAL UsageId)/10)\n  \t+count({<[Access Type]-={'Login'}>} distinct TOTAL UserId)\n  )\n,'0.0%')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','% Total Tokens','% Total Access')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {},
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "IF((license_type_enabled)='Token-based','% Total Tokens Used. NOTE: Login Access token usage is based on Login Access pass usage for the last 28 days only.'\n,'% Total Access used over time.')"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "Tokens or Access Summary % Total",
+    "description": "",
+    "tags": []
+  }
+}

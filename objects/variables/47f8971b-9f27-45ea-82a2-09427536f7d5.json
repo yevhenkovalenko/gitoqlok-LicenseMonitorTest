@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "47f8971b-9f27-45ea-82a2-09427536f7d5",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "qlikview_log_cutoff_date",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "43186",
+  "tags": []
+}

@@ -1,0 +1,20 @@
+{
+  "qInfo": {
+    "qId": "RKyuWF",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "H",
+    "qFieldDefs": [
+      "=[Week Beginning]",
+      "Day"
+    ],
+    "qFieldLabels": [],
+    "title": "Week - Day Drill"
+  },
+  "qMetaDef": {
+    "title": "Week - Day Drill",
+    "description": "Drill-down dimension including Week and Day.",
+    "tags": []
+  }
+}

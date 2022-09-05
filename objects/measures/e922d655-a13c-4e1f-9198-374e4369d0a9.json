@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "e922d655-a13c-4e1f-9198-374e4369d0a9",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens or Access Used Last 90 Days",
+    "qDef": "num(ceil(count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-28))\"}>} distinct UsageId)/10)\r\n+count({<[Access Type]-={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-90))\"}>} distinct UserId)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "=IF((license_type_enabled)='Token-based','Tokens','Access') & ' Used Last 90 Days'",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {},
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "'Total ' & IF(license_type_enabled='Token-based','tokens','access') & ' used in last 90 days.'\r\n& IF((license_type_enabled)='Token-based','NOTE: Login Access token usage is based on Login Access pass usage for the last 28 days only.')"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "Tokens or Access Used Last 90 Days",
+    "description": "",
+    "tags": []
+  }
+}

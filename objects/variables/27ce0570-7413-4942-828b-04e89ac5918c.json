@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "27ce0570-7413-4942-828b-04e89ac5918c",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "qlikview_maxstring_exe_version",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "12.40.20000.0",
+  "tags": []
+}

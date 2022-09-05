@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "043ff09c-2ca4-44d8-a6df-72a45c2d45a5",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "rowsworking_counterEngineFinal",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "1,017",
+  "tags": []
+}

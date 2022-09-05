@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "8e51c1f9-3f3f-4710-869d-691e470fd401",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "time_now",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "2016-02-01 16:55:29",
+  "tags": []
+}

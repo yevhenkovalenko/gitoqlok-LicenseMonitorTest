@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "vkPFJT",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Access Type"
+    ],
+    "qFieldLabels": [
+      "Access Type"
+    ],
+    "title": "Access Type",
+    "coloring": {
+      "colorMapRef": "vkPFJT",
+      "changeHash": "0.22192434035241604"
+    }
+  },
+  "qMetaDef": {
+    "title": "Access Type",
+    "description": "'Describes one of two things:\n1) How a user accessed an app. For Token-based licensing: Login Access or User Access. For User-based licensing: Professional Access and Analyzer Access\n2) Which aspect of license allocation was affected: site License or access type (Login, User, Professional, Analyzer)",
+    "tags": []
+  }
+}

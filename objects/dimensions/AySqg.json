@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "AySqg",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "H",
+    "qFieldDefs": [
+      "=Month",
+      "=Date",
+      "=Hour"
+    ],
+    "qFieldLabels": [],
+    "title": "Month>Date>Hour Drill"
+  },
+  "qMetaDef": {
+    "title": "Month>Date>Hour Drill",
+    "description": "",
+    "tags": []
+  }
+}

@@ -1,0 +1,1016 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "nhPQZp",
+      "qType": "story"
+    },
+    "qMetaDef": {
+      "title": "About the License Monitor",
+      "description": ""
+    },
+    "qChildListDef": {
+      "qData": {
+        "rank": "/rank"
+      }
+    },
+    "rank": 0,
+    "thumbnail": {
+      "qStaticContentUrlDef": {}
+    }
+  },
+  "qChildren": [
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "hATksD",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 1
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "RmvbUA",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "18.51852%",
+              "left": "6.25000%",
+              "width": "53.83484%",
+              "height": "18.44136%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "title",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "**License Monitor**"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "ykKGqL",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "40.74074%",
+              "left": "6.25000%",
+              "width": "70.83160%",
+              "height": "14.81163%",
+              "z-index": 6
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "^[%[Turning your licensing data into insights and action](5)](left)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "BJteR",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "77.77778%",
+              "left": "8.33333%",
+              "width": "31.25000%",
+              "height": "15.73909%",
+              "z-index": 6
+            },
+            "srcPath": {
+              "qStaticContentUrlDef": {
+                "qUrl": "/appcontent/c84b2725-7a9b-410c-b4be-a1e63e266816/Powered-By-Qlik-Mark-Horizontal_RGB.png"
+              }
+            },
+            "visualization": "image",
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "mMjtAbp",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 2
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "ePSXnP",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.70370%",
+              "left": "77.08333%",
+              "width": "22.91667%",
+              "height": "92.59259%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[The **_Overview_** sheet provides a quick look at recent license usage and changes.\n\n**Overview**\n&gt; How does license usage in the last 7 days compare with usage in the last 28 days or 90 days?\n](2)^[%[&gt; How many allocation changes have been made in the last 7, 28, or 90 days?](2)](left)^[%[\n**License Usage Timeline**\n&gt; How is the usage of the different access types trending?\n\n**Allocation Changes in Last 7 Days**](2)](left)%[&gt; Have there been unexpected allocation changes recently?](2)\n\n\n\n\n"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "Aptfq",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "1%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "9f96f5e3-aabf-4baa-8132-0397dccaefdc",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "tvjNjq",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 2.5625
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "ELCmh",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "1%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "WshBxg",
+            "selectionState": {
+              "init": "cvhRFF"
+            },
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "Vmqtyu",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.69888%",
+              "left": "77.08152%",
+              "width": "22.91667%",
+              "height": "92.59259%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[**_User Access History_** shows the number of non\\-concurrent sessions started by users with user access passes and the number of users who started non\\-concurrent sessions.](2)^[#[%[NOTE: This page only applies to Token\\-based License deployments.](1)](7)\n%[\n](2)%[**User Access Sessions**\n](2)%[&gt; ](2)%[What is the ratio of users to user passes? Has this ratio changed over time?](2)\n^[%[\n](2)%[**User Access Sessions per User**](2)\n%[&gt; Who are the most active users?](2)](left)^[%[&gt; ](2)%[Which users have used their user access passes fewer than 10 times over the last 28 days? _These users are candidates for login pass access._](2)](left)^[%[&gt; Which users have not used Qlik recently?](2)\n\n](left)^[%[**Unused User Access Passes**](2)](left)^[%[&gt; Which users have been allocated a user access pass but have not used it?](2)](left)^[\n](left)^[**%[Quarantined User Access Passes](2)**](left)^[%[&gt; Which users have been quarantined?](2)](left)^[%[&gt; When will their quarantined token become available again?](2)](left)](inherit)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "bUFsPkJ",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 3.25
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "AGgVK",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "1%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "RDJy",
+            "selectionState": {
+              "init": "dGjy"
+            },
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "FX",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "0.00000%",
+              "left": "77.08333%",
+              "width": "22.91667%",
+              "height": "100.00000%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[**_Login Access History_** shows the total number of login passes used and the individual users who used them_._](2)^[#[%[NOTE: This page only applies to Token\\-based License deployments.](1)](7)_\n_%[\n](2)%[**Used Login Access Passes**\n](2)%[&gt; How is usage across different groups trending?](2)\n%[\n](2)%[**Login Access Passes per User**](2)\n%[&gt; Which users have used the most login passes?](2)\n%[&gt; Which users are above the threshold of 10 login passes in the last 28 days? _These users are candidates for user access passes. _](2)\n%[&gt; Are there inactive users who have not used Qlik recent%[ly?](2)](2)^[%[\n](2)](left)^[**%[Login Access Rule Usage](2)**](left)^[%[&gt; Which login access rules are running low on passes remaining?](2)](left)^[%[&gt; Are any login access rules underused?](2)\n^[%[\n**Users Denied Access**](2)](left)^[%[&gt; Which users have been denied access to Qlik Sense?](2)](left)^[%[&gt; Have recent token allocation changes caused or resolved these denials?](2)](left)](left)](inherit)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "DBBEm",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 4
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "SrGaky",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.70129%",
+              "left": "77.08198%",
+              "width": "22.91667%",
+              "height": "96.29630%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[**_Allocation History_** lists the changes made to the allocation of the license among individual users and login access groups.](2)\n%[\n](2)%[**Users Making Allocation Changes**\n](2)%[&gt; What is the most recent change \\(add/update/delete\\) to the different access types?](2)\n\n^[%[**License Allocation Change History**](2)](left)^[%[&gt; Which users were recently allocated access?](2)](left)^[%[&gt; Which service user\\(s\\) is responsible for these allocation changes?](2)](left)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "cfYHDwT",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "1%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "67375059-2b6f-4f0f-bd5c-16e85b0b926f",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "rBYU",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 2.45703125
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "Pqatcy",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.69647%",
+              "left": "77.09012%",
+              "width": "22.98446%",
+              "height": "92.59259%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[_**Usage by App**_ displays the license usage by users opening specific apps.\n\n**Access or Tokens by Stream &gt; App**\n&gt;Which apps or streams have highest license usage?\n](2)^[%[&gt; Are there any surprises in the Access Type used to access specific streams or apps?](2)](left)^[%[\n**Access or Tokens by Stream or App**](2)](left)%[&gt; These bar charts quickly rank Streams and Apps by license usage with a breakdown by Access Type.\n\n](2)^[**%[Access or Token History](2)**](left)^[%[&gt; Switch among the alternative dimensions to view token or access usage over time by app, stream, and access type.](2)](left)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "XjFJtbK",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "1%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "8403326a-ea15-49ac-aedd-02ee6899a2ec",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "TMaELY",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 6
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "HsctK",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "1%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "NEtuPF",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "GbJzFsW",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.70177%",
+              "left": "77.08225%",
+              "width": "22.91667%",
+              "height": "95.92593%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[_**Log Details**_ displays reload information for the License Monitor as well as a detailed list of license\\-related log entries.](2)\n^[%[\n](2)](left)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "PVRT",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 2.4921875
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "JCjFS",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.70049%",
+              "left": "77.09057%",
+              "width": "22.98542%",
+              "height": "92.59259%",
+              "z-index": 201
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[_**Usage Timeline**_ displays the number of tokens or access consumed over time.\n\n**Access Timeline**](2)^[%[&gt; Switch among the alternative dimensions to view token or access usage over time by app, stream, and access type.](2)](inherit)^[%[&gt; Note that for Login Access type, Month must always be one of the dimensions.\n](2)^[%[\n](2)](inherit)^[%[**Access or Tokens by Month**\n](2)](inherit)^[%[&gt; How is the license being used by Access Type? By App? or by App Stream?](2)](inherit)^[%[&gt; Are certain apps or streams showing increased license usage over time?](2)](inherit)^[%[\n](2)](inherit)^[^[**%[First Time Access \\(New Users\\)](2)**](inherit)^[%[&gt; Is the trend of \"new users\" \\(first\\-time license use\\) surprising?](2)](inherit)^[%[&gt; Does the ratio of new users by access type align with expectations?](2)](inherit)](inherit)](inherit)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "WxSmd",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "1%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "9193657c-727f-4239-8ba9-989b18ad2edf",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "EPgCFP",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 2.28125
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "HcJRJjL",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "25%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "b78a9979-d831-4a55-b8ea-ffe7768548ab",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "NCcGcgS",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "0.00000%",
+              "left": "77.08062%",
+              "width": "22.99265%",
+              "height": "96.29630%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "%[_**User Detail**_ presents lower\\-level information about licensed Sense users.\n\n**User License Session Summary**\n&gt; Which users have high session counts?\n](2)^[%[&gt; Could any low\\-session users be allocated a different access type?](2)](left)^[%[\n**Users Denied Access**](2)](left)%[&gt; Which users have been denied access to Qlik Sense?](2)^[%[&gt; Have recent token allocation changes caused or resolved these denials?\n](2)^[**%[\n](2)**](left)^[**%[Unused Access](2)**](left)^[%[&gt; Which users have been allocated access but have not used it?](2)](left)^[%[\n**Quarantined Access**](2)](left)^[%[&gt; Which users have been quarantined?](2)](left)^[%[&gt; When will their quarantined access become available again?](2)](left)^[%[\n](2)](left)^[**%[Sessions per User \\(Threshold\\)](2)**](left)^[%[&gt; By selecting a \"Session Threshold\", explore the distribution of users by session count. Low\\-session users might be candidates for a different access type.](2)](left)](inherit)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "DUTyNb",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 5
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "Tdpaxq",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "0%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "8d8f3f07-602f-4907-ae4f-362bc6d47e5e",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "mxhLJhq",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.70210%",
+              "left": "77.08062%",
+              "width": "20.83154%",
+              "height": "92.59259%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "Use this **Unified Licensing History** sheet to analyze license usage across QlikView and Sense. Although this sheet primarily applies to customers deploying both QlikView + Qlik Sense under a unified license, other viewers might enjoy different views into license usage data.^[\n^[Enjoy!](inherit)](inherit)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "vUjTzDZ",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "66.66667%",
+              "left": "77.08333%",
+              "width": "22.27917%",
+              "height": "31.58272%",
+              "z-index": 6
+            },
+            "srcPath": {
+              "qStaticContentUrlDef": {
+                "qUrl": "/appcontent/c84b2725-7a9b-410c-b4be-a1e63e266816/Unified_Licensing_QV_Sense.png"
+              }
+            },
+            "visualization": "image",
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "JsFJFj",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 4.5
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "NfUaS",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "0%",
+              "left": "1.5%",
+              "width": "75.5%",
+              "height": "98%",
+              "z-index": 4
+            },
+            "visualization": "sheet",
+            "sheetId": "a42947a9-ed9e-4f31-b4c6-2add1b09f116",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "uzSEWM",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "3.70370%",
+              "left": "77.08333%",
+              "width": "22.91667%",
+              "height": "92.59259%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "Here on the **Usage Snapshot **sheet you find a concise overview of license utilization in your environment which can be easily exported or captured to share with other Qlik stakeholders."
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "WGFnG",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "66.66667%",
+              "left": "81.25000%",
+              "width": "17.47593%",
+              "height": "31.06996%",
+              "z-index": 6
+            },
+            "srcPath": {
+              "qStaticContentUrlDef": {
+                "qUrl": "/appcontent/c84b2725-7a9b-410c-b4be-a1e63e266816/Icon_Sheet_grey.png"
+              }
+            },
+            "visualization": "image",
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    }
+  ]
+}

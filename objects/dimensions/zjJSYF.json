@@ -1,0 +1,22 @@
+{
+  "qInfo": {
+    "qId": "zjJSYF",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "=[Login Access Rule]"
+    ],
+    "qFieldLabels": [
+      "Login Access Rule"
+    ],
+    "title": "Login Access Rule"
+  },
+  "qMetaDef": {
+    "title": "Login Access Rule",
+    "description": "The Name of the Login Access Rule as configured in the QMC.",
+    "tags": []
+  },
+  "isEditMode": true
+}

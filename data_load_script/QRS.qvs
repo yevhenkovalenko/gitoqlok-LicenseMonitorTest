@@ -1,0 +1,27 @@
+///$tab QRS
+SUB QRS
+	// Here we load data from Qlik Sense Repository (QRS) database 
+    // If the connection fails (missing REST connector, can't connect to QRS) - the load script will fail :(
+    //	Also, if no data is returned from the QRS, the load script will terminate as well because there is something wrong to be investigated :(
+    LET NumRowsQRS = 0;
+    SET QRS_RowCounts = 'QRS Row Counts: ';
+    
+    For each endpoint in 'monitor_apps_REST_license_user','monitor_apps_REST_license_login','monitor_apps_REST_user','monitor_apps_REST_license_access','monitor_apps_REST_app','monitor_apps_REST_license'
+    	CALL $(endpoint)
+        DisConnect;
+		LET rose			= evaluate(NumRows_$(endpoint));
+        LET rose			= if(isnull(rose),0,rose);
+        LET NumRowsQRS		= $(NumRowsQRS) + $(rose);
+        LET QRS_RowCounts 	= '$(QRS_RowCounts) $(endpoint) = $(rose) lines,';
+    Next endpoint
+
+	If NumRowsQRS > 0 Then
+    	CALL monitor_app_reload_stats('INFO','License Monitor', '$(QRS_RowCounts)','Status Message')
+        TRACE Reload Status: $(QRS_RowCounts);
+    ELSE	// No data fetched from QRS! This throws an error message, but will not fail the reload
+   		LET msg_qrs =  'There was a problem fetching data from QRS via the REST connector. We could connect, but failed to fetch data. $(QRS_RowCounts)';
+   		CALL monitor_app_reload_stats('ERROR','License Monitor', msg_qrs,'Status Message')
+        // This msg_qrs message will be reported on the Log Details page
+    ENDIF
+ 
+ENDSUB

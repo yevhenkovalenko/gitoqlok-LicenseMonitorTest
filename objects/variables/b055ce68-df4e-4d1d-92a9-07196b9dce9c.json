@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "b055ce68-df4e-4d1d-92a9-07196b9dce9c",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "db_check_time",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "2019-04-23 13:41:14",
+  "tags": []
+}

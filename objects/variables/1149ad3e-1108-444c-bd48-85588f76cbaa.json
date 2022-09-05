@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "1149ad3e-1108-444c-bd48-85588f76cbaa",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "counterEngineTableCount",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "1017",
+  "tags": []
+}

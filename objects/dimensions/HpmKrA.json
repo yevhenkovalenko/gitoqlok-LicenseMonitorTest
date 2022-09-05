@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "HpmKrA",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "User Name"
+    ],
+    "qFieldLabels": [
+      "User Name"
+    ],
+    "title": "User Name"
+  },
+  "qMetaDef": {
+    "title": "User Name",
+    "description": "User Name as defined in the QMC (from the User Directory Connector)",
+    "tags": []
+  }
+}

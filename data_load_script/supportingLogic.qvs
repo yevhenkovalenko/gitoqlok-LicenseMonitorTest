@@ -1,0 +1,113 @@
+///$tab supportingLogic
+SUB supportingLogic
+
+  //// Dimension table to support Dashboard "Excel" chart
+ 
+  IF license_type_enabled = 'User-based' THEN
+    
+    If qlikview_license_logs_present = 1 THEN
+  	// QlikView logs loaded, which means Sense is also licensing with user-based Analyzer, Professional
+    // Add a few more metrics
+      dim_dash:
+      LOAD * INLINE
+      [
+        dimNum, dimName
+        1, Total Users
+        2, First-time Users
+        3, Sense Professional Users
+        3.1, QlikView Professional Users
+        4, Sense Analyzer Users
+        4.1, QlikView Analyzer Users
+        4.5, Sense Analyzer Capacity Users    
+        4.8, QlikView Analyzer Capacity Users        
+        5, Avg Daily Users
+        6, Max Daily Users
+        7, Access Denials      
+        8, Allocation Changes
+      ];
+      
+    ELSE 
+    
+      dim_dash:
+      LOAD * INLINE
+      [
+          dimNum, dimName
+          1, Total Users
+          2, First-time Users
+          3, Professional Users
+          4, Analyzer Users
+          4.5, Analyzer Capacity Users
+          5, Avg Daily Users
+          6, Max Daily Users
+          7, Access Denials      
+          8, Allocation Changes
+      ];
+    ENDIF
+    
+    // Messaging for Analyzer Capacity Time usage
+    For each vs_analyzer_capacity_var in 'Allocated','Used','Unavailable'
+      Let vs_analyzer_capacity_$(vs_analyzer_capacity_var) = Num(Peek('License $(vs_analyzer_capacity_var) Analyzer Capacity (Minutes)',-1,'License_Summary'),'#,##0');
+    Next vs_analyzer_capacity_var 
+    
+    IF vs_analyzer_capacity_Allocated >5 Then
+    	Let vs_analyzer_capacity_per_day = Ceil($(vs_analyzer_capacity_Used)/(today(1)-MonthStart(Today(1))+1));
+        
+        // QB-3498: Added IsNull check. 
+        Let vs_analyzer_capacity_run_out_days = if(	IsNull( vs_analyzer_capacity_per_day ),0, If(vs_analyzer_capacity_per_day = 0,99, Floor( vs_analyzer_capacity_Allocated/vs_analyzer_capacity_per_day)));
+        
+    	Let va_analyzer_capacity_message = 'Analyzer Capacity Minutes:  To date in '& MonthName(Today(1)) & ' you have used $(vs_analyzer_capacity_Used) of $(vs_analyzer_capacity_Allocated) total minutes'
+        										& ' as reported at ' & ReloadTime() & '. At an average of $(vs_analyzer_capacity_per_day) minutes used per day, you would' 
+// 												& 'run out of minutes in $(vs_analyzer_capacity_run_out_days) days.'
+                                                & IF(vs_analyzer_capacity_run_out_days < 32,'run out of minutes in ' & $(vs_analyzer_capacity_run_out_days) & ' days.',' not run out of minutes before the new month starts and Analyzer Time is reset!')
+												& '  Analyzer Capacity time resets the first day of each calendar month.';
+    Else
+      SET va_analyzer_capacity_message ='Analyzer Capacity Time not licensed or allocated.';
+    EndIf
+    
+  ELSE	// Token-based license model
+
+    dim_dash:
+    LOAD * INLINE
+    [
+        dimNum, dimName
+        1, Total Users
+        2, Total Tokens Used
+        3, User Access Tokens Used
+        4, Login Access Tokens Used
+        5, Avg Daily Tokens Used
+        6, Max Daily Tokens Used
+        7, Access Denials      
+        8, Allocation Changes
+    ];
+    
+    SET va_analyzer_capacity_message ='Analyzer Capacity Time not licensed or allocated.';
+    
+  ENDIF
+
+  analyzer_capacity_message:
+  Load '$(va_analyzer_capacity_message)' as analyzer_capacity_message AutoGenerate 1;
+  Load '$(va_analyzer_capacity_help_link)' as analyzer_capacity_help_link AutoGenerate 1;
+  TRACE $(va_analyzer_capacity_message);
+  
+  REM For selecting a session count threshold for custom ELA usage analysis;
+  Let v_session_count_threshold = '=Max([session_count_threshold])';
+  session_count_threshold:
+  Load RowNo()+1 as session_count_threshold Autogenerate (11);	// For session counts 2 through 12
+  Concatenate (session_count_threshold) Load 20 as session_count_threshold AutoGenerate 1;
+  Concatenate (session_count_threshold) Load 50 as session_count_threshold AutoGenerate 1;
+
+  // Limit Smart search to relevant fields
+  Search Include *;
+  Search Exclude [*Id],[dim*],[_*],[folder*],[*ort];
+  Search Include UserId;
+  
+  // For UI simplicity when making selections in the Allocation History page, these little tables are created
+  allocationUser:
+  NoConcatenate Load distinct UserId resident LogContent where [License Allocation]=1;
+  allocationMessage:
+  NoConcatenate Load distinct Message resident LogContent where [License Allocation]=1;
+  AllocationAffectedEntity:
+  NoConcatenate Load distinct [Affected Entity] resident LogContent where [License Allocation]=1;
+
+  
+ENDSUB

@@ -1,0 +1,34 @@
+///$tab finalize
+SUB finalize
+  
+  If firstReload = 1 THEN
+     SET PriorReloadDuration = 0;		// Initialize ReloadDuration for first reload
+  ELSE
+  	Let PriorReloadDuration = ReloadDuration;  
+  END IF
+  
+  //// Set Reload Stats Variables	//// 
+  Let ReloadDuration = interval(now(1)-ReloadStartTime,'hh:mm:ss');
+  
+  IF storeBaseTableFail = 0 then
+      Let LastSuccessfulReloadStartTime = ReloadStartTime;
+  ELSE
+      Let LastSuccessfulReloadStartTime = LastReloadTime;	// reset this to prior reload time
+  END IF
+
+// Monitor reload statistics
+  Let ttlRows 		= num(NoOfRows('LogContent'),'#,##0');
+  let hst			= lower(ComputerName());
+  let ahora			= now(1);
+  
+  // Check to see if there were any reload errors associated with this app; report them on the Log Details page
+  let reloadWarn	= NoOfRows('monitor_app_reload_stats')-$(appMonitorStatsRowsInit)-1;	// There will already be an 'reload start' entry in this table
+  let reloadWarnMsg	= if(reloadWarn>1,' Reloaded with ' & reloadWarn & ' warning(s). Consult the License_Monitor_Reload_Stats.txt log for details.','');
+LET reloadWarnMsg	= reloadWarnMsg & if(NumRowsQRS>0,'',msg_qrs);	// Add error message if failure to fetch data from qrs
+  Let msg			= 'Reloaded at $(ahora) on $(hst) for $(ReloadDuration) with $(ttlRows) log entries from $(logSource).$(reloadWarnMsg)';
+  
+  // Write final reload message and store App Reload Stats
+  CALL monitor_app_reload_stats('INFO','License Monitor',msg,'Reload Finish')
+
+  
+ENDSUB

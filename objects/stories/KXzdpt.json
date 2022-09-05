@@ -1,0 +1,1742 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "KXzdpt",
+      "qType": "story"
+    },
+    "qMetaDef": {
+      "title": "Example: Access Denials",
+      "description": ""
+    },
+    "qChildListDef": {
+      "qData": {
+        "rank": "/rank"
+      }
+    },
+    "rank": 1,
+    "thumbnail": {
+      "qStaticContentUrlDef": {}
+    }
+  },
+  "qChildren": [
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "bZbQ",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 1
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "pJQpqs",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "37.03704%",
+              "left": "29.16667%",
+              "width": "40.34722%",
+              "height": "14.44444%",
+              "z-index": 4
+            },
+            "visualization": "text",
+            "visualizationType": "title",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "**License Monitor**"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "HyWETh",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "66.66667%",
+              "left": "0.00000%",
+              "width": "100.00000%",
+              "height": "29.62963%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "^[%[Example: Access Denials](5)](center)"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "URcjjj",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 2
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "NNXRj",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "3.70370%",
+              "left": "2.08333%",
+              "width": "39.58333%",
+              "height": "10.86420%",
+              "z-index": 4
+            },
+            "visualization": "text",
+            "visualizationType": "title",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "Situation"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "eWHMJgV",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "14.81267%",
+              "left": "50.00000%",
+              "width": "46.52778%",
+              "height": "51.97407%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "From the _Overview _table on the **Overview** sheet it is evident that there have been a number of access denials in the past seven days and many more in the past 28 days. Has this affected a number of different users, or are there specific users who are being denied access frequently?\n\n\n\n\nTo investigate this issue, review the _Users Denied Access_ table on either the **User Detail** sheet or the **Login Access History** sheet. The table lists users who were denied access, when they were last denied, and how many times each user was denied access.\n"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "rhWH",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "14.81481%",
+              "left": "2.08333%",
+              "width": "46.25000%",
+              "height": "39.25926%",
+              "z-index": 6
+            },
+            "visualization": "snapshot",
+            "visualizationType": "table",
+            "style": {
+              "isNew": false,
+              "id": "JWAWxsj"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": [],
+          "qEmbeddedSnapshotRef": {
+            "qProperties": {
+              "qInfo": {
+                "qId": "cadb9d7e-d955-4968-93de-913be2d432d0",
+                "qType": "embeddedsnapshot"
+              },
+              "qMetaDef": {
+                "title": "Overview",
+                "description": ""
+              },
+              "sheetId": "c9a130fa-ca10-4c05-9ee0-76115970868e",
+              "creationDate": "2015-07-31T15:36:58.201Z",
+              "qSelectionInfo": {},
+              "qHyperCube": {
+                "qSize": {
+                  "qcx": 3,
+                  "qcy": 7
+                },
+                "qDimensionInfo": [
+                  {
+                    "qFallbackTitle": "Measure ",
+                    "qApprMaxGlyphCount": 29,
+                    "qCardinal": 7,
+                    "qSortIndicator": "A",
+                    "qGroupFallbackTitles": [
+                      "Measure "
+                    ],
+                    "qGroupPos": 0,
+                    "qStateCounts": {
+                      "qLocked": 0,
+                      "qSelected": 0,
+                      "qOption": 7,
+                      "qDeselected": 0,
+                      "qAlternative": 0,
+                      "qExcluded": 0,
+                      "qSelectedExcluded": 0,
+                      "qLockedExcluded": 0
+                    },
+                    "qTags": [
+                      "$ascii",
+                      "$text"
+                    ],
+                    "qDimensionType": "D",
+                    "qGrouping": "N",
+                    "qNumFormat": {
+                      "qType": "U",
+                      "qnDec": 0,
+                      "qUseThou": 0
+                    },
+                    "qIsAutoFormat": true,
+                    "qGroupFieldDefs": [
+                      "=dimName"
+                    ],
+                    "qMin": 0,
+                    "qMax": 0,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qCardinalities": {
+                      "qCardinal": 0,
+                      "qHypercubeCardinal": 0,
+                      "qAllValuesCardinal": -1
+                    },
+                    "autoSort": false,
+                    "cId": "GdSYEF",
+                    "othersLabel": "Others"
+                  }
+                ],
+                "qMeasureInfo": [
+                  {
+                    "qFallbackTitle": "Last 7 Days",
+                    "qApprMaxGlyphCount": 5,
+                    "qCardinal": 0,
+                    "qSortIndicator": "A",
+                    "qNumFormat": {
+                      "qType": "U",
+                      "qnDec": 0,
+                      "qUseThou": 0
+                    },
+                    "qMin": 0,
+                    "qMax": 1074,
+                    "qIsAutoFormat": true,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qTrendLines": [],
+                    "autoSort": false,
+                    "cId": "kthjn"
+                  },
+                  {
+                    "qFallbackTitle": "Last 28 Days",
+                    "qApprMaxGlyphCount": 5,
+                    "qCardinal": 0,
+                    "qSortIndicator": "A",
+                    "qNumFormat": {
+                      "qType": "U",
+                      "qnDec": 0,
+                      "qUseThou": 0
+                    },
+                    "qMin": 19,
+                    "qMax": 5335,
+                    "qIsAutoFormat": true,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qTrendLines": [],
+                    "autoSort": true,
+                    "cId": "RmZPDrP"
+                  }
+                ],
+                "qEffectiveInterColumnSortOrder": [
+                  0,
+                  1,
+                  2
+                ],
+                "qGrandTotalRow": [
+                  {
+                    "qText": " ",
+                    "qNum": "NaN",
+                    "qElemNumber": -1,
+                    "qState": "X",
+                    "qIsTotalCell": true
+                  },
+                  {
+                    "qText": " ",
+                    "qNum": "NaN",
+                    "qElemNumber": -1,
+                    "qState": "X",
+                    "qIsTotalCell": true
+                  }
+                ],
+                "qDataPages": [
+                  {
+                    "qMatrix": [
+                      [
+                        {
+                          "qText": "Total Users",
+                          "qNum": "NaN",
+                          "qElemNumber": 0,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "Avg Daily Login Access Passes",
+                          "qNum": "NaN",
+                          "qElemNumber": 1,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "Max Daily Login Access Passes",
+                          "qNum": "NaN",
+                          "qElemNumber": 2,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "Total Login Passes",
+                          "qNum": "NaN",
+                          "qElemNumber": 3,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "User Access Sessions",
+                          "qNum": "NaN",
+                          "qElemNumber": 4,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "Access Denials",
+                          "qNum": "NaN",
+                          "qElemNumber": 5,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "Allocation Changes",
+                          "qNum": "NaN",
+                          "qElemNumber": 6,
+                          "qState": "O"
+                        }
+                      ]
+                    ],
+                    "qTails": [],
+                    "qArea": {
+                      "qLeft": 0,
+                      "qTop": 0,
+                      "qWidth": 1,
+                      "qHeight": 7
+                    }
+                  },
+                  {
+                    "qMatrix": [
+                      [
+                        {
+                          "qText": "766",
+                          "qNum": 766,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "154",
+                          "qNum": 154,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "372",
+                          "qNum": 372,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "1,074",
+                          "qNum": 1074,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "964",
+                          "qNum": 964,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "148",
+                          "qNum": 148,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "0",
+                          "qNum": 0,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ]
+                    ],
+                    "qTails": [],
+                    "qArea": {
+                      "qLeft": 1,
+                      "qTop": 0,
+                      "qWidth": 1,
+                      "qHeight": 7
+                    }
+                  },
+                  {
+                    "qMatrix": [
+                      [
+                        {
+                          "qText": "870",
+                          "qNum": 870,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "191",
+                          "qNum": 191,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "507",
+                          "qNum": 507,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "5,335",
+                          "qNum": 5335,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "3,979",
+                          "qNum": 3979,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "690",
+                          "qNum": 690,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "19",
+                          "qNum": 19,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ]
+                    ],
+                    "qTails": [],
+                    "qArea": {
+                      "qLeft": 2,
+                      "qTop": 0,
+                      "qWidth": 1,
+                      "qHeight": 7
+                    }
+                  }
+                ],
+                "qPivotDataPages": [],
+                "qStackedDataPages": [],
+                "qMode": "S",
+                "qNoOfLeftDims": -1,
+                "qTreeNodesOnDim": [],
+                "qColumnOrder": [],
+                "columnOrder": [
+                  0,
+                  1,
+                  2
+                ],
+                "columnWidths": [
+                  -1,
+                  -1,
+                  -1
+                ]
+              },
+              "showTitles": true,
+              "title": "Overview",
+              "subtitle": "2015-07-24  to  2015-07-31",
+              "footnote": "",
+              "totals": {
+                "show": false,
+                "position": "noTotals"
+              },
+              "visualization": "table",
+              "snapshotData": {
+                "object": {
+                  "size": {
+                    "w": 744,
+                    "h": 313
+                  },
+                  "dataTableRowCount": 7,
+                  "dataTableHeight": 189.49615478515625
+                },
+                "parent": {
+                  "h": 680,
+                  "w": 1519
+                }
+              },
+              "visualizationType": "table",
+              "sourceObjectId": "35934897-54ea-4282-b640-a8f569d19230",
+              "timestamp": 1438357018182,
+              "isClone": false
+            },
+            "qBookmark": {
+              "qStateData": [
+                {
+                  "qStateName": "$",
+                  "qFieldItems": []
+                }
+              ],
+              "qUtcModifyTime": 44805.70921296296,
+              "qVariableItems": [],
+              "qPatches": []
+            }
+          }
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "bwnupNY",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "55.55556%",
+              "left": "8.33333%",
+              "width": "29.09722%",
+              "height": "43.95062%",
+              "z-index": 7
+            },
+            "visualization": "snapshot",
+            "visualizationType": "pivot-table",
+            "style": {
+              "isNew": false,
+              "id": "GsZJyYD"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": [],
+          "qEmbeddedSnapshotRef": {
+            "qProperties": {
+              "qInfo": {
+                "qId": "acc97e43-63fe-406c-8a1c-7b1d7e2fcc82",
+                "qType": "embeddedsnapshot"
+              },
+              "qMetaDef": {
+                "title": "Users Denied Access",
+                "description": ""
+              },
+              "sheetId": "RDJy",
+              "creationDate": "2015-07-31T15:37:47.753Z",
+              "qSelectionInfo": {},
+              "qHyperCube": {
+                "qSize": {
+                  "qcx": 1,
+                  "qcy": 13
+                },
+                "qDimensionInfo": [
+                  {
+                    "qFallbackTitle": "User Id",
+                    "qApprMaxGlyphCount": 17,
+                    "qCardinal": 1323,
+                    "qSortIndicator": "A",
+                    "qGroupFallbackTitles": [
+                      "User Id"
+                    ],
+                    "qGroupPos": 0,
+                    "qStateCounts": {
+                      "qLocked": 0,
+                      "qSelected": 0,
+                      "qOption": 1323,
+                      "qDeselected": 0,
+                      "qAlternative": 0,
+                      "qExcluded": 0,
+                      "qSelectedExcluded": 0,
+                      "qLockedExcluded": 0
+                    },
+                    "qTags": [
+                      "$ascii",
+                      "$text"
+                    ],
+                    "qDimensionType": "D",
+                    "qGrouping": "N",
+                    "qNumFormat": {
+                      "qType": "U",
+                      "qnDec": 0,
+                      "qUseThou": 0
+                    },
+                    "qIsAutoFormat": true,
+                    "qGroupFieldDefs": [
+                      "UserId"
+                    ],
+                    "qMin": 0,
+                    "qMax": 0,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qCardinalities": {
+                      "qCardinal": 0,
+                      "qHypercubeCardinal": 0,
+                      "qAllValuesCardinal": -1
+                    },
+                    "title": "User Id",
+                    "autoSort": true,
+                    "cId": "mTQv",
+                    "othersLabel": "Others",
+                    "textAlign": {
+                      "auto": true,
+                      "align": "left"
+                    }
+                  },
+                  {
+                    "qFallbackTitle": "Date",
+                    "qApprMaxGlyphCount": 10,
+                    "qCardinal": 79,
+                    "qSortIndicator": "D",
+                    "qGroupFallbackTitles": [
+                      "Date"
+                    ],
+                    "qGroupPos": 0,
+                    "qStateCounts": {
+                      "qLocked": 0,
+                      "qSelected": 0,
+                      "qOption": 79,
+                      "qDeselected": 0,
+                      "qAlternative": 0,
+                      "qExcluded": 0,
+                      "qSelectedExcluded": 0,
+                      "qLockedExcluded": 0
+                    },
+                    "qTags": [
+                      "$numeric",
+                      "$integer",
+                      "$timestamp",
+                      "$date"
+                    ],
+                    "qDimensionType": "N",
+                    "qGrouping": "N",
+                    "qNumFormat": {
+                      "qType": "D",
+                      "qnDec": 0,
+                      "qUseThou": 0,
+                      "qFmt": "YYYY-MM-DD"
+                    },
+                    "qIsAutoFormat": true,
+                    "qGroupFieldDefs": [
+                      "Date"
+                    ],
+                    "qMin": 0,
+                    "qMax": 0,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qCardinalities": {
+                      "qCardinal": 0,
+                      "qHypercubeCardinal": 0,
+                      "qAllValuesCardinal": -1
+                    },
+                    "title": "Date",
+                    "autoSort": false,
+                    "cId": "PJPEmCu",
+                    "othersLabel": "Others",
+                    "textAlign": {
+                      "auto": true,
+                      "align": "left"
+                    }
+                  }
+                ],
+                "qMeasureInfo": [
+                  {
+                    "qFallbackTitle": "Access Denials",
+                    "qApprMaxGlyphCount": 3,
+                    "qCardinal": 0,
+                    "qSortIndicator": "D",
+                    "qNumFormat": {
+                      "qType": "F",
+                      "qnDec": 2,
+                      "qUseThou": 0,
+                      "qFmt": "#,##0",
+                      "qDec": ".",
+                      "qThou": ","
+                    },
+                    "qMin": 2,
+                    "qMax": 112,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qTrendLines": [],
+                    "autoSort": true,
+                    "cId": "MatfVm",
+                    "numFormatFromTemplate": true
+                  }
+                ],
+                "qEffectiveInterColumnSortOrder": [
+                  1,
+                  0
+                ],
+                "qGrandTotalRow": [],
+                "qDataPages": [],
+                "qPivotDataPages": [
+                  {
+                    "qLeft": [
+                      {
+                        "qText": "2015-07-30",
+                        "qElemNo": 77,
+                        "qValue": 42215,
+                        "qType": "N",
+                        "qUp": 0,
+                        "qDown": 7,
+                        "qSubNodes": [
+                          {
+                            "qElemNo": -1,
+                            "qValue": "NaN",
+                            "qType": "T",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_init_2",
+                            "qElemNo": 4,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_2",
+                            "qElemNo": 6,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_20",
+                            "qElemNo": 23,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_22",
+                            "qElemNo": 25,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "marketing_2",
+                            "qElemNo": 105,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "marketing_20",
+                            "qElemNo": 122,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "marketing_22",
+                            "qElemNo": 283,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_200",
+                            "qElemNo": 303,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_202",
+                            "qElemNo": 307,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_220",
+                            "qElemNo": 320,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_222",
+                            "qElemNo": 327,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 0,
+                            "qSubNodes": []
+                          },
+                          {
+                            "qText": "finance_500",
+                            "qElemNo": 742,
+                            "qValue": "NaN",
+                            "qType": "N",
+                            "qUp": 0,
+                            "qDown": 8,
+                            "qSubNodes": []
+                          }
+                        ]
+                      }
+                    ],
+                    "qTop": [
+                      {
+                        "qText": "Access Denials",
+                        "qElemNo": 0,
+                        "qValue": "NaN",
+                        "qType": "P",
+                        "qUp": 0,
+                        "qDown": 0,
+                        "qSubNodes": []
+                      }
+                    ],
+                    "qData": [
+                      [
+                        {
+                          "qText": "42",
+                          "qNum": 42,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "4",
+                          "qNum": 4,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2",
+                          "qNum": 2,
+                          "qType": "V"
+                        }
+                      ]
+                    ],
+                    "qArea": {
+                      "qLeft": 0,
+                      "qTop": 0,
+                      "qWidth": 1,
+                      "qHeight": 13
+                    }
+                  }
+                ],
+                "qStackedDataPages": [],
+                "qMode": "P",
+                "qNoOfLeftDims": 2,
+                "qIndentMode": true,
+                "qTreeNodesOnDim": [],
+                "qColumnOrder": [],
+                "columnOrder": [
+                  0,
+                  1,
+                  2
+                ],
+                "customErrorMessage": {
+                  "calcCond": "No access denials are associated with your current selections."
+                }
+              },
+              "showTitles": true,
+              "title": "Users Denied Access",
+              "subtitle": "48 Users",
+              "footnote": "",
+              "visualization": "pivot-table",
+              "snapshotData": {
+                "object": {
+                  "size": {
+                    "w": 370,
+                    "h": 313
+                  }
+                },
+                "parent": {
+                  "h": 680,
+                  "w": 1519
+                }
+              },
+              "visualizationType": "pivot-table",
+              "sourceObjectId": "zDmrujJ",
+              "timestamp": 1438357067727,
+              "isClone": false
+            },
+            "qBookmark": {
+              "qStateData": [
+                {
+                  "qStateName": "$",
+                  "qFieldItems": []
+                }
+              ],
+              "qUtcModifyTime": 44805.70921296296,
+              "qVariableItems": [],
+              "qPatches": []
+            }
+          }
+        }
+      ]
+    },
+    {
+      "qProperty": {
+        "qInfo": {
+          "qId": "WwYLc",
+          "qType": "slide"
+        },
+        "qMetaDef": {},
+        "qChildListDef": {
+          "qData": {
+            "title": "/title",
+            "ratio": "/ratio",
+            "position": "/position",
+            "dataPath": "/dataPath",
+            "srcPath": "/srcPath",
+            "visualization": "/visualization",
+            "visualizationType": "/visualizationType",
+            "sheetId": "/sheetId",
+            "style": "/style"
+          }
+        },
+        "rank": 3
+      },
+      "qChildren": [
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "UaWGzv",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "3.70370%",
+              "left": "2.08333%",
+              "width": "39.58333%",
+              "height": "10.61728%",
+              "z-index": 4
+            },
+            "visualization": "text",
+            "visualizationType": "title",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "Take Action"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "CeMTYn",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": false,
+            "position": {
+              "top": "18.51852%",
+              "left": "56.25000%",
+              "width": "41.74679%",
+              "height": "55.55556%",
+              "z-index": 5
+            },
+            "visualization": "text",
+            "visualizationType": "paragraph",
+            "style": {
+              "color": "#6E6E6E",
+              "isNew": false,
+              "text": "Check the _Login Access Passes per User_ table on the **Login ****Access History** sheet to see if any users are exceeding the 28\\-day access threshold \\(10\\). Those users would be candidates for a dedicated user login pass.\n\nIn this case, however, no login pass users have exceeded the threshold in last 28 days.\n\nBecause there are no login pass users who should be given user pass access, resolving the problem of login access denials can probably be handled by allocating more tokens to the specific groups whose users are being denied access. License tokens are allocated in the Qlik Management Console.\n"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": []
+        },
+        {
+          "qProperty": {
+            "qInfo": {
+              "qId": "LwVBjY",
+              "qType": "slideitem"
+            },
+            "qMetaDef": {},
+            "title": "",
+            "ratio": true,
+            "position": {
+              "top": "18.51852%",
+              "left": "2.08333%",
+              "width": "50.62500%",
+              "height": "47.65432%",
+              "z-index": 6
+            },
+            "visualization": "snapshot",
+            "visualizationType": "table",
+            "style": {
+              "isNew": false,
+              "id": "JKMwppG"
+            },
+            "sheetId": "",
+            "qEmbeddedSnapshotDef": {
+              "timestamp": 0,
+              "isClone": false
+            }
+          },
+          "qChildren": [],
+          "qEmbeddedSnapshotRef": {
+            "qProperties": {
+              "qInfo": {
+                "qId": "f9405245-7963-433c-bbb6-f74401b11c83",
+                "qType": "embeddedsnapshot"
+              },
+              "qMetaDef": {
+                "title": "Login Access Passes per User",
+                "description": ""
+              },
+              "sheetId": "RDJy",
+              "creationDate": "2015-07-31T15:39:16.224Z",
+              "qSelectionInfo": {},
+              "qHyperCube": {
+                "qSize": {
+                  "qcx": 4,
+                  "qcy": 180
+                },
+                "qDimensionInfo": [
+                  {
+                    "qFallbackTitle": "User Id",
+                    "qApprMaxGlyphCount": 17,
+                    "qCardinal": 1323,
+                    "qSortIndicator": "A",
+                    "qGroupFallbackTitles": [
+                      "User Id"
+                    ],
+                    "qGroupPos": 0,
+                    "qStateCounts": {
+                      "qLocked": 0,
+                      "qSelected": 0,
+                      "qOption": 309,
+                      "qDeselected": 0,
+                      "qAlternative": 0,
+                      "qExcluded": 1014,
+                      "qSelectedExcluded": 0,
+                      "qLockedExcluded": 0
+                    },
+                    "qTags": [
+                      "$ascii",
+                      "$text"
+                    ],
+                    "qDimensionType": "D",
+                    "qGrouping": "N",
+                    "qNumFormat": {
+                      "qType": "U",
+                      "qnDec": 0,
+                      "qUseThou": 0
+                    },
+                    "qIsAutoFormat": true,
+                    "qGroupFieldDefs": [
+                      "UserId"
+                    ],
+                    "qMin": 0,
+                    "qMax": 0,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qCardinalities": {
+                      "qCardinal": 0,
+                      "qHypercubeCardinal": 0,
+                      "qAllValuesCardinal": -1
+                    },
+                    "title": "User Id",
+                    "autoSort": false,
+                    "cId": "UQeQTg",
+                    "othersLabel": "Others",
+                    "textAlign": {
+                      "auto": true,
+                      "align": "left"
+                    }
+                  }
+                ],
+                "qMeasureInfo": [
+                  {
+                    "qFallbackTitle": "Last 28 Days",
+                    "qApprMaxGlyphCount": 3,
+                    "qCardinal": 0,
+                    "qSortIndicator": "D",
+                    "qNumFormat": {
+                      "qType": "F",
+                      "qnDec": 2,
+                      "qUseThou": 0,
+                      "qFmt": "#,##0",
+                      "qDec": ".",
+                      "qThou": ","
+                    },
+                    "qMin": 1,
+                    "qMax": 10,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qTrendLines": [],
+                    "autoSort": true,
+                    "cId": "CJsPTT",
+                    "numFormatFromTemplate": true
+                  },
+                  {
+                    "qFallbackTitle": "Total",
+                    "qApprMaxGlyphCount": 5,
+                    "qCardinal": 0,
+                    "qSortIndicator": "D",
+                    "qNumFormat": {
+                      "qType": "F",
+                      "qnDec": 2,
+                      "qUseThou": 0,
+                      "qFmt": "#,##0",
+                      "qDec": ".",
+                      "qThou": ","
+                    },
+                    "qMin": 2,
+                    "qMax": 30,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qTrendLines": [],
+                    "autoSort": true,
+                    "cId": "LtvuTA",
+                    "numFormatFromTemplate": true
+                  },
+                  {
+                    "qFallbackTitle": "Last Access",
+                    "qApprMaxGlyphCount": 10,
+                    "qCardinal": 0,
+                    "qSortIndicator": "A",
+                    "qNumFormat": {
+                      "qType": "D",
+                      "qnDec": 0,
+                      "qUseThou": 0,
+                      "qFmt": "YYYY-MM-DD"
+                    },
+                    "qMin": 42202,
+                    "qMax": 42206,
+                    "qAttrExprInfo": [],
+                    "qAttrDimInfo": [],
+                    "qTrendLines": [],
+                    "autoSort": true,
+                    "cId": "rcLCv"
+                  }
+                ],
+                "qEffectiveInterColumnSortOrder": [
+                  1,
+                  2,
+                  3,
+                  0
+                ],
+                "qGrandTotalRow": [
+                  {
+                    "qText": "502",
+                    "qNum": 502,
+                    "qElemNumber": -1,
+                    "qState": "X",
+                    "qIsTotalCell": true
+                  },
+                  {
+                    "qText": "1,503",
+                    "qNum": 1503,
+                    "qElemNumber": -1,
+                    "qState": "X",
+                    "qIsTotalCell": true
+                  },
+                  {
+                    "qText": "2015-07-21",
+                    "qNum": 42206,
+                    "qElemNumber": -1,
+                    "qState": "X",
+                    "qIsTotalCell": true
+                  }
+                ],
+                "qDataPages": [
+                  {
+                    "qMatrix": [
+                      [
+                        {
+                          "qText": "finance_22",
+                          "qNum": "NaN",
+                          "qElemNumber": 25,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "finance_23",
+                          "qNum": "NaN",
+                          "qElemNumber": 27,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "finance_24",
+                          "qNum": "NaN",
+                          "qElemNumber": 28,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "finance_2",
+                          "qNum": "NaN",
+                          "qElemNumber": 6,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "finance_42",
+                          "qNum": "NaN",
+                          "qElemNumber": 47,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "finance_52",
+                          "qNum": "NaN",
+                          "qElemNumber": 55,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "marketing_23",
+                          "qNum": "NaN",
+                          "qElemNumber": 284,
+                          "qState": "O"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "marketing_24",
+                          "qNum": "NaN",
+                          "qElemNumber": 285,
+                          "qState": "O"
+                        }
+                      ]
+                    ],
+                    "qTails": [],
+                    "qArea": {
+                      "qLeft": 0,
+                      "qTop": 6,
+                      "qWidth": 1,
+                      "qHeight": 8
+                    }
+                  },
+                  {
+                    "qMatrix": [
+                      [
+                        {
+                          "qText": "6",
+                          "qNum": 6,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "6",
+                          "qNum": 6,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "6",
+                          "qNum": 6,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "5",
+                          "qNum": 5,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "5",
+                          "qNum": 5,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "5",
+                          "qNum": 5,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "5",
+                          "qNum": 5,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "5",
+                          "qNum": 5,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ]
+                    ],
+                    "qTails": [],
+                    "qArea": {
+                      "qLeft": 1,
+                      "qTop": 6,
+                      "qWidth": 1,
+                      "qHeight": 8
+                    }
+                  },
+                  {
+                    "qMatrix": [
+                      [
+                        {
+                          "qText": "15",
+                          "qNum": 15,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "15",
+                          "qNum": 15,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "15",
+                          "qNum": 15,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "15",
+                          "qNum": 15,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "15",
+                          "qNum": 15,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "15",
+                          "qNum": 15,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "14",
+                          "qNum": 14,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "14",
+                          "qNum": 14,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ]
+                    ],
+                    "qTails": [],
+                    "qArea": {
+                      "qLeft": 2,
+                      "qTop": 6,
+                      "qWidth": 1,
+                      "qHeight": 8
+                    }
+                  },
+                  {
+                    "qMatrix": [
+                      [
+                        {
+                          "qText": "2015-07-21",
+                          "qNum": 42206,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2015-07-21",
+                          "qNum": 42206,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2015-07-21",
+                          "qNum": 42206,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2015-07-20",
+                          "qNum": 42205,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2015-07-20",
+                          "qNum": 42205,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2015-07-20",
+                          "qNum": 42205,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2015-07-19",
+                          "qNum": 42204,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ],
+                      [
+                        {
+                          "qText": "2015-07-19",
+                          "qNum": 42204,
+                          "qElemNumber": 0,
+                          "qState": "L"
+                        }
+                      ]
+                    ],
+                    "qTails": [],
+                    "qArea": {
+                      "qLeft": 3,
+                      "qTop": 6,
+                      "qWidth": 1,
+                      "qHeight": 8
+                    }
+                  }
+                ],
+                "qPivotDataPages": [],
+                "qStackedDataPages": [],
+                "qMode": "S",
+                "qNoOfLeftDims": -1,
+                "qTreeNodesOnDim": [],
+                "qColumnOrder": [],
+                "columnOrder": [
+                  0,
+                  1,
+                  2,
+                  3
+                ],
+                "customErrorMessage": {
+                  "calcCond": "No license usage is associated with your current selections."
+                },
+                "columnWidths": [
+                  -1,
+                  -1,
+                  -1,
+                  -1
+                ]
+              },
+              "showTitles": true,
+              "title": "Login Access Passes per User",
+              "subtitle": "308 Users",
+              "footnote": "",
+              "totals": {
+                "show": false,
+                "position": "bottom",
+                "label": "Total"
+              },
+              "visualization": "table",
+              "qHasSoftPatches": true,
+              "snapshotData": {
+                "object": {
+                  "size": {
+                    "w": 807,
+                    "h": 313
+                  },
+                  "dataTableRowCount": 8,
+                  "dataTableHeight": 203.77804565429688
+                },
+                "parent": {
+                  "h": 680,
+                  "w": 1519
+                }
+              },
+              "visualizationType": "table",
+              "sourceObjectId": "JXBWFXE",
+              "timestamp": 1438357156190,
+              "isClone": false
+            },
+            "qBookmark": {
+              "qStateData": [
+                {
+                  "qStateName": "$",
+                  "qFieldItems": []
+                }
+              ],
+              "qUtcModifyTime": 44805.70921296296,
+              "qVariableItems": [],
+              "qPatches": []
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

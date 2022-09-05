@@ -1,0 +1,45 @@
+///$tab monitor_app_reload_stats
+SUB monitor_app_stats_incremental	// Use this to append new 'status' entry to table  
+    Concatenate (monitor_app_reload_stats)
+    Load
+      RowNo() as [Log Entry],
+      timestamp(now(1)) as [Log Timestamp],
+      '$(sev)' as [Log Severity],
+      '$(comp)' as Host,
+      '$(description)' as Description,
+      '$(message)' as [Log Message],
+      '$(obj)' as Object
+    AutoGenerate (1);
+    
+ENDSUB
+   
+SUB monitor_app_reload_stats (sev, obj, message, description)
+  
+  IF description = 'Reload Start' THEN
+  	// Check for existing base status file
+	IF FileSize('$(monitorAppStatsFile)') > 0 THEN
+      monitor_app_reload_stats:
+      Load * From '$(monitorAppStatsFile)' (txt, utf8, embedded labels, delimiter is '\t', msq);
+    ELSE
+      Trace Did not find $(monitorAppStatsFile) - will create a new file.;
+      monitor_app_reload_stats:
+      Load * Inline [Log Entry, Log Timestamp, Log Severity,Host,Description,Log Message,Object];
+    ENDIF
+
+    Let appMonitorStatsRowsInit = NoOfRows('monitor_app_reload_stats');
+    CALL monitor_app_stats_incremental		// Add start message
+  
+  ELSEIF description = 'Status Message' THEN    
+    CALL monitor_app_stats_incremental		// Add status message
+    
+  ELSEIF description = 'Reload Finish' THEN
+  	CALL monitor_app_stats_incremental		// Add Finish message
+    STORE monitor_app_reload_stats into '$(monitorAppStatsFile)' (txt, delimiter is '\t');
+    DROP TABLE monitor_app_reload_stats; 
+  
+  ELSE
+  	trace Something went wrong with the monitor app reload status messaging.;
+  
+  ENDIF
+
+ENDSUB

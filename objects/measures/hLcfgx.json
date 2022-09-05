@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "hLcfgx",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Users Accessing Apps",
+    "qDef": "Num(\ncount({<proxy_session_id_app_id={\"*\"},UserId={\"*\"}>} distinct UserId)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Users Accessing Apps",
+    "description": "Count of unique users who accessed an app.\nNote: This reports the count of users who accessed apps during the selected timeframe - not the count of users granted access or allocated tokens in the QMC.",
+    "tags": []
+  }
+}

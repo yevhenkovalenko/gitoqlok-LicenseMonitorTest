@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "b7d4f201-049d-42aa-82c5-1cb5ed60588b",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "QRS_connectErrors",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "0",
+  "tags": []
+}

@@ -1,0 +1,625 @@
+{
+  "qInfo": {
+    "qId": "FWtbWM",
+    "qType": "snapshot"
+  },
+  "qMetaDef": {
+    "title": "User Access Sessions per User",
+    "description": ""
+  },
+  "sheetId": "WshBxg",
+  "creationDate": "2015-07-31T15:45:58.402Z",
+  "qSelectionInfo": {
+    "qInSelections": false,
+    "qMadeSelections": false
+  },
+  "qHyperCube": {
+    "qSize": {
+      "qcx": 4,
+      "qcy": 9
+    },
+    "qDimensionInfo": [
+      {
+        "qFallbackTitle": "User Id",
+        "qApprMaxGlyphCount": 17,
+        "qCardinal": 1323,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "User Id"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 9,
+          "qOption": 0,
+          "qDeselected": 0,
+          "qAlternative": 875,
+          "qExcluded": 439,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$ascii",
+          "$text"
+        ],
+        "qDimensionType": "D",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "UserId"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "title": "User Id",
+        "autoSort": false,
+        "cId": "NegTtr",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      }
+    ],
+    "qMeasureInfo": [
+      {
+        "qFallbackTitle": "Last 28 Days",
+        "qApprMaxGlyphCount": 2,
+        "qCardinal": 0,
+        "qSortIndicator": "A",
+        "qNumFormat": {
+          "qType": "F",
+          "qnDec": 2,
+          "qUseThou": 0,
+          "qFmt": "#,##0",
+          "qDec": ".",
+          "qThou": ","
+        },
+        "qMin": 1,
+        "qMax": 23,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "ccHUB"
+      },
+      {
+        "qFallbackTitle": "Total",
+        "qApprMaxGlyphCount": 2,
+        "qCardinal": 0,
+        "qSortIndicator": "D",
+        "qNumFormat": {
+          "qType": "F",
+          "qnDec": 2,
+          "qUseThou": 0,
+          "qFmt": "#,##0",
+          "qDec": ".",
+          "qThou": ","
+        },
+        "qMin": 1,
+        "qMax": 23,
+        "qAttrExprInfo": [
+          {
+            "qMin": 0,
+            "qMax": 0,
+            "qNumFormat": {
+              "qType": "U",
+              "qnDec": 10,
+              "qUseThou": 0
+            },
+            "id": "cellBackgroundColor"
+          },
+          {
+            "qMin": 0,
+            "qMax": 0,
+            "qNumFormat": {
+              "qType": "U",
+              "qnDec": 10,
+              "qUseThou": 0
+            },
+            "id": "cellForegroundColor"
+          }
+        ],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "CsvyEL",
+        "numFormatFromTemplate": true,
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      },
+      {
+        "qFallbackTitle": "Last Session",
+        "qApprMaxGlyphCount": 10,
+        "qCardinal": 0,
+        "qSortIndicator": "D",
+        "qNumFormat": {
+          "qType": "D",
+          "qnDec": 0,
+          "qUseThou": 0,
+          "qFmt": "YYYY-MM-DD"
+        },
+        "qMin": 42209,
+        "qMax": 42215,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": false,
+        "cId": "JAjHqkh"
+      }
+    ],
+    "qEffectiveInterColumnSortOrder": [
+      1,
+      0,
+      3,
+      2
+    ],
+    "qGrandTotalRow": [
+      {
+        "qText": "58",
+        "qNum": 58,
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      },
+      {
+        "qText": "58",
+        "qNum": 58,
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      },
+      {
+        "qText": "2015-07-30",
+        "qNum": 42215,
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      }
+    ],
+    "qDataPages": [
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "marketing_212",
+              "qNum": "NaN",
+              "qElemNumber": 1127,
+              "qState": "S"
+            }
+          ],
+          [
+            {
+              "qText": "operations_21",
+              "qNum": "NaN",
+              "qElemNumber": 1265,
+              "qState": "S"
+            }
+          ],
+          [
+            {
+              "qText": "finance_512",
+              "qNum": "NaN",
+              "qElemNumber": 755,
+              "qState": "S"
+            }
+          ],
+          [
+            {
+              "qText": "finance_521",
+              "qNum": "NaN",
+              "qElemNumber": 765,
+              "qState": "S"
+            }
+          ],
+          [
+            {
+              "qText": "marketing_102",
+              "qNum": "NaN",
+              "qElemNumber": 1013,
+              "qState": "S"
+            }
+          ],
+          [
+            {
+              "qText": "finance_421",
+              "qNum": "NaN",
+              "qElemNumber": 617,
+              "qState": "S"
+            }
+          ],
+          [
+            {
+              "qText": "finance_412",
+              "qNum": "NaN",
+              "qElemNumber": 608,
+              "qState": "S"
+            }
+          ],
+          [
+            {
+              "qText": "operations_12",
+              "qNum": "NaN",
+              "qElemNumber": 1113,
+              "qState": "S"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 0,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "1",
+              "qNum": 1,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "4",
+              "qNum": 4,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "4",
+              "qNum": 4,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "4",
+              "qNum": 4,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "5",
+              "qNum": 5,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "7",
+              "qNum": 7,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "8",
+              "qNum": 8,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 1,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "1",
+              "qNum": 1,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "4",
+              "qNum": 4,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "4",
+              "qNum": 4,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "4",
+              "qNum": 4,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "5",
+              "qNum": 5,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "7",
+              "qNum": 7,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "8",
+              "qNum": 8,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 2,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "2015-07-28",
+              "qNum": 42213,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-24",
+              "qNum": 42209,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-28",
+              "qNum": 42213,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ],
+          [
+            {
+              "qText": "2015-07-30",
+              "qNum": 42215,
+              "qElemNumber": 0,
+              "qState": "L"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 3,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      }
+    ],
+    "qPivotDataPages": [],
+    "qStackedDataPages": [],
+    "qMode": "S",
+    "qNoOfLeftDims": -1,
+    "qTreeNodesOnDim": [],
+    "qColumnOrder": [],
+    "columnOrder": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "customErrorMessage": {
+      "calcCond": "No license usage is associated with your current selections."
+    },
+    "columnWidths": [
+      -1,
+      -1,
+      -1,
+      -1
+    ]
+  },
+  "showTitles": true,
+  "title": "User Access Sessions per User",
+  "subtitle": "9 Users",
+  "footnote": "",
+  "totals": {
+    "show": false,
+    "position": "bottom"
+  },
+  "visualization": "table",
+  "qHasSoftPatches": true,
+  "snapshotData": {
+    "object": {
+      "size": {
+        "w": 807,
+        "h": 313
+      },
+      "dataTableRowCount": 8,
+      "dataTableHeight": 203.77804565429688
+    },
+    "parent": {
+      "h": 680,
+      "w": 1519
+    }
+  },
+  "visualizationType": "table",
+  "sourceObjectId": "mUJbu",
+  "timestamp": 1438357558389,
+  "isClone": false
+}

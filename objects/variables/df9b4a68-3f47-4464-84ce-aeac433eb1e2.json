@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "df9b4a68-3f47-4464-84ce-aeac433eb1e2",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NumRows_qrs_loginAccess",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "1",
+  "tags": []
+}

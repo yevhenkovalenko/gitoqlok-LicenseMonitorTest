@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "rNkUVc",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "All-time Users Accessing Apps",
+    "qDef": "count({1<[Access Type] = {\"*\"}>} DISTINCT UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "All-time Users Accessing Apps",
+    "description": "Count of Users who accessed an app over all time.",
+    "tags": []
+  }
+}

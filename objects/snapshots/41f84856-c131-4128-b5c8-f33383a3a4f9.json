@@ -1,0 +1,189 @@
+{
+  "qInfo": {
+    "qId": "41f84856-c131-4128-b5c8-f33383a3a4f9",
+    "qType": "snapshot"
+  },
+  "qMetaDef": {
+    "title": "",
+    "description": "",
+    "annotation": ""
+  },
+  "creationDate": "2018-04-25T13:21:51.778Z",
+  "snapshotData": {
+    "object": {
+      "size": {
+        "w": 586,
+        "h": 405
+      }
+    },
+    "rtl": false,
+    "parent": {
+      "h": 1048,
+      "w": 2048
+    }
+  },
+  "qSelectionInfo": {},
+  "qHyperCube": {
+    "qSize": {
+      "qcx": 1,
+      "qcy": 5
+    },
+    "qDimensionInfo": [
+      {
+        "qFallbackTitle": "User Access Created",
+        "qApprMaxGlyphCount": 10,
+        "qCardinal": 5,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "User Access Created"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 5,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 0,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$numeric",
+          "$timestamp",
+          "$integer",
+          "$date"
+        ],
+        "qDimensionType": "N",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "D",
+          "qnDec": 0,
+          "qUseThou": 0,
+          "qFmt": "YYYY-MM-DD"
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "User Access Created"
+        ],
+        "qMin": 43192,
+        "qMax": 43215,
+        "qContinuousAxes": true,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "autoSort": true,
+        "cId": "aRuSD",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        },
+        "representation": {
+          "type": "text",
+          "urlLabel": ""
+        }
+      }
+    ],
+    "qMeasureInfo": [],
+    "qEffectiveInterColumnSortOrder": [
+      0
+    ],
+    "qGrandTotalRow": [],
+    "qDataPages": [
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "2018-04-02",
+              "qNum": 43192,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2018-04-03",
+              "qNum": 43193,
+              "qElemNumber": 2,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2018-04-04",
+              "qNum": 43194,
+              "qElemNumber": 3,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2018-04-05",
+              "qNum": 43195,
+              "qElemNumber": 4,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2018-04-25",
+              "qNum": 43215,
+              "qElemNumber": 0,
+              "qState": "O"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 0,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 5
+        }
+      }
+    ],
+    "qPivotDataPages": [],
+    "qStackedDataPages": [],
+    "qMode": "S",
+    "qNoOfLeftDims": -1,
+    "qTreeNodesOnDim": [],
+    "qColumnOrder": [
+      0
+    ],
+    "columnOrder": [
+      0
+    ],
+    "columnWidths": [
+      -1
+    ]
+  },
+  "showTitles": true,
+  "title": "",
+  "subtitle": "",
+  "footnote": "",
+  "showDetails": false,
+  "totals": {
+    "show": true,
+    "position": "noTotals",
+    "label": "Totals"
+  },
+  "scrolling": {
+    "keepFirstColumnInView": false
+  },
+  "multiline": {
+    "wrapTextInHeaders": true,
+    "wrapTextInCells": true
+  },
+  "visualization": "table",
+  "visualizationType": "auto-chart",
+  "sourceObjectId": "JxNMkZ",
+  "sheetId": "d99aa2a2-0987-4392-bbba-756cb74cbdbb",
+  "timestamp": 1524662511766,
+  "isClone": false,
+  "supportExport": true
+}

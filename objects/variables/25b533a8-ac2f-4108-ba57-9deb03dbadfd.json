@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "25b533a8-ac2f-4108-ba57-9deb03dbadfd",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "rows_Events_incremental",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "164",
+  "tags": []
+}

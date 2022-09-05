@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "JVDjM",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "session_count_threshold"
+    ],
+    "qFieldLabels": [
+      "Session Threshold"
+    ],
+    "title": "Session Threshold",
+    "coloring": {
+      "changeHash": "0.13745691301301122"
+    }
+  },
+  "qMetaDef": {
+    "title": "Session Threshold",
+    "description": "Threshold of session counts (as defined as licensed sessions by a user). Use this to analyze how many users have met a session threshold in the selected timeframe. For example, select 4 in this field to see how many users have accessed Sense apps at least 4 times in the timeframe you have selected.",
+    "tags": []
+  }
+}

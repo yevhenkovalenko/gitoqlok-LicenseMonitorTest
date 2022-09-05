@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "KTPYm",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Access Passes",
+    "qDef": "Count({1<[Access Type] = {'Login'},LogTimeStamp= {\">=$(=DayStart(today()-6))\"}>} DISTINCT UsageId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Access Passes",
+    "description": "Login Access Passes used during the most recent 7 days.",
+    "tags": [
+      "last_7_days"
+    ]
+  }
+}

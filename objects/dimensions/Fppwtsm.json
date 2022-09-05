@@ -1,0 +1,23 @@
+{
+  "qInfo": {
+    "qId": "Fppwtsm",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "H",
+    "qFieldDefs": [
+      "Month",
+      "Date"
+    ],
+    "qFieldLabels": [],
+    "title": "Month>Date Drill"
+  },
+  "qMetaDef": {
+    "title": "Month>Date Drill",
+    "description": "Drill-down dimension including Month and Date.",
+    "tags": [
+      "date"
+    ]
+  },
+  "isEditMode": true
+}

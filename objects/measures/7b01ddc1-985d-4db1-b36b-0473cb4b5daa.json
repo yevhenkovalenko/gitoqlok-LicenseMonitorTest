@@ -1,0 +1,27 @@
+{
+  "qInfo": {
+    "qId": "7b01ddc1-985d-4db1-b36b-0473cb4b5daa",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Daily Average",
+    "qDef": "Num(Ceil(Count({1<[Access Type]={'User'},LogTimeStamp= {\">=$(=DayStart(today()-6))\"}>} distinct UserId)/7),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Daily Average",
+    "description": "Average number of tokens consumed from User Access pass usage.",
+    "tags": [
+      "last 7 days",
+      "user access"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "XfURJrZ",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Access Denials",
+    "qDef": "Num(\r\n\tCount({1<LogTimeStamp= {\">=$(=DayStart(today()-6))\"}>} DISTINCT usage_denied_access_id)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Access Denials",
+    "description": "Access Denials in last 7 days.",
+    "tags": [
+      "last_7_days"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "PmVNJbU",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Message"
+    ],
+    "qFieldLabels": [
+      "Log Message"
+    ],
+    "title": "Log Message"
+  },
+  "qMetaDef": {
+    "title": "Log Message",
+    "description": "Full message from log entry.",
+    "tags": []
+  }
+}

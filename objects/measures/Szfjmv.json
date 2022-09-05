@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "Szfjmv",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Total Tokens / Access",
+    "qDef": "Sum([License Total Tokens])",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','Total Tokens','Total Access')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Total Tokens / Access",
+    "description": "Total Tokens or Access in Sense License",
+    "tags": []
+  }
+}

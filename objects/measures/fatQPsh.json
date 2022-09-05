@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "fatQPsh",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Total Session Count",
+    "qDef": "Num(\ncount({<UserId={\"*\"}>} Distinct proxy_session_id_app_id)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Total Session Count",
+    "description": "Count of all unique user sessions.\nNOTE: This session count may differ from Sessions listed in the Operations Monitor and Sessions Monitor apps because this counts unique session Ids related to licensing, rather than counting all user-app sessions.",
+    "tags": []
+  }
+}

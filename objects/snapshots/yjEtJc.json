@@ -1,0 +1,804 @@
+{
+  "qInfo": {
+    "qId": "yjEtJc",
+    "qType": "snapshot"
+  },
+  "qMetaDef": {
+    "title": "Unused User Access Passes",
+    "description": "",
+    "annotation": "Example: Unused user access passes."
+  },
+  "sheetId": "WshBxg",
+  "creationDate": "2016-02-12T18:21:44.713Z",
+  "qSelectionInfo": {},
+  "qHyperCube": {
+    "qSize": {
+      "qcx": 5,
+      "qcy": 36
+    },
+    "qDimensionInfo": [
+      {
+        "qFallbackTitle": "User Id",
+        "qApprMaxGlyphCount": 26,
+        "qCardinal": 103,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "User Id"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 36,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 67,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$ascii",
+          "$text"
+        ],
+        "qDimensionType": "D",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "Unused UserId"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "autoSort": true,
+        "cId": "SKbPr",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        },
+        "representation": {
+          "type": "text",
+          "urlLabel": ""
+        }
+      },
+      {
+        "qFallbackTitle": "User Name",
+        "qApprMaxGlyphCount": 54,
+        "qCardinal": 15462,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "User Name"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 8426,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 7036,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [],
+        "qDimensionType": "D",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "User Name"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "title": "User Name",
+        "autoSort": true,
+        "cId": "wWbJPm",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        },
+        "representation": {
+          "type": "text",
+          "urlLabel": ""
+        }
+      },
+      {
+        "qFallbackTitle": "Last Modified",
+        "qApprMaxGlyphCount": 10,
+        "qCardinal": 4,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "Last Modified"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 4,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 0,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$numeric",
+          "$integer",
+          "$timestamp",
+          "$date"
+        ],
+        "qDimensionType": "N",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "D",
+          "qnDec": 0,
+          "qUseThou": 0,
+          "qFmt": "YYYY-MM-DD"
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "User Access Modified"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "autoSort": true,
+        "cId": "HwayGJ",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      },
+      {
+        "qFallbackTitle": "Modified By",
+        "qApprMaxGlyphCount": 19,
+        "qCardinal": 3089,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "Modified By"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 3089,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 0,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$ascii",
+          "$text"
+        ],
+        "qDimensionType": "D",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "User Access Modified by"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "autoSort": true,
+        "cId": "LrNHS",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      }
+    ],
+    "qMeasureInfo": [
+      {
+        "qFallbackTitle": "Access Granted",
+        "qApprMaxGlyphCount": 10,
+        "qCardinal": 0,
+        "qSortIndicator": "D",
+        "qNumFormat": {
+          "qType": "D",
+          "qnDec": 0,
+          "qUseThou": 0,
+          "qFmt": "YYYY-MM-DD"
+        },
+        "qMin": 42405,
+        "qMax": 42409,
+        "qAttrExprInfo": [
+          {
+            "qMin": "NaN",
+            "qMax": "NaN",
+            "qNumFormat": {
+              "qType": "U",
+              "qnDec": 10,
+              "qUseThou": 0
+            },
+            "id": "cellBackgroundColor"
+          },
+          {
+            "qMin": "NaN",
+            "qMax": "NaN",
+            "qNumFormat": {
+              "qType": "U",
+              "qnDec": 10,
+              "qUseThou": 0
+            },
+            "id": "cellForegroundColor"
+          }
+        ],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "TTUvP",
+        "numFormatFromTemplate": true,
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      }
+    ],
+    "qEffectiveInterColumnSortOrder": [
+      0,
+      2,
+      3,
+      4,
+      1
+    ],
+    "qGrandTotalRow": [
+      {
+        "qText": "2016-02-09",
+        "qNum": 42409,
+        "qElemNumber": -1,
+        "qState": "X",
+        "qIsTotalCell": true
+      }
+    ],
+    "qDataPages": [
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "QT\\johan_30",
+              "qNum": "NaN",
+              "qElemNumber": 81,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_31",
+              "qNum": "NaN",
+              "qElemNumber": 91,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_33",
+              "qNum": "NaN",
+              "qElemNumber": 82,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_35",
+              "qNum": "NaN",
+              "qElemNumber": 83,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_36",
+              "qNum": "NaN",
+              "qElemNumber": 84,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_37",
+              "qNum": "NaN",
+              "qElemNumber": 85,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_38",
+              "qNum": "NaN",
+              "qElemNumber": 86,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_42",
+              "qNum": "NaN",
+              "qElemNumber": 92,
+              "qState": "O"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 0,
+          "qTop": 6,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "johan_30",
+              "qNum": "NaN",
+              "qElemNumber": 2769,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "johan_31",
+              "qNum": "NaN",
+              "qElemNumber": 9927,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "johan_33",
+              "qNum": "NaN",
+              "qElemNumber": 1819,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "johan_35",
+              "qNum": "NaN",
+              "qElemNumber": 3088,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "johan_36",
+              "qNum": "NaN",
+              "qElemNumber": 263,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "johan_37",
+              "qNum": "NaN",
+              "qElemNumber": 5021,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "johan_38",
+              "qNum": "NaN",
+              "qElemNumber": 6415,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "johan_42",
+              "qNum": "NaN",
+              "qElemNumber": 13651,
+              "qState": "O"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 1,
+          "qTop": 6,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 0,
+              "qState": "L",
+              "qAttrExps": {
+                "qValues": [
+                  {
+                    "qNum": "NaN"
+                  },
+                  {
+                    "qNum": "NaN"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 4,
+          "qTop": 6,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "2016-02-05",
+              "qNum": 42405,
+              "qElemNumber": 1,
+              "qState": "O"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 2,
+          "qTop": 6,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      },
+      {
+        "qMatrix": [
+          [
+            {
+              "qText": "QT\\johan_30",
+              "qNum": "NaN",
+              "qElemNumber": 89,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_31",
+              "qNum": "NaN",
+              "qElemNumber": 99,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_33",
+              "qNum": "NaN",
+              "qElemNumber": 90,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_35",
+              "qNum": "NaN",
+              "qElemNumber": 91,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_36",
+              "qNum": "NaN",
+              "qElemNumber": 92,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_37",
+              "qNum": "NaN",
+              "qElemNumber": 93,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_38",
+              "qNum": "NaN",
+              "qElemNumber": 94,
+              "qState": "O"
+            }
+          ],
+          [
+            {
+              "qText": "QT\\johan_42",
+              "qNum": "NaN",
+              "qElemNumber": 100,
+              "qState": "O"
+            }
+          ]
+        ],
+        "qTails": [],
+        "qArea": {
+          "qLeft": 3,
+          "qTop": 6,
+          "qWidth": 1,
+          "qHeight": 8
+        }
+      }
+    ],
+    "qPivotDataPages": [],
+    "qStackedDataPages": [],
+    "qMode": "S",
+    "qNoOfLeftDims": -1,
+    "qTreeNodesOnDim": [],
+    "qColumnOrder": [],
+    "customErrorMessage": {
+      "calcCond": "No unused user access tokens associated with current selections - or no REST connector found during reload."
+    },
+    "columnOrder": [
+      0,
+      1,
+      4,
+      2,
+      3
+    ],
+    "columnWidths": [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1
+    ]
+  },
+  "showTitles": true,
+  "title": "Unused User Access Passes",
+  "subtitle": "36 unused user access passes",
+  "footnote": "",
+  "totals": {
+    "show": false,
+    "position": "noTotals",
+    "label": "Totals"
+  },
+  "visualization": "table",
+  "snapshotData": {
+    "object": {
+      "size": {
+        "w": 550,
+        "h": 341
+      }
+    },
+    "parent": {
+      "h": 886,
+      "w": 1689
+    }
+  },
+  "visualizationType": "table",
+  "sourceObjectId": "JUHQJ",
+  "timestamp": 1455301304665,
+  "isClone": false
+}

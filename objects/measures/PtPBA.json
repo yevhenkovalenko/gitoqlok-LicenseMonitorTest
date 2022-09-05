@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "PtPBA",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Access",
+    "qDef": "count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-28))\"}>} distinct UsageId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Access",
+    "description": "Login Access passes used during last 28 days.\nUse this measure for assessing the equivalent tokens consumed through Login Access Passes.\nFor broader historical charts (e.g. spanning 2-12 months) consider using the \"Login Passes\" measure.",
+    "tags": [
+      "last_28_days"
+    ]
+  }
+}

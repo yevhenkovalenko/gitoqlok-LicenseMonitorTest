@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "63cdc0da-170c-488c-a770-ac516f5a77a5",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Analyzer Capacity Minutes Used (Current Month)",
+    "qDef": "Num(Sum({<[Access Type]={\"Analyzer Capacity\"}, month_to_date = {'1'}>} [Analyzer Capacity Used (Minutes)]),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "='Minutes This Month'",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {},
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "'Analyzer Capacity Minutes renew the first day of each month. This measure calculates Analyzer Capacity minutes used so far in the current month.'\r\n& IF(license_type_enabled<>'Token-based' \n\tAND [License Allocated Analyzer Capacity (Minutes)]>0\n    AND Not Sum([Analyzer Capacity Used (Minutes)])>0,\n    '* Analyzer Capacity Minutes usage is captured historically in the logs starting in June 2019 Sense.' &\n    ' Earlier versions of Sense will report Analyzer Capacity Minutes = 0 in this chart even though minutes were used historically.'\n    ,'')"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "Analyzer Capacity Minutes Used (Current Month)",
+    "description": "",
+    "tags": []
+  }
+}

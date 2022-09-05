@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "vwVJexT",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "User Access Created"
+    ],
+    "qFieldLabels": [
+      "User Access Granted"
+    ],
+    "title": "User Access Granted",
+    "coloring": {
+      "changeHash": "0.6937254935037345"
+    }
+  },
+  "qMetaDef": {
+    "title": "User Access Granted",
+    "description": "When User was granted access to a user access type (Professional, Analyzer, or User Token).",
+    "tags": []
+  }
+}

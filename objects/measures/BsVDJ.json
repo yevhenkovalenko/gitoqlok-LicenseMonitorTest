@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "BsVDJ",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Analyzer Access",
+    "qDef": "Num(Count({<[Access Type]={\"Analyzer\"},proxy_session_id_app_id={\"*\"}>} distinct UserId),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Analyzer Access",
+    "description": "Count of Analyzer Access users active during given time period.",
+    "tags": []
+  }
+}

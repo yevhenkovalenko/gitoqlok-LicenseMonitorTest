@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "zQfBnb",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Unified Licensing Product"
+    ],
+    "qFieldLabels": [
+      "Unified Licensing Product"
+    ],
+    "title": "Unified Licensing Product",
+    "coloring": {
+      "changeHash": "0.8418377011548728"
+    }
+  },
+  "qMetaDef": {
+    "title": "Unified Licensing Product",
+    "description": "For customers enjoying Unified Licensing (QlikView + Qlik Sense), this dimension distinguishes which product was associated with the license consumption (Professional, Analyzer, or Analyzer Capacity)",
+    "tags": []
+  }
+}

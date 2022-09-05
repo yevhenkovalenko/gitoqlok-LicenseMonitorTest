@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "QPfPN",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Apps",
+    "qDef": "num(count(distinct AppId),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Apps",
+    "description": "Count of apps accessed (by AppId)",
+    "tags": []
+  }
+}

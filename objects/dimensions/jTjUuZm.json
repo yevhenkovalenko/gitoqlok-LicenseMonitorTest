@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "jTjUuZm",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Date"
+    ],
+    "qFieldLabels": [
+      "Date"
+    ],
+    "title": "Date"
+  },
+  "qMetaDef": {
+    "title": "Date",
+    "description": "",
+    "tags": []
+  }
+}

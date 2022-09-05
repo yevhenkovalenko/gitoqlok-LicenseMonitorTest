@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "36b2ce5c-746a-4f1d-83cd-66b59249f08c",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Users Making Allocations",
+    "qDef": "Count({<[License Allocation]={\"*\"}>} Distinct UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Users Making Allocations",
+    "description": "",
+    "tags": []
+  }
+}

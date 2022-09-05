@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "9f062be5-e7c5-40b7-bc0d-879f4ce8609c",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Latest Session",
+    "qDef": "date(\nMax([Access Date])\n)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Latest Session",
+    "description": "Latest session date",
+    "tags": []
+  }
+}

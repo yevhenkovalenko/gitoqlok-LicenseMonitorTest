@@ -1,0 +1,24 @@
+{
+  "qInfo": {
+    "qId": "a1f2cbcf-80d0-4c9a-a0d0-d7b4e4947ba7",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Login Access Users",
+    "qDef": "count({<[Access Type] = {'Login'}>} distinct UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Login Access Users",
+    "description": "Count of unique users who accessed an app(s) using a login access pass.",
+    "tags": []
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "ZkcYmPr",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "User Access Users (28 Days)",
+    "qDef": "count({<[Access Type]={'User'},LogTimeStamp= {\">=$(=daystart(today()-27))\"}>} distinct UserId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "User Access Users (28 Days)",
+    "description": "Count of unique users who accessed an app(s) using a user access pass during the most recent 28 days.\nIf no selections are made, this displays the count of users for the most recent 28 days.\nIf month \"Jan 2014\" were selected, this measure would report the count of users for the last 28 days of January 2014.",
+    "tags": [
+      "last_28_days"
+    ]
+  }
+}

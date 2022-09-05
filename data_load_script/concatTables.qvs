@@ -1,0 +1,40 @@
+///$tab concatTables
+SUB concatTables (concatToTable, incrementalTable, concatField)
+
+  TRACE Concatenating tables...;
+  
+  Let rows$(incrementalTable)Final = num(NoOfRows('$(incrementalTable)'),'#,##0');
+  trace $(rows$(incrementalTable)Final) incremental rows loaded;
+  
+  IF NoOfRows('$(incrementalTable)')>0 then
+  
+    IF concatToTable = 'LogContent' THEN	
+      CONCATENATE ($(concatToTable))
+      LOAD 
+          *, 
+          $(concatField)_temp as $(concatField),
+          (round(num(LogEntryPeriodStart),0.0006)&'|'&round(num(LogTimeStamp),0.0006)) as _TimeDIM_Link	// to link w/ datetime table
+      RESIDENT $(incrementalTable)
+          WHERE NOT Exists ($(concatField),$(concatField)_temp);
+  
+    ELSE	// sessionData does no have LogEntryPeriodStart field
+  
+      CONCATENATE ($(concatToTable))
+      LOAD 
+          *, 
+          $(concatField)_temp as $(concatField)
+      RESIDENT $(incrementalTable)
+          WHERE NOT Exists ($(concatField),$(concatField)_temp);
+      
+    END IF
+    
+    drop field $(concatField)_temp from $(concatToTable);
+    
+  ELSE
+    Trace No incremental rows for $(incrementalTable);  // Should only ever occur if all Qlik Services are stopped  
+  
+  ENDIF
+  
+    drop table $(incrementalTable);
+
+ENDSUB

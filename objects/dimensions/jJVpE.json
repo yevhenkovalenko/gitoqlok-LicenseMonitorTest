@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "jJVpE",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "User Access Last Used"
+    ],
+    "qFieldLabels": [
+      "User Access Last Used"
+    ],
+    "title": "User Access Last Used",
+    "coloring": {
+      "changeHash": "0.29394363914616406",
+      "colorMapRef": "jJVpE"
+    }
+  },
+  "qMetaDef": {
+    "title": "User Access Last Used",
+    "description": "The last time a user access Sense using an allocated pass.\nNote: This does not include Login Access pass users.",
+    "tags": []
+  }
+}

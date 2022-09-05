@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "703d67fb-1c0e-45f3-8e08-9df3d3f7de90",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "errorsBefore",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "0",
+  "tags": []
+}

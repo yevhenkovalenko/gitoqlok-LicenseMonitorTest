@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "mNJhbh",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Hour of Day"
+    ],
+    "qFieldLabels": [
+      "Hour of Day"
+    ],
+    "title": "Hour of Day"
+  },
+  "qMetaDef": {
+    "title": "Hour of Day",
+    "description": "",
+    "tags": []
+  }
+}

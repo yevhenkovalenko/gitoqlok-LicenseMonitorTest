@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "ec70e022-1d79-49ee-8cdc-d2e3ccf07c21",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "f_name",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "lib://ServerLogFolder/governance_qlikview_Events_7.18.0",
+  "tags": []
+}

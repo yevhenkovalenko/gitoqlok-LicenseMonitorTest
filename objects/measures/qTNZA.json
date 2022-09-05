@@ -1,0 +1,29 @@
+{
+  "qInfo": {
+    "qId": "qTNZA",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Analyzer Capacity Total Time (Minutes)",
+    "qDef": "IF([License Allocated Analyzer Capacity (Minutes)] > 5,Num([License Allocated Analyzer Capacity (Minutes)],'#,##0'),0)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "analyzer_capacity_message"
+      }
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Analyzer Capacity Total Time (Minutes)",
+    "description": "",
+    "tags": []
+  }
+}

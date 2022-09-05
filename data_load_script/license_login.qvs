@@ -1,0 +1,30 @@
+///$tab license_login
+SUB monitor_apps_REST_license_login
+  
+  LIB CONNECT TO 'monitor_apps_REST_license_login';
+  
+  License_LoginAccessGroups:
+  Load
+      timestamp("createdDate",'YYYY-MM-DD hh:mm') as [Login Access Created],
+      timestamp("modifiedDate",'YYYY-MM-DD hh:mm') as [Login Access Modified],
+      "modifiedByUserName" as [Login Access Modified by],
+      "name" as [Login Access Rule],
+      "usedAccessTypes" as [Login Passes Used],
+      "remainingAccessTypes" as [Login Passes Remaining],	// ??
+      "assignedAccessTypes" as [Login Passes Assigned],	// ??
+      "assignedTokens" as [Login Access Token Count];
+  SQL SELECT 
+      "createdDate",
+      "modifiedDate",
+      "modifiedByUserName",
+      "name",
+      "usedAccessTypes",
+      "remainingAccessTypes",
+      "assignedAccessTypes",
+      "assignedTokens"
+      
+  FROM JSON (wrap on) "root";
+  
+  LET NumRows_monitor_apps_REST_license_login = NoOfRows('License_LoginAccessGroups');
+  
+ENDSUB

@@ -1,0 +1,8 @@
+///$tab defineFields
+SUB defineFields
+	// End each variable definition (list of fields) with a comma //
+  // Common Fields are defined on the loadFiles
+  
+  LET fieldsAuditSecurity 		= '';
+
+ENDSUB

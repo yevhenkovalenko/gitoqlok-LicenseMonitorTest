@@ -1,0 +1,26 @@
+{
+  "qInfo": {
+    "qId": "863aa85c-2a59-4c59-aa7e-35dc2fa26a92",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "User Access Sessions",
+    "qDef": "count({1<LogTimeStamp= {\">=$(=DayStart(today()-6))\"},[Access Type] = {'User'}> } DISTINCT ProxySessionId)",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "User Access Sessions",
+    "description": "Last 7 Days: Count of User Access Passes used to access Qlik Apps.\nNote: This is different than the count of user sessions in the Operations Monitor, which includes concurrent sessions.",
+    "tags": [
+      "last_7_days"
+    ]
+  }
+}

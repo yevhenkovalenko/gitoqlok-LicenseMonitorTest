@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "a51ff3b1-c450-4339-b0d3-abe42a6b18e4",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "db_v_file",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "1",
+  "tags": []
+}

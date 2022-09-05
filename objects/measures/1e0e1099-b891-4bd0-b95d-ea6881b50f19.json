@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "1e0e1099-b891-4bd0-b95d-ea6881b50f19",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "User Tokens or Professional Access",
+    "qDef": "Num(Count({<[Access Type]={'User','Professional'},proxy_session_id_app_id={\"*\"}>} distinct UserId),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','User Access Users','Professional Access Users')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "User Tokens or Professional Access",
+    "description": "",
+    "tags": []
+  }
+}

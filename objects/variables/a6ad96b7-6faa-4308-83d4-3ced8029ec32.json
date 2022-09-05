@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "a6ad96b7-6faa-4308-83d4-3ced8029ec32",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "file_time",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "42410.508125",
+  "tags": []
+}

@@ -1,0 +1,25 @@
+{
+  "qInfo": {
+    "qId": "kzvHX",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Users Exceeding Session Count Threshold",
+    "qDef": "Num(Count(Distinct If(Aggr(count({<UserId={\"*\"}>} Distinct proxy_session_id_app_id), UserId ) >= v_session_count_threshold ,UserId ) ),'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "='Users with >= ' & v_session_count_threshold & '  App Sessions'",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {}
+  },
+  "qMetaDef": {
+    "title": "Users Exceeding Session Count Threshold",
+    "description": "Count of users who have accessed Qlik Sense apps (\"Sessions\")  at or above the App Session Threshold selected. If no selection of Session Threshold is made, the max possible value (12) is used.",
+    "tags": []
+  }
+}

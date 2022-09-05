@@ -1,0 +1,66 @@
+///$tab RUN Logic
+//// Reload Logic  ////
+
+CALL monitor_app_reload_stats('INFO','License Monitor', startMsg,'Reload Start')
+
+LET baseTableName = '$(baseTableName)_file';		// Store log history QVD with suffix _file so it only gets used with file logging
+TRACE Last Reload Compare time = $(lastReloadCompare). CutoffDate = $(cutoffDate).;
+
+REM Load the historical (incremental) QVD if it exists;
+CALL loadBaseTable ('LogContent', '$(baseTableName)')		// Main License_Repository logs
+CALL loadBaseTable ('sessionData','$(sessionTableName)')	// Session_Engine log for App Name	TODO App Name for License
+
+REM table for commands;
+CALL CommandList
+
+REM initialize working tables;
+working:
+Load * inline [ProxyPackageId,RequestSequenceId]; 
+working_session:
+NoConcatenate Load * Inline [ProxySessionId, LogTimeStamp]; 
+
+REM The log source (file or database) determines how the log data are loaded, which is defined next;
+
+CALL logList
+CALL defineFields
+CALL multiNodeConfig
+CALL logFolderList
+// This loops through the Sense\Log folder on the central node + each [hostname] folder in the Sense\Repository\Archived Logs folder
+for i = 0 to noofrows('logFolderList')-1
+  // Loop through each logfile enumerated in the logList SUB
+  FOR j = 0 to noofrows('logList')-1  
+    CALL loadFiles (i,j)
+  next j  
+  CALL sessionData (i)
+next i
+drop tables logList, logFolderList;
+SET logSource = 'Log Files';
+SET LastReloadSource = 1;
+
+Let rowsWorkingFinal = num(NoOfRows('working'),'#,##0');
+trace $(rowsWorkingFinal) incremental rows loaded;
+ 
+CALL concatTables ('LogContent', 'working','Id')
+CALL storeFiles ('LogContent', '$(baseTableName)')
+
+Let sessionTableCount = NoOfRows('working_session');
+IF $(sessionTableCount) > 0 THEN	// check sessionData for rows -- otherwise this reload will fail until there is at least one session
+  CALL concatTables ('sessionData', 'working_session','Id')
+  CALL storeFiles ('sessionData', '$(sessionTableName)')
+  Drop fields LogTimeStamp, Id from sessionData;	// To avoid synthetic keys
+  
+ELSEIF NoOfRows('sessionData') >0 then
+  Drop fields LogTimeStamp, Id from sessionData;
+  drop table working_session;
+ELSE
+  trace No incremental session data (Open App) found. Skipping update.;
+  drop tables working_session, sessionData;		// Drop these tables if no sessions to avoid synthetic keys
+END IF
+
+CALL QRS		// Call QRS data AFTER LogContent table is stored
+
+CALL qlikview_logs	// For Unified Licensing of QlikView + Qlik Sense customers. This checks for QlikView Server logs in the monitor_apps_qlikview_logs data connection. No data = skip the script logic for dual-use
+
+CALL calendarization
+CALL supportingLogic
+CALL finalize

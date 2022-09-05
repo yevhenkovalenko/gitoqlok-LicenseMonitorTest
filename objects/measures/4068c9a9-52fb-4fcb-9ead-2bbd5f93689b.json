@@ -1,0 +1,30 @@
+{
+  "qInfo": {
+    "qId": "4068c9a9-52fb-4fcb-9ead-2bbd5f93689b",
+    "qType": "measure"
+  },
+  "qMeasure": {
+    "qLabel": "Tokens or Access Used Summary",
+    "qDef": "num(ceil(count({<[Access Type]={'Login'},LogTimeStamp= {\">=$(=timestamp(ReloadTime()-28))\"}>} distinct UsageId)/10)\r\n+count({<[Access Type]-={'Login'}>} distinct UserId)\n,'#,##0')",
+    "qGrouping": "N",
+    "qExpressions": [],
+    "qActiveExpression": 0,
+    "qLabelExpression": "IF((license_type_enabled)='Token-based','Tokens Used','Access Used')",
+    "qNumFormat": {
+      "qType": "U",
+      "qnDec": 10,
+      "qUseThou": 0
+    },
+    "coloring": {},
+    "descriptionExpression": {
+      "qStringExpression": {
+        "qExpr": "IF((license_type_enabled)='Token-based','Total tokens. NOTE: Login Access token usage is based on Login Access pass usage for the last 28 days only.'\r\n,'Total access used over time, given as a count of users who accessed Sense by each access type (Professional, Analyzer, Analyzer Capacity).')"
+      }
+    }
+  },
+  "qMetaDef": {
+    "title": "Tokens or Access Used Summary",
+    "description": "",
+    "tags": []
+  }
+}

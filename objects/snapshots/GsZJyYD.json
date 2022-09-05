@@ -1,0 +1,435 @@
+{
+  "qInfo": {
+    "qId": "GsZJyYD",
+    "qType": "snapshot"
+  },
+  "qMetaDef": {
+    "title": "Users Denied Access",
+    "description": ""
+  },
+  "sheetId": "RDJy",
+  "creationDate": "2015-07-31T15:37:47.753Z",
+  "qSelectionInfo": {},
+  "qHyperCube": {
+    "qSize": {
+      "qcx": 1,
+      "qcy": 13
+    },
+    "qDimensionInfo": [
+      {
+        "qFallbackTitle": "User Id",
+        "qApprMaxGlyphCount": 17,
+        "qCardinal": 1323,
+        "qSortIndicator": "A",
+        "qGroupFallbackTitles": [
+          "User Id"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 1323,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 0,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$ascii",
+          "$text"
+        ],
+        "qDimensionType": "D",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "U",
+          "qnDec": 0,
+          "qUseThou": 0
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "UserId"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "title": "User Id",
+        "autoSort": true,
+        "cId": "mTQv",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      },
+      {
+        "qFallbackTitle": "Date",
+        "qApprMaxGlyphCount": 10,
+        "qCardinal": 79,
+        "qSortIndicator": "D",
+        "qGroupFallbackTitles": [
+          "Date"
+        ],
+        "qGroupPos": 0,
+        "qStateCounts": {
+          "qLocked": 0,
+          "qSelected": 0,
+          "qOption": 79,
+          "qDeselected": 0,
+          "qAlternative": 0,
+          "qExcluded": 0,
+          "qSelectedExcluded": 0,
+          "qLockedExcluded": 0
+        },
+        "qTags": [
+          "$numeric",
+          "$integer",
+          "$timestamp",
+          "$date"
+        ],
+        "qDimensionType": "N",
+        "qGrouping": "N",
+        "qNumFormat": {
+          "qType": "D",
+          "qnDec": 0,
+          "qUseThou": 0,
+          "qFmt": "YYYY-MM-DD"
+        },
+        "qIsAutoFormat": true,
+        "qGroupFieldDefs": [
+          "Date"
+        ],
+        "qMin": 0,
+        "qMax": 0,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qCardinalities": {
+          "qCardinal": 0,
+          "qHypercubeCardinal": 0,
+          "qAllValuesCardinal": -1
+        },
+        "title": "Date",
+        "autoSort": false,
+        "cId": "PJPEmCu",
+        "othersLabel": "Others",
+        "textAlign": {
+          "auto": true,
+          "align": "left"
+        }
+      }
+    ],
+    "qMeasureInfo": [
+      {
+        "qFallbackTitle": "Access Denials",
+        "qApprMaxGlyphCount": 3,
+        "qCardinal": 0,
+        "qSortIndicator": "D",
+        "qNumFormat": {
+          "qType": "F",
+          "qnDec": 2,
+          "qUseThou": 0,
+          "qFmt": "#,##0",
+          "qDec": ".",
+          "qThou": ","
+        },
+        "qMin": 2,
+        "qMax": 112,
+        "qAttrExprInfo": [],
+        "qAttrDimInfo": [],
+        "qTrendLines": [],
+        "autoSort": true,
+        "cId": "MatfVm",
+        "numFormatFromTemplate": true
+      }
+    ],
+    "qEffectiveInterColumnSortOrder": [
+      1,
+      0
+    ],
+    "qGrandTotalRow": [],
+    "qDataPages": [],
+    "qPivotDataPages": [
+      {
+        "qLeft": [
+          {
+            "qText": "2015-07-30",
+            "qElemNo": 77,
+            "qValue": 42215,
+            "qType": "N",
+            "qUp": 0,
+            "qDown": 7,
+            "qSubNodes": [
+              {
+                "qElemNo": -1,
+                "qValue": "NaN",
+                "qType": "T",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_init_2",
+                "qElemNo": 4,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_2",
+                "qElemNo": 6,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_20",
+                "qElemNo": 23,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_22",
+                "qElemNo": 25,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "marketing_2",
+                "qElemNo": 105,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "marketing_20",
+                "qElemNo": 122,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "marketing_22",
+                "qElemNo": 283,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_200",
+                "qElemNo": 303,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_202",
+                "qElemNo": 307,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_220",
+                "qElemNo": 320,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_222",
+                "qElemNo": 327,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 0,
+                "qSubNodes": []
+              },
+              {
+                "qText": "finance_500",
+                "qElemNo": 742,
+                "qValue": "NaN",
+                "qType": "N",
+                "qUp": 0,
+                "qDown": 8,
+                "qSubNodes": []
+              }
+            ]
+          }
+        ],
+        "qTop": [
+          {
+            "qText": "Access Denials",
+            "qElemNo": 0,
+            "qValue": "NaN",
+            "qType": "P",
+            "qUp": 0,
+            "qDown": 0,
+            "qSubNodes": []
+          }
+        ],
+        "qData": [
+          [
+            {
+              "qText": "42",
+              "qNum": 42,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "4",
+              "qNum": 4,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ],
+          [
+            {
+              "qText": "2",
+              "qNum": 2,
+              "qType": "V"
+            }
+          ]
+        ],
+        "qArea": {
+          "qLeft": 0,
+          "qTop": 0,
+          "qWidth": 1,
+          "qHeight": 13
+        }
+      }
+    ],
+    "qStackedDataPages": [],
+    "qMode": "P",
+    "qNoOfLeftDims": 2,
+    "qIndentMode": true,
+    "qTreeNodesOnDim": [],
+    "qColumnOrder": [],
+    "columnOrder": [
+      0,
+      1,
+      2
+    ],
+    "customErrorMessage": {
+      "calcCond": "No access denials are associated with your current selections."
+    }
+  },
+  "showTitles": true,
+  "title": "Users Denied Access",
+  "subtitle": "48 Users",
+  "footnote": "",
+  "visualization": "pivot-table",
+  "snapshotData": {
+    "object": {
+      "size": {
+        "w": 370,
+        "h": 313
+      }
+    },
+    "parent": {
+      "h": 680,
+      "w": 1519
+    }
+  },
+  "visualizationType": "pivot-table",
+  "sourceObjectId": "zDmrujJ",
+  "timestamp": 1438357067727,
+  "isClone": false
+}

@@ -1,0 +1,15 @@
+{
+  "qInfo": {
+    "qId": "d35076d0-7ee6-4352-a6d3-e8e5aaebf647",
+    "qType": "variable"
+  },
+  "qMetaDef": {},
+  "qName": "NoOfRowsqlikview_Events_historicalBASE",
+  "qNumberPresentation": {
+    "qType": "U",
+    "qnDec": 10,
+    "qUseThou": 0
+  },
+  "qDefinition": "164",
+  "tags": []
+}

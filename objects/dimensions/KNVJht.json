@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "KNVJht",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "=aggr(maxstring({<[License Allocation]={1}>} UserId),Id)"
+    ],
+    "qFieldLabels": [
+      "Modified by"
+    ],
+    "title": "Modified by"
+  },
+  "qMetaDef": {
+    "title": "Modified by",
+    "description": "UserId who made a change to license allocation.",
+    "tags": []
+  }
+}

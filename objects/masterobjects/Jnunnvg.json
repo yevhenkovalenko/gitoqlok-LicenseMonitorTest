@@ -1,0 +1,367 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "Jnunnvg",
+      "qType": "masterobject"
+    },
+    "qMetaDef": {
+      "title": "Login Access Pass by App with AppId",
+      "description": "Use this chart in case you have multiple apps with the same name in the same Stream. It includes AppId to distinguish the apps.",
+      "tags": []
+    },
+    "qHyperCubeDef": {
+      "qDimensions": [
+        {
+          "qLibraryId": "zjJSYF",
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [],
+            "qFieldLabels": [],
+            "qSortCriterias": [
+              {
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": true,
+            "cId": "ZUMRKS",
+            "othersLabel": "Others",
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            }
+          },
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_OFF",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {},
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          }
+        },
+        {
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [
+              "App Name"
+            ],
+            "qFieldLabels": [
+              "App"
+            ],
+            "qSortCriterias": [
+              {
+                "qSortByAscii": 1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": true,
+            "cId": "pWkLwgj",
+            "othersLabel": "Others",
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            },
+            "representation": {
+              "type": "text",
+              "urlLabel": ""
+            }
+          },
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_OFF",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {
+            "qv": "Others"
+          },
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          }
+        },
+        {
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [
+              "AppId"
+            ],
+            "qFieldLabels": [
+              ""
+            ],
+            "qSortCriterias": [
+              {
+                "qSortByAscii": 1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": true,
+            "cId": "UKmGBuM",
+            "othersLabel": "Others",
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            },
+            "representation": {
+              "type": "text",
+              "urlLabel": ""
+            }
+          },
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_OFF",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {
+            "qv": "Others"
+          },
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          }
+        },
+        {
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [
+              "App Stream"
+            ],
+            "qFieldLabels": [
+              "Stream"
+            ],
+            "qSortCriterias": [
+              {
+                "qSortByAscii": 1,
+                "qSortByLoadOrder": 1,
+                "qExpression": {}
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": true,
+            "cId": "DempH",
+            "othersLabel": "Others",
+            "textAlign": {
+              "auto": true,
+              "align": "left"
+            },
+            "representation": {
+              "type": "text",
+              "urlLabel": ""
+            }
+          },
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_OFF",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {
+            "qv": "Others"
+          },
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          }
+        }
+      ],
+      "qMeasures": [
+        {
+          "qDef": {
+            "qLabel": "Tokens Used for Login Access",
+            "qTags": [],
+            "qGrouping": "N",
+            "qDef": "ceil(count({<[Access Type]={'Login Access'},LogTimeStamp= {\">=$(=daystart(max(LogTimeStamp)-28))\"}>} distinct UsageId)/10)",
+            "qNumFormat": {
+              "qType": "F",
+              "qnDec": 2,
+              "qUseThou": 0,
+              "qFmt": "#,##0",
+              "qDec": ".",
+              "qThou": ","
+            },
+            "qAccumulate": 0,
+            "qActiveExpression": 0,
+            "qExpressions": [],
+            "autoSort": false,
+            "cId": "VDAzM",
+            "numFormatFromTemplate": true
+          },
+          "qSortBy": {
+            "qSortByNumeric": -1,
+            "qSortByLoadOrder": 1,
+            "qExpression": {}
+          },
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCond": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qTrendLines": [],
+          "qMiniChartDef": {
+            "qSortBy": {
+              "qExpression": {}
+            },
+            "qOtherTotalSpec": {
+              "qOtherMode": "OTHER_OFF",
+              "qOtherCounted": {},
+              "qOtherLimit": {},
+              "qOtherLimitMode": "OTHER_GT_LIMIT",
+              "qForceBadValueKeeping": true,
+              "qApplyEvenWhenPossiblyWrongResult": true,
+              "qOtherSortMode": "OTHER_SORT_DESCENDING",
+              "qTotalMode": "TOTAL_OFF",
+              "qReferencedExpression": {}
+            },
+            "qMaxNumberPoints": -1,
+            "qAttributeExpressions": []
+          }
+        }
+      ],
+      "qInterColumnSortOrder": [
+        4,
+        0,
+        3,
+        1,
+        2
+      ],
+      "qSuppressZero": true,
+      "qSuppressMissing": true,
+      "qInitialDataFetch": [],
+      "qReductionMode": "N",
+      "qMode": "S",
+      "qPseudoDimPos": -1,
+      "qNoOfLeftDims": -1,
+      "qMaxStackedCells": 5000,
+      "qCalcCond": {
+        "qv": "count({<[Access Type]={'Login Access'},LogTimeStamp= {\">=$(=daystart(max(LogTimeStamp)-28))\"}>} distinct UsageId))>0"
+      },
+      "qTitle": {},
+      "qCalcCondition": {
+        "qCond": {},
+        "qMsg": {}
+      },
+      "qColumnOrder": [],
+      "qExpansionState": [],
+      "qDynamicScript": [],
+      "customErrorMessage": {
+        "calcCond": "No Login Access Pass usage is associated with your current selections."
+      },
+      "columnOrder": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "columnWidths": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "qLayoutExclude": {
+        "qHyperCubeDef": {
+          "qDimensions": [],
+          "qMeasures": [],
+          "qInterColumnSortOrder": [],
+          "qInitialDataFetch": [],
+          "qReductionMode": "N",
+          "qMode": "S",
+          "qPseudoDimPos": -1,
+          "qNoOfLeftDims": -1,
+          "qMaxStackedCells": 5000,
+          "qCalcCond": {},
+          "qTitle": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qColumnOrder": [],
+          "qExpansionState": [],
+          "qDynamicScript": []
+        }
+      }
+    },
+    "showTitles": true,
+    "title": "Login Access Pass by App",
+    "subtitle": "Multiple apps can be accessed using a single login pass, so the total of login passes used can be lower than the sum of passes shown for the apps listed.",
+    "footnote": "",
+    "totals": {
+      "show": false,
+      "position": "bottom",
+      "label": "Totals"
+    },
+    "visualization": "table",
+    "masterVersion": 0.96
+  },
+  "qChildren": []
+}

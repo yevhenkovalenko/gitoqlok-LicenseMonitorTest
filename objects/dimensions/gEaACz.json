@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "gEaACz",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Weekday"
+    ],
+    "qFieldLabels": [
+      "Weekday"
+    ],
+    "title": "Weekday"
+  },
+  "qMetaDef": {
+    "title": "Weekday",
+    "description": "",
+    "tags": []
+  }
+}

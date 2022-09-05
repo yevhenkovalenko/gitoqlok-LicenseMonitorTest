@@ -1,0 +1,21 @@
+{
+  "qInfo": {
+    "qId": "PGUePL",
+    "qType": "dimension"
+  },
+  "qDim": {
+    "qGrouping": "N",
+    "qFieldDefs": [
+      "Month"
+    ],
+    "qFieldLabels": [
+      "Month"
+    ],
+    "title": "Month"
+  },
+  "qMetaDef": {
+    "title": "Month",
+    "description": "",
+    "tags": []
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "qProperty": {
+    "qInfo": {
+      "qId": "VfuGmtA",
+      "qType": "masterobject"
+    },
+    "qMetaDef": {
+      "title": "Login Access Rule Usage Scatter Plot",
+      "tags": []
+    },
+    "qHyperCubeDef": {
+      "qDimensions": [
+        {
+          "qLibraryId": "zjJSYF",
+          "qDef": {
+            "qGrouping": "N",
+            "qFieldDefs": [],
+            "qFieldLabels": [],
+            "qSortCriterias": [
+              {
+                "qSortByLoadOrder": 1,
+                "qSortByExpression": -1,
+                "qExpression": {
+                  "qv": "sum({1} [Login Passes Assigned])"
+                }
+              }
+            ],
+            "qNumberPresentations": [],
+            "qActiveField": 0,
+            "autoSort": false,
+            "cId": "jpxbD",
+            "othersLabel": "Others"
+          },
+          "qNullSuppression": true,
+          "qOtherTotalSpec": {
+            "qOtherMode": "OTHER_ABS_LIMITED",
+            "qOtherCounted": {
+              "qv": "10"
+            },
+            "qOtherLimit": {
+              "qv": "0"
+            },
+            "qOtherLimitMode": "OTHER_GE_LIMIT",
+            "qSuppressOther": true,
+            "qForceBadValueKeeping": true,
+            "qApplyEvenWhenPossiblyWrongResult": true,
+            "qOtherSortMode": "OTHER_SORT_DESCENDING",
+            "qTotalMode": "TOTAL_OFF",
+            "qReferencedExpression": {}
+          },
+          "qOtherLabel": {
+            "qv": "Others"
+          },
+          "qTotalLabel": {},
+          "qCalcCond": {},
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "title": "Login Access Rule",
+          "othersLabel": "Others"
+        }
+      ],
+      "qMeasures": [
+        {
+          "qDef": {
+            "qLabel": "Used",
+            "qTags": [],
+            "qGrouping": "N",
+            "qDef": "Sum([Login Passes Used])",
+            "qNumFormat": {
+              "qType": "F",
+              "qnDec": 2,
+              "qUseThou": 0,
+              "qFmt": "#,##0",
+              "qDec": ".",
+              "qThou": ","
+            },
+            "qAccumulate": 0,
+            "qActiveExpression": 0,
+            "qExpressions": [],
+            "autoSort": true,
+            "cId": "nHpnnga",
+            "numFormatFromTemplate": true,
+            "series": {
+              "type": "bar",
+              "axis": 0,
+              "marker": "circle",
+              "markerFill": true
+            }
+          },
+          "qSortBy": {
+            "qSortByNumeric": -1,
+            "qSortByLoadOrder": 1,
+            "qExpression": {}
+          },
+          "qAttributeExpressions": [
+            {
+              "qExpression": "num(sum([Login Passes Remaining])/sum([Login Passes Assigned])*100,'0%')",
+              "label": "% Remaining",
+              "id": "colorByExpression"
+            }
+          ],
+          "qAttributeDimensions": [],
+          "qCalcCond": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qTrendLines": [],
+          "qMiniChartDef": {
+            "qSortBy": {
+              "qExpression": {}
+            },
+            "qOtherTotalSpec": {
+              "qOtherMode": "OTHER_OFF",
+              "qOtherCounted": {},
+              "qOtherLimit": {},
+              "qOtherLimitMode": "OTHER_GT_LIMIT",
+              "qForceBadValueKeeping": true,
+              "qApplyEvenWhenPossiblyWrongResult": true,
+              "qOtherSortMode": "OTHER_SORT_DESCENDING",
+              "qTotalMode": "TOTAL_OFF",
+              "qReferencedExpression": {}
+            },
+            "qMaxNumberPoints": -1,
+            "qAttributeExpressions": []
+          }
+        },
+        {
+          "qDef": {
+            "qLabel": "% Remaining",
+            "qTags": [],
+            "qGrouping": "N",
+            "qDef": "sum([Login Passes Remaining]/[Login Passes Assigned])",
+            "qNumFormat": {
+              "qType": "F",
+              "qnDec": 2,
+              "qUseThou": 0,
+              "qFmt": "0%",
+              "qDec": ".",
+              "qThou": ","
+            },
+            "qAccumulate": 0,
+            "qActiveExpression": 0,
+            "qExpressions": [],
+            "autoSort": true,
+            "cId": "wJmGyH",
+            "numFormatFromTemplate": true,
+            "series": {
+              "type": "marker",
+              "axis": 1,
+              "marker": "line",
+              "markerFill": true
+            }
+          },
+          "qSortBy": {
+            "qSortByNumeric": -1,
+            "qSortByLoadOrder": 1,
+            "qExpression": {}
+          },
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCond": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qTrendLines": [],
+          "qMiniChartDef": {
+            "qSortBy": {
+              "qExpression": {}
+            },
+            "qOtherTotalSpec": {
+              "qOtherMode": "OTHER_OFF",
+              "qOtherCounted": {},
+              "qOtherLimit": {},
+              "qOtherLimitMode": "OTHER_GT_LIMIT",
+              "qForceBadValueKeeping": true,
+              "qApplyEvenWhenPossiblyWrongResult": true,
+              "qOtherSortMode": "OTHER_SORT_DESCENDING",
+              "qTotalMode": "TOTAL_OFF",
+              "qReferencedExpression": {}
+            },
+            "qMaxNumberPoints": -1,
+            "qAttributeExpressions": []
+          }
+        },
+        {
+          "qDef": {
+            "qLabel": "Assigned",
+            "qTags": [],
+            "qGrouping": "N",
+            "qDef": "Sum([Login Passes Assigned])\n//Sum({1}  [Login Passes Remaining])",
+            "qNumFormat": {
+              "qType": "F",
+              "qnDec": 2,
+              "qUseThou": 0,
+              "qFmt": "#,##0",
+              "qDec": ".",
+              "qThou": ","
+            },
+            "qAccumulate": 0,
+            "qActiveExpression": 0,
+            "qExpressions": [],
+            "autoSort": true,
+            "cId": "HPMuzjx",
+            "numFormatFromTemplate": true,
+            "series": {
+              "type": "bar",
+              "axis": 0,
+              "marker": "line",
+              "markerFill": true
+            }
+          },
+          "qSortBy": {
+            "qSortByNumeric": -1,
+            "qSortByLoadOrder": 1,
+            "qExpression": {}
+          },
+          "qAttributeExpressions": [],
+          "qAttributeDimensions": [],
+          "qCalcCond": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qTrendLines": [],
+          "qMiniChartDef": {
+            "qSortBy": {
+              "qExpression": {}
+            },
+            "qOtherTotalSpec": {
+              "qOtherMode": "OTHER_OFF",
+              "qOtherCounted": {},
+              "qOtherLimit": {},
+              "qOtherLimitMode": "OTHER_GT_LIMIT",
+              "qForceBadValueKeeping": true,
+              "qApplyEvenWhenPossiblyWrongResult": true,
+              "qOtherSortMode": "OTHER_SORT_DESCENDING",
+              "qTotalMode": "TOTAL_OFF",
+              "qReferencedExpression": {}
+            },
+            "qMaxNumberPoints": -1,
+            "qAttributeExpressions": []
+          }
+        }
+      ],
+      "qInterColumnSortOrder": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "qSuppressMissing": true,
+      "qInitialDataFetch": [
+        {
+          "qLeft": 0,
+          "qTop": 0,
+          "qWidth": 0,
+          "qHeight": 0
+        }
+      ],
+      "qReductionMode": "N",
+      "qMode": "S",
+      "qPseudoDimPos": -1,
+      "qNoOfLeftDims": -1,
+      "qMaxStackedCells": 5000,
+      "qCalcCond": {
+        "qv": "Sum([Login Passes Used])>=0"
+      },
+      "qTitle": {},
+      "qCalcCondition": {
+        "qCond": {},
+        "qMsg": {}
+      },
+      "qColumnOrder": [],
+      "qExpansionState": [],
+      "qDynamicScript": [],
+      "customErrorMessage": {
+        "calcCond": "Information not available because no REST connector found during reload."
+      },
+      "qLayoutExclude": {
+        "qHyperCubeDef": {
+          "qDimensions": [],
+          "qMeasures": [],
+          "qInterColumnSortOrder": [],
+          "qInitialDataFetch": [],
+          "qReductionMode": "N",
+          "qMode": "S",
+          "qPseudoDimPos": -1,
+          "qNoOfLeftDims": -1,
+          "qMaxStackedCells": 5000,
+          "qCalcCond": {},
+          "qTitle": {},
+          "qCalcCondition": {
+            "qCond": {},
+            "qMsg": {}
+          },
+          "qColumnOrder": [],
+          "qExpansionState": [],
+          "qDynamicScript": []
+        }
+      }
+    },
+    "showTitles": true,
+    "title": "Login Access Rule Usage",
+    "subtitle": {
+      "qStringExpression": {
+        "qExpr": "'Login Access Passes used & available as of ' & ReloadStartTime"
+      }
+    },
+    "footnote": "",
+    "dataPoint": {
+      "show": false,
+      "bubbleSizes": 5,
+      "rangeBubbleSizes": [
+        4,
+        15
+      ]
+    },
+    "color": {
+      "auto": false,
+      "mode": "byExpression",
+      "singleColor": 3,
+      "persistent": false,
+      "expressionIsColor": false,
+      "expressionLabel": "% Remaining",
+      "measureScheme": "dg",
+      "reverseScheme": true,
+      "dimensionScheme": "12",
+      "autoMinMax": false,
+      "measureMin": 0,
+      "measureMax": 100,
+      "colorExpression": "num(sum([Login Passes Remaining])/sum([Login Passes Assigned])*100,'0%')"
+    },
+    "legend": {
+      "show": false,
+      "dock": "auto",
+      "showTitle": true
+    },
+    "visualization": "scatterplot",
+    "refLine": {
+      "refLinesX": [],
+      "refLinesY": []
+    },
+    "navigation": false,
+    "labels": {
+      "mode": 2
+    },
+    "compressionResolution": 5,
+    "gridLine": {
+      "auto": true,
+      "spacing": 2
+    },
+    "xAxis": {
+      "show": "all",
+      "dock": "near",
+      "spacing": 1,
+      "autoMinMax": false,
+      "minMax": "min",
+      "min": 0,
+      "max": 10
+    },
+    "yAxis": {
+      "show": "all",
+      "dock": "near",
+      "spacing": 1,
+      "autoMinMax": false,
+      "minMax": "minMax",
+      "min": 0,
+      "max": 1.015
+    },
+    "qLayoutExclude": {},
+    "masterVersion": 0.96,
+    "metadata": {}
+  },
+  "qChildren": []
+}
